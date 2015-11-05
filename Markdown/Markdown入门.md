@@ -1,8 +1,6 @@
 # Markdown 入门
-____
-原文：[掌握 Markdown](http://jingxuan.io/markdown/?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+参考资料：[掌握 Markdown](http://jingxuan.io/markdown/?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 ## 基本语法
-____
 ### 标题
 ____
 `#`相当于`<h1>`标签，为一级标题
@@ -85,7 +83,6 @@ ____
 > Hello World
 
 ## GitHub 扩展的 Markdown语法
-____
 GitHub上使用的自己定制过的Markdown，扩展了很多有用的功能特性，这些特性和功能使得GitHub上的内容产生更加的容易。
 
 注意：部分GitHub扩展的Markdown语法只能用在`Issues`和`Pull Requests`的描述和评论中， 像`@`某用户的功能。任务列表语法还可以用在Gist评论和Gist Markdown 文件里。
@@ -135,7 +132,6 @@ ____
 | zebra stripes | are neat | $1 |
 
 ## 补充语法
-----
 补充一些上面漏掉的但也很实用的语法
 ### 分割线：
 ____
