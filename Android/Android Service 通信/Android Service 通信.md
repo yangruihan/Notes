@@ -1,6 +1,8 @@
 # Android Service 通信
 参考资料：[Android 中 Service 通信](http://www.jikexueyuan.com/course/715.html)
 
+GitHub演示项目：[Android Service 通信](https://github.com/yangruihan/Notes/tree/master/Android/Android%20Service%20%E9%80%9A%E4%BF%A1/AndroidStudy_Service)
+
 ## 1. 创建一个 Service
 ### 1.1 创建 Service 类
 新建一个类，这里取名 MyService，继承自 Service
