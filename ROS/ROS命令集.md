@@ -30,7 +30,11 @@
 
 ## rosmsg
 消息有关命令
-- `rosmsg show [msg]` 显示消息的信息
+- `rosmsg show [message type]` 显示消息信息
+
+## rossrv
+服务有关命令
+- `rossrv show [service type]` 显示服务信息
 
 ## rosservice
 服务有关命令
@@ -52,3 +56,7 @@
 ## roslaunch
 将节点作为一个launch文件中定义的方式启动
 - `roslaunch [package] [filename.launch]` 运行某个包下的launch文件
+
+## roscp
+从一个包里复制一个文件到另一个包中
+- `roscp [package_name] [file_to_copy_path] [copy_path]`
