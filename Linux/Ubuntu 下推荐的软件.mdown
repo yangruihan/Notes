@@ -1,0 +1,77 @@
+# Ubuntu 下推荐的软件
+## 版本控制
+|名称|安装方法|
+|---|---|
+| Git | sudo apt-get install git |
+
+## 文本编辑器
+|名称|安装方法|
+|---|---|
+| Vim | sudo apt-get install vim |
+| Sublime Text 3 | http://www.sublimetext.com/3 |
+
+**附：**
+- Vim 插件
+
+|名称|说明|
+|---|---|
+| [Vundle](http://www.haiyun.me/archives/vim-vundle.html) | Vim 强大的插件管理工具 |
+| [Ctags](http://www.linuxidc.com/Linux/2014-03/97620.htm) | 类方法属性查看插件 |
+
+- Sublime Text 3 插件
+
+|名称|说明|
+|---|---|
+| [Package Control](http://jingyan.baidu.com/article/925f8cb817fd49c0dce05653.html) | 强大的插件管理工具 |
+|[部分插件推荐](http://www.imjeff.cn/blog/146/) |  |
+
+## Shell
+|名称|安装方法|
+|---|---|
+| Oh-my-zsh | http://blog.csdn.net/eclipse_c/article/details/38801549 |
+
+**附：**
+- Shell 插件
+
+|名称|说明|
+|---|---|
+| [Powerline](https://powerline.readthedocs.org/en/latest/installation.html#repository-root)|强大的命令行状态显示|
+
+## 输入法
+|名称|安装方法|
+|---|---|
+|搜狗输入法|http://pinyin.sogou.com/linux/?r=pinyin|
+
+## 浏览器
+|名称|安装方法|
+|---|---|
+|Firefox|系统默认自带|
+|Chrome|http://www.google.cn/chrome/browser/desktop/index.html|
+
+## 跨平台同步软件
+|名称|安装方法|
+|---|---|
+|坚果云|https://jianguoyun.com/s/downloads/linux|
+
+## 翻译软件
+|名称|安装方法|
+|---|---|
+|星际译王（stardict）|Ubuntu Software Center 搜索 startdict|
+
+**附：**
+[词典下载链接](http://abloz.com/huzheng/stardict-dic/zh_CN/)
+
+## 快速启动栏
+|名称|安装方法|
+|---|---|
+|Docky|Ubuntu Software Center 搜索 Docky|
+
+## Python IDE
+|名称|安装方法|
+|---|---|
+|Pycharm|http://www.jetbrains.com/pycharm/download/|
+
+## Java IDE
+|名称|安装方法|
+|---|---|
+|Eclipse|http://www.eclipse.org/downloads/|
