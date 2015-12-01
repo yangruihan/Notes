@@ -1,0 +1,97 @@
+# Java字符串的10大问题盘点
+
+TAG:
+- `Java`
+- `字符串`
+
+## 1、如何比较字符串，应该用”==”还是equals()？
+总的来说，`==`是用来比较字符串的引用地址，而`equals()`才是比较字符串的值。两个值相同的字符串用`==`比较结果有可能是**false**，而用`equals()`则一定为**true**。除非两个字符串是同一个`new`出来的对象，不然比较字符串值是否相同应该要用`equals()`。
+```[JAVA]
+String a1 = "123";
+String b1 = "123";
+System.out.println(a1 == b1); // true
+System.out.println(a1.equals(b1)); // true
+
+String a2 = new String("123");
+String b2 = new String("123");
+System.out.println(a2 == b2); // false
+System.out.println(a2.equals(b2)); // true
+```
+
+## 2、对那些安全敏感的信息，为什么用char[]存储要优于String？
+String是不可变的，这就意味着它一旦被创建，就将永久驻留在内存中，直到垃圾回收器将其回收为止。然而用数组存储方式，你可以明确地改变数组中的元素，因此用数组方式，安全信息将有可能不存在系统内存的任何地方。
+
+## 3、能否用字符串来声明switch语句？
+Java 7及以后的版本是支持的。在JDK 7中，允许你使用字符串做switch语句的比较条件。jdk 6以前的版本，不能这样使用：
+```[JAVA]
+// Java 7 以及之后的版本
+String str = "a";
+switch (str) {
+case "a":
+    System.out.println("a");
+    break;
+case "b":
+    System.out.println("b");
+    break;
+default:
+    break;
+}
+// 没问题，可以输出 a
+```
+
+## 4、如何将字符串转换成数字int类型？
+```[JAVA]
+int n = Integer.parseInt("123");
+// 没有问题，但当字符串不满足要求时会抛出异常
+```
+
+## 5、如何用空格字符来分割字符串？
+我们可以很方便地用正则表达式来分割字符串，"\s"表示空白字符，比如" ", "\t", "\r", "\n"：
+```[JAVA]
+String aString = "1 2 3";
+String[] strArray = aString.split("\\s+");
+for (int i = 0; i < strArray.length; i++) {
+    System.out.println(strArray[i]);
+}
+// 结果为：
+//      1
+//      2
+//      3
+```
+
+## 6、substring()方法究竟是什么？
+在jdk 6中，substring()方法在原来字符串中提供了一个截取字符的窗口，它并没有创建一个新的String实例。如果你想创建新的字符数组，你可以在substring()后加一个空字符，就像这样：
+```[JAVA]
+str.substring(m, n) + ""
+```
+这样就会创建一个新的String实例，上面的方法有时候可以让你的程序运行速度更快，因为垃圾回收器可以将没用的大字符串回收走，并保留其子字符串。
+
+## 7、String、StringBuilder和StringBuffer哪个更优？
+**String**和**StringBuilder**：**StringBuilder**是可变的，也就是说用StringBuilder创建的字符串你可以随时改变它。
+**StringBuilder**和**StringBuffer**：StringBuffer是同步的，它是线程安全（thread-safe）的，但效率要比StringBuilder差得多。
+
+## 8、如何重复输出字符串？
+在Python中，我们只需要为字符串乘上一个数字就可以重复输出该字符串了。然而在Java中，我们可以用StringUtils的repeat()方法来实现，StringUtils是Apache公共语言库的其中一个类库成员。
+```[JAVA]
+String str = "abcd";
+String repeated = StringUtils.repeat(str, 3);
+// abcdabcdabcd
+```
+注：此包需要[下载](http://commons.apache.org/proper/commons-lang/download_lang.cgi)
+
+## 9、如何将字符串转换成日期类型？
+你可以按以下方法来做，代码如下：
+```[JAVA]
+String str = "Sep 1, 2015";
+Date date = new SimpleDateFormat("MMMM d, yy", Locale.ENGLISH).parse(str);
+System.out.println(date);
+// Tue Sep 01 00:00:00 CST 2015
+```
+
+## 10、如何统计指定字符在字符串中出现的频率
+同样我们利用了Apache公共语言库中的StringUtils，代码如下：
+```[JAVA]
+int n = StringUtils.countMatches("11112222", "1");
+System.out.println(n);
+// 结果为：4
+```
