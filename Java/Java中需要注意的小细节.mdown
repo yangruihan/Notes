@@ -1,0 +1,29 @@
+# Java 中需要注意的小细节
+
+## 1、调用静态常量不会引起初始化（即不会调用类初始化代码块），但是调用类的静态方法当然会初始化类了。
+```[JAVA]
+public class Test {
+    
+    public static void main(String[] args) {
+        System.out.println(A.str);
+        A.staticMethod();
+    }
+}
+
+class A {
+    static {
+        System.out.println("static code block");
+    }
+    
+    public static final String str = "static constant variable";
+    
+    public static void staticMethod() {
+        System.out.println("static method");
+    }
+}
+
+// 输出结果为：
+// static constant variable
+// static code block
+// static method
+```
