@@ -1,0 +1,36 @@
+# OS X 支持 NTFS 读写
+苹果的 OS X 明明已经支持 NTFS 分区读写, 但是默认情况还是按只读挂载, 查了些资料小修改了下, 就可以开启原生读写了。
+
+```
+# 用root身份做如下操作（高危! 请切记自己在干什么）
+$ sudo -s
+$ cd /sbin
+# 将系统自带的挂载程序改名
+$ mv mount_ntfs mount_ntfs_orig
+# 新建我们要的挂载脚本并编辑
+$ vim mount_ntfs
+```
+**mount_ntfs**
+```
+#!/bin/sh
+/sbin/mount_ntfs_orig -o rw "$@"
+```
+
+```
+# 保存退出(:wq)后改一下权限
+$ chmod a+x mount_ntfs
+# 都搞定了, 退出 root 身份
+$ exit
+```
+
+**不过这个方法还有几个小问题要注意:**
+
+- 分区最好有卷标, 默认的 "未命名磁盘" 可能无法挂载。如遇无法自动挂载可以先在终端下改个名再试。
+```
+# 获取对应分区的 DiskIdentifier (类似 disk1s1 这样的)
+$ diskutil list
+# 分区重命名
+$ diskutil rename disk1s1 newname
+```
+
+- 网络上其他方法经常会让把脚本里的挂载参数加上 nobrowse, 这个参数就让挂载的分区不显示成新的移动磁盘, 然后又有一堆方法教怎么在 finder 侧边栏能快速访问这样挂载的 NTFS 分区. 其实 man mount 看明白 -o 参数后面的设定就明白了, 去掉那个画蛇添足的 nobrowse 吧
