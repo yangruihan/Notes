@@ -118,11 +118,12 @@ public class SelectionSort {
 
     建堆：
 
-//插入图片
+    ![](https://github.com/yangruihan/Notes/blob/master/Image/%E5%A0%86%E6%8E%92%E5%BA%8F-%E5%BB%BA%E5%A0%86.jpg?raw=true)
 
     交换，从堆中踢出最大数：
 
-//插入图片
+    ![](https://github.com/yangruihan/Notes/blob/master/Image/%E5%A0%86%E6%8E%92%E5%BA%8F-%E4%BA%A4%E6%8D%A2.jpg?raw=true)
+    ![](https://github.com/yangruihan/Notes/blob/master/Image/%E5%A0%86%E6%8E%92%E5%BA%8F-%E4%BA%A4%E6%8D%A22.jpg?raw=true)
 
     依次类推：最后堆中剩余的最后两个节点交换，踢出一个，排序完成。
 
@@ -192,7 +193,9 @@ public class HeapSort {
 - 基本思想：
 在要排序的一组数中，对当前还未排好序的范围内的全部数，自上而下对相邻的两个数依次进行比较和调整，让较大的数往下沉，较小的往上冒。即：每当两相邻的数比较后发现它们的排序与排序要求相反时，就将它们互换。
 - 实例：
-//插入图片
+
+![](https://github.com/yangruihan/Notes/blob/master/Image/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F.png?raw=true)
+
 - 代码实现：
 ```[Java]
 public class BubbleSort {
@@ -220,6 +223,9 @@ public class BubbleSort {
 - 基本思想：
 选择一个基准元素,通常选择第一个元素或者最后一个元素,通过一趟扫描，将待排序列分成两部分,一部分比基准元素小,一部分大于等于基准元素,此时基准元素在其排好序后的正确位置,然后再用同样的方法递归地排序划分的两部分。
 - 实例：
+
+![](https://github.com/yangruihan/Notes/blob/master/Image/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F.jpg?raw=true)
+
 - 代码实现：
 ```[Java]
 public class QuickSort {
@@ -270,6 +276,9 @@ public class QuickSort {
 - 基本思想：
 归并(Merge)排序法是将两个(或两个以上)有序表合并成一个新的有序表，即把待排序序列分为若干个子序列，每个子序列是有序的。然后再把有序子序列合并为整体有序序列。
 - 实例：
+
+![](https://github.com/yangruihan/Notes/blob/master/Image/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F.jpg?raw=true)
+
 - 代码实现：
 ```[Java]
 public class MergeSort {
@@ -328,6 +337,9 @@ public class MergeSort {
 - 基本思想：
 将所有待比较数值(正整数)统一为同样的数位长度，数位较短的数前面补零。然后，从最低位开始，依次进行一次排序。这样从最低位排序一直到最高位排序完成以后,数列就变成一个有序序列。
 - 实例：
+
+![](https://github.com/yangruihan/Notes/blob/master/Image/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F.jpg?raw=true)
+
 - 代码实现：
 ```[Java]
 public class RadixSort {
