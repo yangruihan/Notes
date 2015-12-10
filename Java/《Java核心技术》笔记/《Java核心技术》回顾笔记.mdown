@@ -74,3 +74,79 @@
     ![](https://github.com/yangruihan/Notes/blob/master/Image/%E6%95%B0%E5%80%BC%E7%B1%BB%E5%9E%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E5%90%88%E6%B3%95%E8%BD%AC%E6%8D%A2%E5%9B%BE.png?raw=true)
     
     其中6个黑色箭头表示无信息丢失的转换，另外3个灰色箭头表示可能有精度损失的转换。
+
+- 两个数值进行二元操作时，先将两个操作数转换为同一种类型，然后再进行计算，其中：
+    - 如果两个操作数中有一个是`double`，则另一个操作数转换成`double`
+    - 否则两个操作数中有一个是`float`，则另一个操作数转换成`float`
+    - 否则两个操作数中有一个是`long`，则另一个操作数转换成`long`
+    - 否则两个操作数都将被转换成`int`
+
+- 当想将一个浮点数转换成最接近的整数时，不应该使用强制类型转换，而是使用`Math.round`：
+    
+    ```[Java]
+    double x = 9.997;
+    int nx = (int)Math.round(x); // 这里需要进行(int)强制转换是因为 Math.round 返回值为 long
+    // nx = 10
+    
+    int nx = (int)x;
+    // nx = 9
+    ```
+
+- 不要在`boolean`类型与任何数值类型之间进行强制类型转换，如果需要可以采用以下形式：
+
+    ```[Java]
+    boolean b = true;
+    int x = b ? 1 : 0;
+    ```
+
+- `a += b += c` 等价于 `a += (b += c)` 因为`+=`操作符**右边**优先级大于**左边**
+
+- Java中的`String`类没有提供用于修改字符串的方法，因此称其为**不可变字符串**
+
+- `StringBuilder`类的前身为`StringBuffer`类，其效率略微有些低，但允许采用多线程的方式执行添加或删除字符的操作。如果所有字符串在一个单线程中编辑，则应该用`StringBuilder`
+
+- 如果要从控制台读取密码，应使用`Console`这个类:
+
+    ```[Java]
+    Console cons = System.console();
+    String username = cons.readLine("User name: ");
+    char[] passwd = cons.readPassword("Password: ");
+    ```
+
+    *注：密码最好使用char[]来进行存储，因为String是不可修改的，可能会残留在内存中，造成安全隐患，而使用char[]进行存储，一旦对密码进行处理应立即用一个填充值将其覆盖，这样更加安全*
+
+- 通过`System.out.printf("%d", i)`来进行格式化输出，通过`String s = String.format("%d", i)`来生成格式化字符串
+
+- 格式化输出**参数索引**例子：
+
+    ```[Java]
+    System.out.printf("%1$s %2$tB %2$te, %2$tY", "Due date:", new Date());
+    // 输出结果： Due date: 十二月 10, 2015
+    ```
+
+- 文件输入与输出：
+    - 输入： `Scanner in = new Scanner(new File("myFile"));` 接下来就跟操作`Scanner(System.in)`一样对文件进行读取
+    - 输出： `PrintWriter out = PrintWriter("myFile");` 接下来就跟操作`System.our`一样对文件进行输出，若文件不存在先生成一个 
+
+- Java中不允许在嵌套的两个块中声明同名的变量
+
+- 带标签的`break`语句：
+
+    ```[Java]
+    int i = 0;
+
+    label:
+    while (i < 10) {
+        System.out.print(i + ": ");
+        for (int j = 0; j < 10; j++) {
+            System.out.print(j + " ");
+            if (j == 5) {
+                break label;
+            }
+        }
+        i++;
+    }
+    // 输出结果： 0: 0 1 2 3 4 5 
+    ```
+
+- 带标签的`continue`语句同上
