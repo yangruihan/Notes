@@ -13,7 +13,7 @@ origin https://github.com/yuquan0821/demo.git (push)
 下面把它换成`ssh`方式的：
 ```
 git remote rm origin
-git remote add origin git@github.com:yuquan0821/demo.git
+git remote add origin git@github.com:username/repository.git
 git push origin
 ```
 
