@@ -1,0 +1,93 @@
+# Java 开发必会的 Linux 命令
+
+本文并不会对所有命令进行详细讲解，只给出常见用法和解释。具体用法可以使用`--help`查看帮助或者直接通过 google 搜索学习。
+
+### 1.查找文件
+- `find / -name filename.txt` 根据名称查找/目录下的filename.txt文件
+
+- `find . -name "*.xml"` 递归查找所有的xml文件
+
+- `find . -name "*.xml" |xargs grep "hello world"` 递归查找所有文件内容中包含 hello world 的 xml 文件
+
+- `grep -H 'spring' *.xml` 查找所以有的包含 spring 的 xml 文件
+
+- `find ./ -size 0 | xargs rm -f &` 删除文件大小为零的文件
+
+- `ls -l | grep 'jar'` 查找当前目录中的所有 jar 文件
+
+- `grep 'test' d*` 显示所有以 d 开头的文件中包含 test 的行
+
+- `grep 'test' aa bb cc` 显示在 aa，bb，cc 文件中匹配 test 的行
+
+- `grep '[a-z]\{5\}' aa` 显示所有包含每个字符串至少有5个连续小写字符的字符串的行。
+
+### 2.查看一个程序是否运行
+- `ps –ef|grep tomcat` 查看所有有关 tomcat 的进程
+
+### 3.终止线程
+- `kill -9 19979` 终止线程号位 19979 的线程
+
+### 4.查看文件，包含隐藏文件
+- `ls -al`
+
+### 5.切换用户
+- `su -username`
+
+### 6.修改文件权限
+- `chmod 777 file.java` file.java 的权限 -rwxrwxrwx ，r 表示读、w 表示写、x 表示可执行
+
+### 7.压缩文件
+- `tar -czf test.tar.gz /test1 /test2`
+
+### 8.列出压缩文件列表
+- `tar -tzf test.tar.gz`
+
+### 9.解压文件
+- `tar -xvzf test.tar.gz`
+
+### 10.查看文件头10行
+- `head -n 10 example.txt`
+
+### 11.查看文件尾10行
+- `tail -n 10 example.txt`
+
+### 12.查看日志类型文件
+- `tail -f exmaple.log` 这个命令会自动显示新增内容，屏幕只显示 10 行内容的（可设置）
+
+### 13.查看端口占用情况
+- `netstat -tln | grep 8080` 查看端口 8080 的使用情况
+
+### 14.查看端口属于哪个程序
+- `lsof -i :8080`
+
+### 15.查看进程
+- `ps aux|grep java` 查看 java 进程
+
+- `ps aux` 查看所有进程
+
+### 16.以树状图列出目录的内容
+- `tree a`
+
+### 17.文件下载
+- `wget http://file.tgz`
+
+- `curl http://file.tgz`
+
+### 18.网络检测
+- `ping http://www.google.com`
+
+### 19.远程登录
+- `ssh userName@ip`
+
+### 20.打印信息
+- `cho $JAVA_HOME` 打印 java home 环境变量的值
+
+### 21.java 常用命令
+- `java javac jps jstat jmap jstack`
+
+### 22.其他命令
+- `svn git maven`
+
+### 23.linux命令学习网站:
+- http://explainshell.com/
+
