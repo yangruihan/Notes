@@ -32,7 +32,7 @@ Tmux 是一个工具，用于在一个终端窗口中运行多个终端会话。
 
 如图所示，这就一个是 Tmux 的会话：
 
-![](https://github.com/yangruihan/Notes/blob/master/Mac/Tmux%20%E9%80%9F%E6%88%90%E6%95%99%E7%A8%8B%EF%BC%9A%E6%8A%80%E5%B7%A7%E5%92%8C%E8%B0%83%E6%95%B4/image/1.jpg?raw=true)
+
 
 从图中我们可以看出：
 - 左侧：Vim
@@ -97,7 +97,7 @@ bind R source-file ~/.tmux.conf ; display-message "Config reloaded.."
 ### 窗格
 我认为沿竖直方向分割屏幕是个不错的主意，这样我就可以在一边使用 Vim，而在另一边查看代码运行结果，如果需要的话，有时我还会再打开一个控制台。下面我就要讲解如何利用 Tmux 实现这一切。
 
-![](https://github.com/yangruihan/Notes/blob/master/Mac/Tmux%20%E9%80%9F%E6%88%90%E6%95%99%E7%A8%8B%EF%BC%9A%E6%8A%80%E5%B7%A7%E5%92%8C%E8%B0%83%E6%95%B4/image/2.jpg?raw=true)
+
 
 从图中可以看出：
 - 左侧：Vim（左上方是一个 Ruby 的类文件，左下方是针对这类编写的测试文件）
@@ -109,8 +109,6 @@ bind R source-file ~/.tmux.conf ; display-message "Config reloaded.."
 在Tmux中，窗口是个窗格容器，你可以将多个窗格放置在窗口中，并根据你的实际需要在窗口中排列多个窗格，也是完全取决于你的需要。例如，我经常是这样做，先开启一个叫作“server”的窗口用于运行应用程序的服务器（在这个窗口中可以看到服务器的日志），然后开启另一个叫作“editor”的窗口用于编写代码。在这个窗口中有两个窗格，一个用于 Vim，一个用于运行测试代码。最后再开启一个叫作“shell”的窗口用于通过 Bash shell 运行命令。Tmux 的窗口功能非常实用，因为在一个窗口中可以创建出多个窗格，这样在一个窗口中就能同时查看所有窗格内容，通过这种方法可以高效地利用有限的屏幕空间。
 
 在 Tmux 的会话中，现有的窗口将会列在屏幕下方。下图所示的就是在默认情况下 Tmux 列出现有窗口的方式。这里一共有三个窗口，分别是“server”、“editor”和“shell”。
-
-![](https://github.com/yangruihan/Notes/blob/master/Mac/Tmux%20%E9%80%9F%E6%88%90%E6%95%99%E7%A8%8B%EF%BC%9A%E6%8A%80%E5%B7%A7%E5%92%8C%E8%B0%83%E6%95%B4/image/3.jpg?raw=true)
 
 若要创建一个窗口，只需要按下`Ctrl-b c`若要切换窗口，只需要先按下`Ctrl-b`，然后再按下想切换的窗口所对应的**数字**，该数字会紧挨着窗口的名字显示。
 
@@ -131,7 +129,7 @@ new -s <name-of-my-new-session>
 ### 在 Tmux 的会话间切换
 若要获取现有会话的列表，可以按下`Ctrl-b s`。下图所示的就是会话的列表：
 
-![](https://github.com/yangruihan/Notes/blob/master/Mac/Tmux%20%E9%80%9F%E6%88%90%E6%95%99%E7%A8%8B%EF%BC%9A%E6%8A%80%E5%B7%A7%E5%92%8C%E8%B0%83%E6%95%B4/image/4.jpg?raw=true)
+
 
 列表中的每个会话都有一个 ID，该 ID 是从 0 开始的。按下对应的 ID 就可以进入会话。如果你已经创建了一个或多个会话，但是还没有运行 Tmux，那么可以输入如下命令以接入已开启的会话。
 ```
@@ -167,7 +165,8 @@ set-option -g default-command "reattach-to-user-namespace -l bash"
 
 首先按下 Ctrl-b [ 进入复制模式，然后可以看到一小段高亮的文本出现在了屏幕的右上角 (“[0/0]”)（如下图所示）。
 
-![](https://github.com/yangruihan/Notes/blob/master/Mac/Tmux%20%E9%80%9F%E6%88%90%E6%95%99%E7%A8%8B%EF%BC%9A%E6%8A%80%E5%B7%A7%E5%92%8C%E8%B0%83%E6%95%B4/image/5.jpg?raw=true)
+
+
 
 接下来就可以像在 Vim 中一样用 j、k、l 和 h 等键在文本间移动光标了。
 
@@ -208,7 +207,8 @@ $ tmate
 
 4. 从 Tmux 的会话中复制由 Tmate 产生的 SSH URL。如下图所示，请注意屏幕下方的信息“[tmate] Remote session: ssh …”：
 
-![](https://github.com/yangruihan/Notes/blob/master/Mac/Tmux%20%E9%80%9F%E6%88%90%E6%95%99%E7%A8%8B%EF%BC%9A%E6%8A%80%E5%B7%A7%E5%92%8C%E8%B0%83%E6%95%B4/image/6.jpg?raw=true)
+
+
 
 5. 利用刚刚复制下来的 URL 就可以邀请其他人通过 SSH 访问你的会话了。
 
@@ -218,7 +218,7 @@ $ tmate
 ### 调整背景的配色方案
 当我第一次通过 Tmux 打开 Vim 时，我发现 Vim 的颜色没有正确显示。正如下图所示，只有有字符的地方才有背景色。
 
-![](https://github.com/yangruihan/Notes/blob/master/Mac/Tmux%20%E9%80%9F%E6%88%90%E6%95%99%E7%A8%8B%EF%BC%9A%E6%8A%80%E5%B7%A7%E5%92%8C%E8%B0%83%E6%95%B4/image/7.jpg?raw=true)
+
 
 这个问题是因为通过 Tmux 运行 Vim 需要配置一个特殊的终端参数（term parameter）。请将下面这行配置添加以你的 ~/.vimrc 文件中。
 ```
@@ -228,8 +228,6 @@ endif
 ```
 
 更新了配置文件 ~/.vimrc 以后，颜色应该就可以正确显示了。
-
-![](https://github.com/yangruihan/Notes/blob/master/Mac/Tmux%20%E9%80%9F%E6%88%90%E6%95%99%E7%A8%8B%EF%BC%9A%E6%8A%80%E5%B7%A7%E5%92%8C%E8%B0%83%E6%95%B4/image/8.jpg?raw=true)
 
 ### 调整光标的形状
 在默认情况下，当通过 Tmux 运行 Vim 时，无论当前 Vim 是处于插入模式、可视模式还是其他模式，光标的形状都是一样的。这样就很难判断当前的 Vim 模式是什么。若要避免这个问题，就需要让 Tmux 通知 iTerm 更新光标的形状。为此，需要将以下配置加入到文件 ~/.vimrc 中。
@@ -323,11 +321,11 @@ $ mux start project_a
 ### 美化 Tmux 的状态栏
 默认情况下，Tmux的状态栏看起来是下图这个样子（图中绿底部分）：
 
-![](https://github.com/yangruihan/Notes/blob/master/Mac/Tmux%20%E9%80%9F%E6%88%90%E6%95%99%E7%A8%8B%EF%BC%9A%E6%8A%80%E5%B7%A7%E5%92%8C%E8%B0%83%E6%95%B4/image/9.jpg?raw=true)
+
 
 我们可以根据需要改变状态栏的外观。对我来说，我喜欢下图这种清爽的外观。
 
-![](https://github.com/yangruihan/Notes/blob/master/Mac/Tmux%20%E9%80%9F%E6%88%90%E6%95%99%E7%A8%8B%EF%BC%9A%E6%8A%80%E5%B7%A7%E5%92%8C%E8%B0%83%E6%95%B4/image/10.jpg?raw=true)
+
 
 为了达到上图的效果，我将如下的配置加入到了配置文件 ~/.tmux.conf 中。
 ```
