@@ -1,0 +1,30 @@
+# Gradle：新一代自动化构建工具
+### 简介
+Gradle 是以 Groovy 语言为基础，基于DSL（领域特定语言）面向Java 应用的构建工具。Gradle让不可能变成可能，让构建更优雅、更容易。
+
+[](http://jbcdn1.b0.upaiyun.com/2015/12/3726e50d6c3d4557a56b2a905aa47dd9.png)
+
+为什么使用 Gradle
+- 多语言构建：支持60多种语言的构建，包括了 Java、Scala、Python、C/C++、Android、IOS
+- 工具集成：插件及集成，拥有一个开放的第三方插件库以及与各种 IDE 集成
+- 强大的依赖管理：开箱即用，Gradle 可以跨约多个存储库处理依赖传递包括 Maven 库、Ivy以及本地文件库。
+- 简明强大的逻辑：约定优于配置，没有过多的限制
+- 高性能构建：采用增量构建，缓存和并行的守护进程来加快构建速度
+- 构建报告：强大的构建分析功能
+
+### 开发资源
+- [下载](http://gradle.org/gradle-download/)
+- 开发者指南
+    - [Java/JVM用户](http://gradle.org/getting-started-gradle-java/)
+    - [C/C++用户](http://gradle.org/getting-started-native/)
+    - [Android用户](http://gradle.org/getting-started-android/)
+    - [Maven用户](http://gradle.org/migrating-a-maven-build-to-gradle/)
+- 书籍
+    - [Free Beginner: Building and Testing With Gradle](http://www2.gradle.com/l/68052/2015-01-13/6dm)
+    - [Free Advanced: Gradle Beyond the Basics](http://www2.gradle.com/l/68052/2015-01-26/23s5)
+    - [Gradle Effective Implementation Guide](https://www.packtpub.com/application-development/gradle-effective-implementation-guide)
+    - [Gradle in Action](http://hao.jobbole.com/gradle/manning.com/muschko/)
+- [视频教程](http://gradle.org/videos/)
+- [开发博客](http://gradle.org/gradle-blog/)
+- [论坛插件](http://plugins.gradle.org/)
+- [Gradle 使用指南（中文）](http://wiki.jikexueyuan.com/project/gradle/)
