@@ -1,0 +1,104 @@
+# Java接口回调机制详解【转】
+
+## 一、回调的含义和用途
+### 1. 什么是回调？
+一般来说，模块之间都存在一定的调用关系，从调用方式上看，可以分为三类：**同步调用**、**异步调用**和**回调**。同步调用是一种阻塞式调用，即在函数A的函数体里通过书写函数B的函数名来调用之，使内存中对应函数B的代码得以执行。异步调用是一种类似消息或事件的机制解决了同步阻塞的问题，例如 A通知 B后，他们各走各的路，互不影响，不用像同步调用那样， A通知 B后，非得等到 B走完后， A才继续走 。回调是一种双向的调用模式，也就是说，被调用的接口被调用时也会调用对方的接口，例如A要调用B，B在执行完又要调用A。
+
+### 2. 回调的用处
+回调一般用于层间协作，上层将本层函数安装在下层，这个函数就是回调，而下层在一定条件下触发回调。例如作为一个驱动，是一个底层，他在收到一个数据时，除了完成本层的处理工作外，还将进行回调，将这个数据交给上层应用层来做进一步处理，这在分层的数据通信中很普遍。
+
+## 二、Java 实现接口回调
+在C/C++中，要实现回调函数，被调用函数要告诉调用者自己的指针地址。但是Java没有指针地址，不能传递方法的地址，一般采用接口回调的方法来实现：**把实现某一接口的类创建的对象的引用赋给该接口声明的接口变量，那么该接口变量就可以调用被调用类实现的接口的方法。**
+
+原理：首先创建一个回调对象，然后再创建一个控制器对象，将回调对象需要被调用的方法告诉控制器对象，控制器对象负责检查某个场景是否出现或某个条件是否满足，当满足时，自动调用回调对象的方法。
+
+例如老板A对员工B说，我现在交给你一个任务，并且我把我的电话号码给你，你一旦完成任务就给我打电话。
+
+详细的代码如下：
+
+1. 创建一个回调接口：
+    ```
+    public interface CallBack {
+        public void doEvent();
+    }
+    ```
+
+2. 创建回调接口的实现类，此例中，员工干完活后还要干什么事情是老板说了算的。
+    ```
+    public class Boss implements CallBack {
+        public void doEvent() {
+            System.out.println("打电话给老板，告知已经完成工作了");
+        }
+    }
+    ```
+
+3. 创建控制类，也就是本例中的员工对象，他要持有老板的地址(即回调接口)
+    ```
+    public class Employee {
+        CallBack callBack;
+        public Employee(CallBack callBack) {
+            this.callBack=callBack;
+        }
+        public void doWork() {
+            System.out.println("玩命干活中....");
+            callBack.doEvent();
+        }
+    }
+    ```
+
+4. 测试类
+    ```
+    public class TestMain {
+        public static void main(String[] args) {
+            //创建控制器对象，将提供给他的回调对象传入
+            Employee employee=new Employee(new Boss());
+            //启动控制器对象运行
+            employee.doWork();
+        }
+    }
+    ```
+
+## 三、Android中的接口回调
+在 Android 中回调机制被大量的使用。比如，在 Activity 中定义了很多生命周期的不同状态要调用的方法，这些方法都是空实现，系统框架要调用，用户也要调用来实现。
+
+举个简单的例子就是Button的点击响应事件实现机制
+```
+button.setOnClickListener(new OnClickListener() {
+    @Override
+    public void onClick(View v) {
+
+    }
+});
+```
+
+OnClickListener 就是 Android 系统所约好的接口，然后在我们写的应用程序中传入回调对象，这样就可以达到接口统一，实现不同的效果。这种实现机制类似于下面的代码：
+```
+public class A {
+    public void setOnClickListener(OnClickListener onClickListener) {
+        onClickListener.onClick();
+    }
+
+    public interface OnClickListener {
+        public void onClick();
+    }
+}
+```
+```
+public class B {
+    public static void main(String[] args) {
+        A a=new A();
+        a.setOnClickListener(new OnClickListener() {
+            public void onClick() {
+                // TODO 自动生成的方法存根
+
+            }
+        });
+    }
+}
+```
+其中A相当于Button，a即button按钮，B类相当于View。
+
+## 四、参考资料
+1. http://blog.csdn.net/bjyfb/article/details/10462555
+
+2. http://www.jcodecraeer.com/a/chengxusheji/java/2012/0822/370.html
