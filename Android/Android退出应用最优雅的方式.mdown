@@ -1,0 +1,116 @@
+# Android退出应用最优雅的方式
+
+我们先来看看几种常见的退出方法（不优雅的方式）。
+
+## 一、容器式
+
+建立一个全局容器，把所有 Activity 存储起来，退出时循环遍历`finish`所有 Activity
+```
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.Activity;
+import android.os.Bundle;
+
+public class BaseActivity extends Activity {
+    @Override
+    protected void onCreate(Bundle saveInstanceState) {
+    super.onCreate(saveInstanceState);
+
+    // 添加 Activity 到堆栈中
+    AtyContainer.getInstance().addActivity(this);
+    }
+}
+
+class AtyContainer {
+    private AtyContainer() {
+
+    }
+
+    private static AtyContainer instance = new AtyContainer();
+    private static List<Activity> activityStack = new ArrayList<Activity>();
+
+    public static AtyContainer getInstance() {
+        return instance;
+    }
+
+    public void addActivity(Activity aty) {
+        activityStack.add(aty);
+    }
+
+    public void removeActivity(Activity aty) {
+        activityStack.remove(aty);
+    }
+
+    /**
+     * 结束所有 Activity
+     */
+    public void finishAllActivity() {
+        for (int i = 0, size = activityStack.size(); i < size; i++) {
+            if (null != activityStack.get(i)) {
+                activityStack.get(i).finish();
+            }
+        }
+        activityStack.clear();
+    }
+}
+```
+
+这种方法比较简单， 但是可以看到 activityStack 持有着 Activity 的强引用，也就是说当某个 Activity 异常退出时，activityStack 没有即使释放掉引用，就会导致内存问题，接下来我们看一种类似的方式，但是会稍微优雅一点点。
+
+## 二、广播式
+
+通过在 BaseActivity 中注册一个广播，当退出时发送一个广播，`finish`退出
+```
+public class BaseActivity extends Activity {
+    private static final String EXITACTION = "action.exit";
+
+    private ExitReceiver exitReceiver = new ExitReceiver();
+
+    @Override
+    protected void onCreate(Bundle saveInstanceState) {
+        super.onCreate(saveInstanceState);
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(EXITACTION);
+        registerReceiver(exitReceiver, filter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(exitReceiver);
+    }
+
+    class ExitReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            BaseActivity.this.finish();
+        }
+    }
+}
+```
+
+## 三、进程式
+
+通过直接杀死当前应用的进程来结束应用，简单粗暴，而且有（wu）效！
+
+```
+android.os.Process.killProcess(android.os.Process.myPid());
+System.exit(0);
+ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+manager.killBackgroundProcesses(getPackageName());
+```
+
+**注意：**
+
+这三种都能达到同样的效果，但是在模拟器上都会弹出 Unfortunately , XXX has stopped 消息提示框，但确实能退出应用。部分真机直接失效，只能`finish`当前 Activity（比如我手上这台小米note，国产的几款ROM fw层改动太多，使用这种方式需慎重） 。
+
+## 四、RS优雅式
+
+什么是RS式呢？即 Receiver + singleTask。我们知道 Activity 有四种加载模式，而 singleTask 就是其中的一种，使用这个模式后，当 startActivity 时，它先会在当前栈中查询是否存在 Activity 的实例，如果存在，则将其至于栈顶，并将其之上的所有 Activity 移除栈。我们打开一个 app，首先是一个 splash 页面，然后会`finish`掉 splash 页面。跳转到主页。然后会在主页进行 N 次的跳转，期间会产生数量不定的 Activity，有的被销毁，有的驻留在栈中，但是栈底永远是我们的 HomeActivity。这样就让问题变得简单很多了。我们只需要两步操作即可优雅的实现 app 的退出：
+1. 在 HomeActivity 中注册一个退出广播，和第二个广播式一样，但是这里只需要在 HomeActivity 一个页面注册即可。
+2. 设置 HomeActivity 的启动模式为 singleTask。
+
+当我们需要退出的时候只需要`startActivity(this,HomeActivity,class)`， 再发送一个退出广播。上面代码首先会把栈中 HomeActivity 之上的所有 Activity 移除出栈，然后接到广播`finish`自己。一切OK ! 没有弹框，不用考虑机型Rom适配。不会有内存问题，就是那么的优雅，简单！
+
+
