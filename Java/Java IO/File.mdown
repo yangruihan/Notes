@@ -1,0 +1,213 @@
+# Java IO: File
+>`File`类位于 JDK 的`java.io`包下
+
+> 一个`File`类既可以代表一个文件，也可以代表一个目录。
+
+## 构造器
+要使用`File`，首先需要通过构造器构造它的一个实例
+```[java]
+File file1 = new File("/a/b");
+File file2 = new File("C:\\a\\b.dat");
+```
+
+构造`File`类需要给它指定一个路径，比如上面代码中的`/a/b`，`C:\\a\\b.dat`。
+
+*注意：路径可以代表一个**文件**，也可以代表一个**目录**。*
+
+路径分隔符依据**操作系统**的不同而不同，在类 Unix 系统中，分隔符是`/`，而在 Windows 操作系统中，分隔符是`\\`，如果在代码中以硬编码的方式写死了路径分隔符，那么代码的可移植性就不高。可以通过`File.separator`（得到一个`String`类型的分隔符）或者是`File.separatorChar`（得到一个`Char`类型的分隔符）来获取当前操作系统的路径分隔符。
+
+`File`的构造器中的路径参数也支持**绝对路径**和**相对路径**，像上面的代码用的是绝对路径。那么相对路径相对的是哪个路径呢？Java 会默认采用`user.dir`作为当前路径，可以通过`System.getProperty("user.dir")`来得到这个路径，这个路径也是 JVM 启动时所在的路径。
+
+File也提供了另外一种构造器：
+```[java]
+File(String parent, String child);
+File(File parent, String child);
+```
+
+这两个构造器可以让你在构造文件或目录时指定它的父目录。
+
+## 路径与名字
+`File`类包含了诸多获取路径和路径名字的方法，这些方法看似差别不大却又别有洞天，可以通过下面几段代码来看看区别：
+```[java]
+File file = new File(".");
+System.out.println("Absolute path = " + file.getAbsolutePath());
+System.out.println("Canonical path = " + file.getCanonicalPath());
+System.out.println("Name = " + file.getName());
+System.out.println("Parent = " + file.getParent());
+System.out.println("Path = " + file.getPath());
+System.out.println("Is absolute = " + file.isAbsolute());
+```
+
+得到的结果是：
+```
+Absolute path = D:\WorkSpace\IdeaProjects\JavaStudy\.
+Canonical path = D:\WorkSpace\IdeaProjects\JavaStudy
+Name = .
+Parent = null
+Path = .
+Is absolute = false
+```
+
+执行以下代码：
+```
+File file = new File("C:\\reports\\2015\\..\\2014\\February");
+System.out.println("Absolute path = " + file.getAbsolutePath());
+System.out.println("Canonical path = " + file.getCanonicalPath());
+System.out.println("Name = " + file.getName());
+System.out.println("Parent = " + file.getParent());
+System.out.println("Path = " + file.getPath());
+System.out.println("Is absolute = " + file.isAbsolute());
+```
+
+得到的结果是：
+```
+Absolute path = C:\reports\2015\..\2014\February
+Canonical path = C:\reports\2014\February
+Name = February
+Parent = C:\reports\2015\..\2014
+Path = C:\reports\2015\..\2014\February
+Is absolute = true
+```
+
+执行以下代码：
+```
+File file = new File("");
+System.out.println("Absolute path = " + file.getAbsolutePath());
+System.out.println("Canonical path = " + file.getCanonicalPath());
+System.out.println("Name = " + file.getName());
+System.out.println("Parent = " + file.getParent());
+System.out.println("Path = " + file.getPath());
+System.out.println("Is absolute = " + file.isAbsolute());
+```
+
+得到的结果是：
+```
+Absolute path = D:\WorkSpace\IdeaProjects\JavaStudy
+Canonical path = D:\WorkSpace\IdeaProjects\JavaStudy
+Name = 
+Parent = null
+Path = 
+Is absolute = false
+```
+
+从这里可以看出来，`file.getAbsolutePath()`会把相对路径的信息也打印出来，读起来并不是非常的直观，而`file.getCanonicalPath()`总是以对人类阅读友好的方式打印路径。
+
+如果`File`实例化时参数是绝对路径，那么`getName()`和`getPath()`只打印参数，并且`getParent()`为`null`。
+
+## 得到文件/目录信息
+前面说过，`File`可以是一个**文件**，也可以代表一个**目录**，如何知道`File`代表的是哪一个呢？通过以下两个方法就可以知道：
+- `boolean isDirectory()`
+- `boolean isFile()`
+
+有时候我们想知道`File`代表的那个文件或目录是否在文件系统中存在，`boolean exists()`会告诉你。
+
+在类 Unix 文件系统中，隐藏文件通常以`.`开头，比如用户的 home 目录下的`.bash_profile`，同样在 Windows 中也会有隐藏文件，可通过`isHidden()`来判断一个文件是否是隐藏文件。通过`length()`可以获得文件的大小，通过`lastModified()`可以获得文件的最后修改时间，这个时间是距离 (1970,1,1) 的毫秒数。通常可以通过比较一个文件的最后修改时间来判断文件是否被修改过。
+
+## 列举某个目录
+可通过`File[] listRoots()`来列举当前文件系统的根目录。
+
+在 Windows 下，就是列出所有的盘符：
+```
+C:\
+D:\
+E:\
+F:\
+```
+
+在 Unix 中，只有一个，那就是 / 。
+
+如果要列出某个特定目录下的文件和目录呢，有以下方法：
+```
+String[] list()
+String[] list(FilenameFilter filter)
+File[] listFiles()
+File[] listFiles(FileFilter filter)
+File[] listFiles(FilenameFilter filter)
+```
+
+以上方法中，返回`String[]`的，则是列举出所有文件或目录的名字。返回`File[]`的，则是所有文件或目录所代表的`File`对象。
+
+`FileFilter`和`FilenameFilter`是过滤器，能让你在列举目录时选择过滤掉哪些文件或目录。
+
+## 获取磁盘空间信息
+`File`提供了三个方法可以让你得知某个分区的磁盘空间的信息：
+```
+long getFreeSpace() //获取剩余空间
+long getTotalSpace() //获取总空间大小
+long getUsableSpace() //获取剩余可用空间
+```
+
+尽管`getFreeSpace()`和`getUsableSpace()`看起来差不多，但实际上是有差别的，`getUsableSpace()`会进行更多细致的检查，比如当前 JVM 进程是否对该目录有写权限，以及另外一些操作系统的限制等，但`getFreeSpace()`和`getUsableSpace()`返回的值只能当做一个参考值，因为有可能有其他的进程正在读写这个磁盘空间。
+
+下面是一个例子：
+```
+File[] roots = File.listRoots();
+for (File root: roots) {
+    System.out.println("Partition: " + root);
+    System.out.println("Free space on this partition = " +
+    root.getFreeSpace());
+    System.out.println("Usable space on this partition = " +
+    root.getUsableSpace());
+    System.out.println("Total space on this partition = " +
+    root.getTotalSpace());
+    System.out.println("***");
+}
+```
+
+输出结果为：
+```
+Partition: C:\
+Free space on this partition = 97705476096
+Usable space on this partition = 97705476096
+Total space on this partition = 215169888256
+***
+Partition: D:\
+Free space on this partition = 80537989120
+Usable space on this partition = 80537989120
+Total space on this partition = 280213057536
+***
+Partition: E:\
+Free space on this partition = 239464808448
+Usable space on this partition = 239464808448
+Total space on this partition = 287357005824
+***
+Partition: F:\
+Free space on this partition = 109864599552
+Usable space on this partition = 109864599552
+Total space on this partition = 109980938240
+***
+Partition: G:\
+Free space on this partition = 0
+Usable space on this partition = 0
+Total space on this partition = 0
+***
+Partition: I:\
+Free space on this partition = 0
+Usable space on this partition = 0
+Total space on this partition = 0
+***
+```
+
+## 对文件或目录进行修改
+如果想创建一个文件，使用`boolean createNewFile()`将会创建一个新的空文件，同样，创建一个目录可以用`boolean mkdir()`或者`boolean mkdirs()`，如果中间目录不存在，后者会创建好所有中间目录，而前者将会报错某个目录不存在。
+
+有时候你希望创建一个临时文件，可以使用`static File createTempFile(String prefix, String suffix)`，这个方法将会默认把临时文件放在用户的临时文件夹中，如果你想指定临时文件存放的地方，可以使用`static File createTempFile(String prefix, String suffix, File directory)`指定该目录。
+
+## 文件权限
+从 Java 1.6 开始，增加了对文件权限修改的接口。
+```
+boolean setExecutable(boolean executable)
+boolean setExecutable(boolean executable, boolean ownerOnly)
+boolean setReadable(boolean readable)
+boolean setReadable(boolean readable, boolean ownerOnly)
+boolean setWritable(boolean writable)
+boolean setWritable(boolean writable boolean ownerOnly)
+```
+
+同时提供以下接口获取文件权限信息：
+
+```
+boolean canRead()
+boolean canWrite()
+boolean canExecute()
+```
