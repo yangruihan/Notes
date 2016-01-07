@@ -26,7 +26,7 @@ InputStream ---+--- InputStream                   +--- DeflaterInputStream
                +--- ObjectInputStream             +--- DigestInputStream
                +--- PipedInputStream              +--- InflaterInputStream
                +--- SequenceInputStream           +--- LineNumberInputStream
-               +--- StringBufferedInputStream       +--- ProgressMonitorInputStream
+               +--- StringBufferedInputStream     +--- ProgressMonitorInputStream
                                                   +--- PushbackInputStream
 ```
 
