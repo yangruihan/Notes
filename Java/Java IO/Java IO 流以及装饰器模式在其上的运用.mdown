@@ -1,0 +1,160 @@
+# Java IO 流以及装饰器模式在其上的运用
+## 流概述
+在 Java 中，**流**是一种有序的字节序列，可以有任意的长度。从应用流向目的地称为**输出流**，从目的地流向应用称为**输入流**。
+
+## Java 的流族谱
+在 Java 中输出流和输入流的谱系如下所示：
+```
+输出流
+                 +--- ByteArrayOutputStream       +--- BufferedOutputStream
+                 +--- FileOutputStream            +--- CheckedOutputStream
+OutputStream ----+--- FilterOutputStream ---------+--- CipherOutputStream
+                 +--- ObjectOutputStream          +--- DataOutputStream
+                 +--- PipedOutputStream           +--- DeflaterOutputStream
+                 +--- OutputStream                +--- DigestOutputStream
+                                                  +--- InflaterOutputStream
+                                                  +--- PrintStream
+```
+
+```
+输入流
+               +--- AudioInputStream              +--- BufferedInputStream
+               +--- ByteArrayInputStream          +--- CheckedInputStream
+               +--- FileInputStream               +--- CipherInputStream
+               +--- FilterInputStream ------------+--- DataInputStream
+InputStream ---+--- InputStream                   +--- DeflaterInputStream
+               +--- ObjectInputStream             +--- DigestInputStream
+               +--- PipedInputStream              +--- InflaterInputStream
+               +--- SequenceInputStream           +--- LineNumberInputStream
+               +--- StringBufferedInputStream       +--- ProgressMonitorInputStream
+                                                  +--- PushbackInputStream
+```
+
+## InputStream 和 OutputStream
+`InputStream`和`OutputStream`分别是输入输出流的顶级抽象父类，只定义了一些抽象方法供子类实现。
+ 
+在输出流`OutputStream`中，如果你需要向一个输出流写入数据，可以调用`void write(int b)`方法，这个方法会将 b 的低八位写入流中，高 24 位将会被自动忽略（Java 中一个 int 是32位）。如果想要批量写入数据呢，那么可以调用`void write(byte[] b)`方法将一个字节数组的内容全部写入流中，同时还有`void write(byte[] b, int off, int len)`可以让你指定从哪里写入多少数据。
+
+如果你希望你向流中写入的数据能够尽快地输送到目的地，比如文件，那么可以在写入数据后，调用`flush()`方法，将当前输出流刷到操作系统层面的缓冲区中。不过需要注意的是，**此方法并不保证数据立马就能刷到实际的物理目的地（比如存储）**。
+
+使用完流后应该调用其`close()`方法将流关闭，流关闭时，将会先调用`flush()`方法，后关闭。
+
+在输入流`InputStream`中，可以通过`int read()`方法来从流中读取一个字节，批量读取字节可以通过`int read(byte[] b)`或者`int read(byte[] b, int off, int len)`来实现，这两个方法的返回值为实际读取到的字节数。如果需要重复读取流中某段数据，可以在读取之前使用`void mark(int readlimit)`方法在当前位置做一个记号，之后通过`void reset()`方法返回到之前做标记的位置，不过在做这些标记操作之前，需要通过`boolean markSupported()`方法来确定该流是否支持标记。如果对某些可预知的数据不感兴趣，可以使用`long skip(long n)`来跳过一些流中的一些数据。
+
+## 装饰器模式
+装饰器模式（Decorator Pattern）允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构性模式，它是作为现有的类的一个包装。
+
+这种设计模式创建一个装饰类，用来包装原有的类，并在保持类方法签名完整性的前提下，提供了额外的功能。
+
+以`InputStream`为例，它是一个抽象类：
+```
+public abstract class InputStream implements Closeable {
+    ...
+    ...
+}
+```
+
+并定义有抽象方法：
+```
+public abstract int read() throws IOException;
+```
+
+该抽象方法由具体的子类去实现，通过`InputStream`的族谱可以看到，直接继承了`InputStream`，并且提供某一特定功能的子类有：
+- AudioInputStream
+- ByteArrayInputStream
+- FileInputStream
+- FilterInputStream
+- InputStream
+- ObjectInputStream
+- PipedInputStream
+- SequenceInputStream
+- StringBufferedInputStream
+
+这些类都具有特定的功能，比如说，`FileInputStream`代表一个文件输入流并提供读取文件内容的功能，`ObjectInputStream`提供了对象反序列化的功能。
+
+`InputStream`这个抽象类有一个子类与上述其他子类非常不同，这个子类就是`FilterInputStream`。
+
+翻开`FilterInputStream`的代码，可以看到，它内部又维护了一个`InputStream`的成员对象，并且它的所有方法，都是调用这个成员对象的同名方法。换句话说，`FilterInputStream`它什么事情都不做，就是把调用委托给内部的`InputStream`成员对象。如下所示：
+```
+public class FilterInputStream extends InputStream {
+    protected volatile InputStream in;
+
+    protected FilterInputStream(InputStream in) {
+        this.in = in;
+    }
+
+    public int read() throws IOException {
+        return in.read();
+    }
+
+    public int read(byte b[]) throws IOException {
+        return read(b, 0, b.length);
+    }
+
+    public int read(byte b[], int off, int len) throws IOException {
+        return in.read(b, off, len);
+    }
+
+    public long skip(long n) throws IOException {
+        return in.skip(n);
+    }
+
+    public int available() throws IOException {
+        return in.available();
+    }
+
+    public void close() throws IOException {
+        in.close();
+    }
+
+    public synchronized void mark(int readlimit) {
+        in.mark(readlimit);
+    }
+
+    public synchronized void reset() throws IOException {
+        in.reset();
+    }
+
+    public boolean markSupported() {
+        return in.markSupported();
+    }
+}
+```
+
+`FilterInputStream`又有子类，分别是：
+- BufferedInputStream
+- CheckedInputStream
+- CipherInputStream
+- DataInputStream
+- DeflaterInputStream
+- DigestInputStream
+- InflaterInputStream
+- LineNumberInputStream
+- ProgressMonitorInputStream
+- PushbackInputStream
+
+虽然从上面代码来看`FilterInputStream`并没有做什么事情，但是它的子类不同，以`BufferedInputStream`为例，这个类提供了提前读取数据的功能，也就是缓冲的功能。可以看看它的`read()`方法：
+```
+public synchronized int read() throws IOException {
+    if (pos >= count) {
+        fill();
+        if (pos >= count)
+            return -1;
+    }
+    return getBufIfOpen()[pos++] & 0xff;
+}
+```
+
+可以看到，当 pos >= count 时，即需要提前缓冲一些数据的时候，那么就调用`fill()`方法将缓冲区加满，以便后续读取。
+
+从这里可以开始感受到，`BufferedInputStream`就是一个装饰者，它能为一个原本没有缓冲功能的`InputStream`添加上缓冲的功能。
+
+比如我们常用的`FileInputStream`，它并没有缓冲功能，我们每次调用`read()`方法，都会向操作系统发起调用索要数据。假如我们通过`BufferedInputStream`来**装饰**它，那么每次调用`read()`，会预先向操作系统多拿一些数据，这样就不知不觉提高了程序的性能。如以下代码所示：
+```
+BufferedInputStream bis = new BufferedInputStream(new FileInputStream(new File("xxx")));
+```
+
+同理，对于其它的`FilterInputStream`的子类，其作用也是一样的，那就是装饰一个`InputStream`，为它添加它原本不具有的功能。`OutputStream`以及其家族对于装饰器模式的体现，也以此类推。
+
+JDK 中的 IO 流的设计是设计模式中装饰器模式的一个经典示范，如果细心发现，JDK 中还有许多其它设计模式的体现，比如说监听者模式等等。
+
