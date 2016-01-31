@@ -235,3 +235,26 @@
 
 - 在类的继承中，覆盖方法时，一定要保证返回类型的兼容性，允许子类将覆盖方法的返回类型定义为原返回类型的子类型
 
+- 为了提高程序的清晰度，包含一个或多个抽象方法的类本身必须被声明为抽象类
+
+- 扩展抽象类可以有两种选择。一种是在子类中定义部分抽象方法或抽象方法也不定义，这样就必须将子类也标记为抽象类；另一种是定义全部的抽象方法，这样一来，子类就不是抽象的了
+
+- Java 用于控制可见性的 4 个访问修饰符：
+    
+    1. 仅对本类可见——private
+    2. 对所有类可见——public
+    3. 对本包和所有子类可见——protected
+    4. 对本包可见——默认
+
+- 编写一个完美的 equals 方法的建议：
+    
+    1. 显示参数命名为 otherObject
+    2. 检测 this 与 otherObject 是否引用同一个对象：`if (this == otherObject) return true;`
+    3. 检测 otherObject 是否为 null，如果为 null，返回 false：`if (otherObject == null) return false;`
+    4. 比较 this 与 otherObject 是否属于同一个类，如果 equals 的语义在每个子类中有所改变，就是用 getClass 检测：`if (getClass() != otherObject.getClass()) return false;`；如果**所有的**子类都拥有统一的语义，就使用 instanceof 检测：`if (!(otherObject instanceof ClassName)) return false;`
+    5. 将 otherObject 转换为相应的类类型变量：`ClassName other = (ClassName) otherObject;`
+    6. 现在开始对所有需要比较的域进行比较，使用`==`比较基本类型域，使用`equals`比较对象域。如果所有域都匹配，就返回 true，否则返回 false
+
+- 如果重新定义`equals`方法，就必须重新定义`hashCode`方法，以便用户可以将对象插入到散列表中
+
+
