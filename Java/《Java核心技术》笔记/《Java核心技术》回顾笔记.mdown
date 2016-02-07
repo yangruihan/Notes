@@ -277,4 +277,21 @@
 
 - 所有的数组类型均包含一个`clone`方法，这个方法被设为`public`，而不是`protected`
 
+- 使用内部类的原因：
+
+    - 内部类方法可以访问该类定义所在的作用域中的数据，包括私有数据
+    - 内部类可以对同一个包中的其他类隐藏起来
+    - 当想要定义一个回调函数且不想编写大量代码时，使用**匿名**内部类比较便捷
+
+- 利用**“双括号初始化（double brace initialization）”**，构建一个匿名数组：
+
+    ```[java]
+    ArrayList<String> friends = new ArrayList<>();
+    friends.add("Harry");
+    friends.add("Tony");
+    invite(friends);
+
+    // 等价于
+    invite(new ArrayList<String>(){ { add("Harry"); add("Tony"); } });
+    ```
 
