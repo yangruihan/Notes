@@ -21,7 +21,9 @@
 |:---:|:---:|:---:|
 |DEFUN|定义一个函数|(defun hello-world () (format t "hello, world!"))|
 |DEFMACRO|定义一个宏|(defmacro name (expr) (...))|
-|DEFVAR|定义一个变量|(defvar \*db\* null)|
+|DEFVAR|定义一个全局变量|(defvar \*db\* nil)|
+|DEFPARAMETER|定义一个全局变量|(defparameter \*i\* 0)|
+|DEFCONSTANT|定义一个全局常量|(defconstant +width+ 100)|
 |GETF|接受一个plist和一个符号<br>返回plist中跟在那个符号后面的值|(getf (list :a 1 :b 2) :a)|
 |SETF|赋值操作符|(setf a 1)|
 |PUSH|添加新项|(push cd \*db\*)|
@@ -33,6 +35,10 @@
 |WITH-OPEN-FILE|打开一个文件，将文件流绑定到一个变量上<br>执行一组表达式，最后关闭这个文件<br>它可以保证在表达式体求值出错时也能正确关闭文件|(with-open-file (out filename :direction :output :if-exists :supersede)<br>(...))|
 |WITH-STANDARD-IO-SYNTAX|确保影响输出行为的特定变量可以被设置成它们的标准值|(with-standard-io-syntax (print \*db\* out))|
 |IF|判断语句|(if test-form then-form [else-form])|
+|INCF|以默认为1对一个位置的值进行递增|(incf x)|
+|DECF|以默认为1对一个位置的值进行递减|(decf x)|
+|ROTATEF|在位置之间轮换它们的值|(rotatef a b)|
+|SHIFTF|左移位置上的各个值|(shiftf a b 10)|
 
 ## 3.内置函数
 |内置函数名|作用|举例|
@@ -48,6 +54,14 @@
 |EQUAL|判断两个字符串参数是否相等|(equal "1" "2")|
 |MAPCAR|映射在一个列表上，然后返回一个新的列表<br>其中含有在原来列表的每个元素上<br>调用一个函数所得到的结果|(mapcar #'(lambda (a) (+ 1 a)) '(1 2 3))|
 |REVERSE|接受一个列表作为参数<br>并返回一个逆序的新列表|(reverse '(1 2 3))|
+|RETURN-FROM|立即以任何值从函数中间返回|(return-from fname value)|
+|FUNCALL|通过函数对象调用函数，期待单独的参数|(funcall #'+ 1 2)|
+|APPLY|通过函数对象调用函数，期待一个列表|(apply #'+ '(1 2))|
+|EXP|返回以e为底以实参为指数的值|(exp 1)|
+|LET|引入新变量|(let (variable\*) body-form\*)|
+|LET\*|引入新变量，且每个变量的初始值<br>形式可以引用早先引入的变量|(let\* ((x 10) (y (+ x 10))) (list x y))|
+|get-universal-time|返回当前时间的毫秒形式|(get-universal-time)|
+|sleep|是线程休眠，以秒为单位|(sleep 60)|
 
 ##4.语法和语义
 1. 数字的表示方法很简单：任何数位的序列将被读取为一个数字，它们可能有一个**前缀标识（＋或－）**，还可能会有一个**十进制点（.）**或者**斜杠（/）**，或是以一个**指数标记**结尾。
@@ -141,3 +155,125 @@
     ```
     
 6. 混合不同的形参类型时，声明的顺序：首先是必要形参，其次是可选形参，再次是剩余形参，最后才是关键字形参。
+
+7. 使用`RETURN-FROM`能立即以任何值从函数中间返回。
+
+8. **LAMBDA**表达式形式如下：
+
+    ```[lisp]
+    (lambda (parameters) body)
+    ```
+
+##6.变量
+1. Common Lisp提供了两种创建全局变量的方式：**DEFVAR**和**DEFPARAMETER**。两种形式都接受一个变量名、一个初始值以及一个可选的文档字符串。
+
+2. 从实践上来讲，应该使用**DEFVAR**来定义某些变量，这些变量所含数据是应持久存在的，即使用到该变量的源码发生改变时也应如此。
+
+3. **常值变量（constant variable）**又叫**常量**。所有的常量都是**全局**的，并且使用**DEFCONSTANT**定义：
+
+    ```[lisp]
+    (defconstant name initial-value-form [documentation-string])
+    ```
+
+4. **赋值**使用**SETF**宏：
+
+    ```[lisp]
+    (setf place value)
+    ```
+
+##7.宏
+1. **IF**宏，条件判断语句：
+
+    ```[lisp]
+    (if condition then-form [else-form])
+    ```
+
+2. **PROGN**宏，按顺序执行任意数量的形式，并返回最后一个形式的值：
+
+    ```[lisp]
+    (progn
+        (...)
+        (...))
+    ```
+3. **WHEN**宏，当条件满足时，按顺序执行一系列形式：
+
+    ```[lisp]
+    (when (condition) 
+        (...)
+        (...))
+    ```
+
+4. **UNLESS**宏，当条件不满足时，按顺序执行一系列形式：
+
+    ```[lisp]
+    (unless (condition)
+        (...)
+        (...))
+    ```
+5. **COND**宏，多重分支条件判断：
+    
+    ```[lisp]
+    (cond
+        (test-1 form*)
+        (test-2 form*)
+            .
+            .
+            .
+        (test-N form*))
+    ```
+
+6. **AND**、**OR**和**NOT**，**“短路”**与、或、非：
+
+    ```[lisp]
+    (not nil)               ; T
+    (not (= 1 1))           ; NIL
+    (and (= 1 2) (= 3 3))   ; NIL
+    (or (= 1 2) (= 3 3))    ; T
+    ```
+
+7. **DOLIST**和**DOTIMES**宏：
+
+    1. **DOLIST**在一个列表的元素上循环操作，使用一个依次持有列表中所有后继元素的变量来执行循环体：
+
+        ```[lisp]
+        (dolist (var list-form)
+            body-form*)
+        ```
+    2. **DOTIMES**用于循环计数的高级循环构造：
+
+        ```[lisp]
+        (dotimes (var count-form)
+            body-form*)
+        ```
+
+8. **DO**宏：
+
+    ```[lisp]
+    (do (variable-definition*)
+        (end-test-form result-form*)
+        statement*)
+    ```
+9. **LOOP**宏：
+
+    ```[lisp]
+    ;; 简化版的LOOP
+    (loop
+        body-form*)
+
+    ;;; 扩展版的LOOP
+
+    ;; 生成一个从1到10的列表
+    (loop for i from 1 to 10 collecting i)
+    ; 结果为 (1 2 3 4 5 6 7 8 9 10)
+
+    ;; 对前十个数求平方和
+    (loop for x from 1 to 10 summing (expt x 2))
+    ; 结果为 385
+
+    ;; 用来统计一个字符串中元音字母的个数
+    (loop for x across "the quick brown fox jumps over the lazy dog"
+        counting (find x "aeiou"))
+    ; 结果为 11
+    ```
+
+    **符号`across`、`and`、`below`、`collecting`、`counting`、`finally`、`for`、`from`、`summing`、`then`、`to`都是循环关键字，它们的存在表明当前正在使用扩展的LOOP。**
