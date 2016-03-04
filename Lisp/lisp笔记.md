@@ -458,3 +458,61 @@
     ; 返回值为 #(1 2 3 4)
     ```
 
+8. 整个序列上的操作：
+
+    |函数名|参数|返回值|
+    |:---:|:---:|:---:|
+    |COPY-SEQ|单一的序列|返回包含与其参数相同元素的新对象|
+    |REVERSE|单一的序列|返回含有顺序相反的相同元素的新对象|
+    |CONCATENATE|序列类型和任意数量的序列|创建一个将任意数量序列连接在一起的新序列|
+    
+9. 函数`SORT`和`STABLE-SORT`提供了两种序列排序方法，它们都接受一个序列和一个由两个实参组成的谓词，返回该序列排序后的版本。它们的区别在于：**`STABLE-SORT`可以保证不会重排任何被该谓词视为等价的元素，而`SORT`只保证结果是已排序的并可能重排等价元素**
+
+10. 函数`MERGE`接受两个序列和一个谓词，并返回按照该谓词合并这两个序列所产生的序列。
+
+    ```[lisp]
+    (merge 'vector #(1 3 5) #(2 4 6) #'<)
+    ; 返回值为 #(1 2 3 4 5 6)
+
+    (merge 'list #(1 3 5) #(2 4 6) #'<)
+    ; 返回值为 (1 2 3 4 5 6)
+    ```
+
+11. 子序列操作：
+
+    1. `SUBSEQ`函数：
+
+        ```[lisp]
+        (subseq "foobarbaz" 3)
+        ; 返回值为 "barbaz"
+
+        (subseq "foobarbaz" 3 6)
+        ; 返回值为 "bar"
+
+        (defparameter *x* (copy-seq "foobarbaz"))
+
+        (setf (subseq *x* 3 6) "xxx")
+        ; 效果 *x* → "fooxxxbaz"
+
+        (setf (subseq *x* 3 6) "abcd")
+        ; 效果 *x* → "fooabcbaz"
+
+        (setf (subseq *x* 3 6) "xx")
+        ; 效果 *x* → "fooxxcbaz"
+        ```
+    2. `FILL`函数将一个序列的多个元素设置到单个值上：
+
+        ```[lisp]
+        (fill "abc" #\d)
+        ; 返回值 "ddd"
+
+        (fill "abc" #\d :start 1 :end nil)
+        ; 返回值 "add"
+        ```
+
+    3. `SEARCH`函数在一个序列中查找一个子序列：
+
+        ```[lisp]
+        (search "bar" "foobarbaz")
+        ; 返回值为 3
+        ```
