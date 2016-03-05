@@ -708,3 +708,162 @@
             (list :x x :y y :z z))
         ; 返回值为 (:X 3 :Y 2 :Z 1)
         ```
+
+#13. 文件和文件 I/O
+1. `OPEN`函数，用于打开文件：
+
+    ```[Lisp]
+    (open "/some/file/name.txt")
+    ; 返回值为一个基于字符的流，你可以用下面的函数来读取其中内容
+    ; 1. READ-CHAR  读取单个字符
+    ; 2. READ-LINE  读取一行文本
+    ; 3. READ       读取单一的S-表达式并返回一个 Lisp 对象
+    ```
+
+2. 读取二进制数据：为了读取原始字节，你需要向`OPEN`传递一个值为`'(unsigned-byte 8)`的`:element-type`参数，之后你可以将得到的流传给`READ-BYTE`，它将在每次被调用的时候返回 0~255 的整数
+
+3. 批量读取：`READ-SEQUENCE`可同时工作在字符和二进制流上。你传递给它一个序列（通常是一个向量）和一个流，然后它会尝试用来自流的数据填充该序列
+
+4. 文件输出：通过在`OPEN`时使用一个值为`:output`的`:direction`关键字参数来获取输出流。当你打开一个用于输出的文件时，`OPEN`会假设该文件不该存在并会在文件存在时报错。你可以使用`:if-exists`关键字来改变该行为，传递`:supersede`可以告诉`OPEN`来替换已有的文；传递`:append`将导致`OPEN`打开已有的文件并保证新数据被写到文件结尾处；而`:overwrite`返回一个从文件开始处开始的流从而覆盖已有的数据；传递`NIL`将导致`OPEN`在文件已存在时返回`NIL`而不是流。如下：
+
+    ```[lisp]
+    (open "some/file/name.txt" :direction :output :if-exists :supersede)
+    ; 返回一个输出流，你可以用下面的函数来向其中写入内容
+    ; WRITE-BYTE 向流中写入单独的字节
+    ; WRITE-CHAR 会向流中写入一个单一字符
+    ; WRITE-LINE 写一个字符串并紧跟着一个换行
+    ; WRITE-STRING 写一个字符串而不会添加任何行结束符
+    ; WRITE-SEQUENCE 同时接受二进制和字符流
+    ; PRINT 打印一个 S-表达式，前缀一个换行及一个空格
+    ; PRIN1 只打印 S-表达式
+    ; PPRINT 使用美化打印器（pretty printer）打印 S-表达式
+    ; PRINC 以适合人类的形式打印 Lisp对象，如： 字符串不带引号
+    ;
+    ; 同时，有两个函数可以只打印一个换行
+    ; TERPRI 终止打印（terminate print）无条件地打印一个换行符
+    ; FRESH-LINE 打印一个换行字符，除非该流已经在一行的开始处
+    ```
+
+5. 确保文件使用后被关闭的宏`WITH-OPEN-FILE`：
+
+    ```[lisp]
+    (with-open-file (stream-var open-argument*)
+        body-form*)
+    ```
+
+6. 路径名是一种使用6个组件来表示文件名的结构化对象：
+
+    |对象名|对应函数|
+    |:---:|:---:|
+    |主机（host）|PATHNAME-HOST|
+    |设备（device）|PATHNAME-DEVICE|
+    |目录（directory）|PATHNAME-DIRECTORY|
+    |名称（name）|PATHNAME-NAME|
+    |类型（type）|PATHNAME-TYPE|
+    |版本（version）|PATHNAME-VERSION|
+
+    - `PATHNAME`函数可以得到一个路径名对象，并且可以通过上表函数来访问其信息
+
+        ```[lisp]
+        (pathname "/foo/bar/baz.txt")
+        ; 返回值为 #P"/foo/bar/baz.txt"
+
+        (pathname-directory (pathname "/foo/bar/baz.txt"))
+        ; 返回值为 (:ABSOLUTE "foo" "bar")
+        ```
+
+    - `NAMESTRING`函数可以将一个路径名描述符转换成一个字符串，类似的还有`DIRECTORY-NAMESTRING`和`FILE-NAMESTRING`函数：
+
+        ```[lisp]
+        (namestring #p"/foo/bar/baz.txt")
+        ; 返回值为 "/foo/bar/baz.txt"
+        (directory-namestring #p"/foo/bar/baz.txt")
+        ; 返回值为 "/foo/bar/"
+        (file-namestring #p"/foo/bar/baz.txt")
+        ; 返回值为 "baz.txt"
+        ```
+
+    - `MAKE-PATHNAME`函数来构造任意路径名，它对每个路径名组件都接受一个关键字参数并返回一个路径名，任何提供了的组件都被填入其中而其余的为 NIL：
+
+        ```[lisp]
+        (make-pathname
+            :directory '(:absolute "foo" "bar")
+            :name "baz"
+            :type "txt")
+        ; 返回值为 #P"/foo/bar/baz.txt"
+        ```
+
+    - 为了实现在不同平台下生成的文件路径都合法，应基于一个已有的路径名并使用`MAKE-PATHNAME`的关键字参数`:defaults`来构造一个新路径名：
+
+        ```[lisp]
+        (make-pathname :type "html" :version :newest :defaults input-file)
+        ; input-file 默认为一个已经存在的文件路径名
+        ; 该表达式创建了一个带有 .html 扩展名的路径名，同时所有其他组件
+        ; 都与变量 input-file 中的路径名相同
+        ; 这里 :version :newest 是为了支持那些带有版本号的文件系统
+        ; 在没有文件版本的系统，如 Unix 和 Windows :version 参数会
+        ; 被忽略
+        ;
+        ; 同时你还可以创建一个带有不同目录组件的路径名，如下
+        (make-pathname :directory '(:relative "backups") :defaults input-file)
+        ```
+
+    - `MERGE-PATHNAMES`函数接受两个路径名，并合并它们，用来自第二个路径名的对应值填充第一个路径名中的任何NIL组件：
+
+        ```[lisp]
+        (merge-pathnames #p"foo/bar.html" #p"/www/html/")
+        ; 返回值为 #p"/www/html/foo/bar.html"
+
+        (merge-pathnames #p"foo/bar.html" #p"html/")
+        ; 返回值为 #p"html/foo/bar.html"
+        ```
+
+    - `ENOUGH-NAMESTRING`函数接受两个路径名，返回第一个路径名对第二个路径名的相对路径：
+
+        ```[lisp]
+        (enough-namestring #p"/www/html/foo/bar.html" #p"/www/w")
+        ; 返回值为 "html/foo/bar.html"
+        ```
+
+7. 与文件系统的交互
+
+    1. `PROBE-FILE`函数用来测试一个对应于某个路径名描述符（路径名、名字字符串或文件流）的文件是否存在于文件系统，如果存在则返回该文件的真实名字（truename）一个进行了诸如解析符号链接这类文件系统层面转换的路径名。否则返回 NIL
+
+    2. `DIRECTORY`函数用来列出文件系统中的文件
+
+    3. `DELETE-FILE`接收一个路径名描述符并删除所命令的文件，当成功时返回真，否则产生一个`FILE-ERROR`报错
+
+    4. `RENAME-FILE`接收两个路径名描述符，并将第一个名字命名的文件重命名为第二个名字
+
+    5. `ENSURE-DIRECTORIES-EXIST`函数用来创建目录，它接受一个路径名描述符并确保目录组件中的所有元素存在并且是目录，如果必要的话它会创建它们，并返回被传递的路径名，因此它可以内联使用：
+
+        ```[lisp]
+        (with-open-file (out (ensure-directories-exist name) :direction :output :if-exist :supersede)
+            ...
+            )
+        ```
+
+    6. `FILE-WITH-DATE`函数接受一个路径名描述符，并返回文件上次被写入的时间，表示形式是从 GMT 起经过的秒数
+
+    7. `FILE-AUTHOR`函数接受一个路径名描述符，在 Unix 和 Windows 上返回该文件的拥有者
+
+    8. `FILE-LENGTH`函数接受一个流，返回该流的长度，获得一个文件长度的最佳方式是使用一个二进制流：
+
+        ```[lisp]
+        (with-open-file (in filename :element-type '(unsigned-byte 8))
+            (file-length in))
+        ```
+
+    9. `FILE-POSITION`函数接受一个流，当只用一个流来调用它的时候，返回文件中的当前位置，即已经被读取或写入该流的元素的数量；当参数为两个时（流和位置描述符），它将流的位置设置到所描述的位置上，这个位置描述符必须是关键字`:start`、`:end`或者非负的整数
+
+8. 其他 I/O 类型
+    
+    1. `STRING-STREAM`字符串流，从一个字符串中读取或写入数据。可以使用`MAKE-STRING-INPUT-STREAM`和`MAKE-STRING-OUTPUT-STREAM`来创建它。不过宏`WITH-INPUT-FROM-STRING`和`WITH-OUTPUT-TO-STRING`提供了更加便利的接口
+
+    2. 语言标准中定义的其他流提供了多种形式的**流拼接技术**，它允许你已几乎任何配置将流拼接在一起
+
+        - `BROADCAST-STREAM`是一个输出流，它将向其写入的任何数据发送到一组输出流上，这些流是它的构造函数`MAKE-BROADCAST-STREAM`的参数
+
+        - `CONCATENATED-STREAM`是一个输入流，它从一组输入流中接受其输入，在每个流的结尾处它从一个流移动到另一个，可以使用函数`MAKE-CONCATENATED-STREAM`来构造它，接受任何数量的输入流作为参数
+
+        - `TWO-WAY-STREAM`和`ECHO-STREAM`是可以将流以多种方式拼接在一起的双向流，它们的构造函数`MAKE-TWO-WAY-STREAM`和`MAKE-ECHO-STREAM`都接受两个参数，一个输入流和一个输出流，并返回一个适当类型的可同时用于输入和输出函数的流。在`TWO-WAY-STREAM`中，你所做的每一次读取都会返回从底层输入流中读取的数据，而每次写入将把数据发送到底层的输出流上。而在`ECHO-STREAM`中，除了所有从底层输入流中读取的数据也被回显到输出流中之外，它以与`TWO-WAY-STREAM`本质上相同的方式工作，这样，`ECHO-STREAM`中的输出流将含有会话双发的一个副本
