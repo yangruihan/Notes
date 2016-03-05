@@ -619,3 +619,92 @@
     |MAPCON|与`MAPLIST`类似，但会构造一个全新的列表来保存函数调用的结果|
     |MAPC|是伪装成函数的控制构造，`MAPCAR`和`MAPCAN`的近亲，<br>只有当映射函数的副作用有用时，它才有用|
     |MAPL|是伪装成函数的控制构造，`MAPLIST`和`MAPCON`的近亲，<br>只有当映射函数的副作用有用时，它才有用|
+
+#12. 点对单元的其他用法：
+1. 树
+
+    |函数|描述|
+    |:---:|:---:|
+    |COPY-TREE|为参数中的每个点对单元（包括点对单元中引用的点对单元）<br>生成一个新的点对单元，以相同的结构连接，并返回|
+    |TREE-EQUAL|比较两棵树，当这两棵树具有相同的形状且对应叶子<br>是EQL等价时，返回真（含:test关键字）|
+    |SUBST|接受一个新项、一个旧项和一棵树，并用新项替换旧项|
+    |SUBST-IF|接受一个新项、一个单参数函数和一棵树，<br>满足但参数函数测试条件的项将被新项替换|
+
+2. 集合
+
+    |函数|描述|
+    |ADJOIN|创建集合，接受一个项和一个代表集合的列表，<br>并返回另一个代表集合的列表，其中含有该项和原先集合的项|
+    |PUSHNEW|接受一个项和一个集合，向集合中添加新项|
+    |MEMBER|接受一个项，测试给定项是否在集合中|
+    |MEMBER-IF|接受一个单参数函数，测试满足函数的项是否在集合中，<br>返回含有该项的点对单元|
+    |MEMBER-IF-NOT|接受一个单参数函数，测试不满足函数的项是否在集合中，<br>返回含有该项的点对单元|
+    |INTERSECTION|接受两个列表，返回一个由两个参数中可找到的所有元素组成的列表|
+    |UNION|接受两个列表，返回一个含有来自两个参数的每个唯一元素的实例|
+    |SET-DIFFERENCE|接受两个列表，返回一个含有来自第一个列表但不出现在第二个列表的所有元素|
+    |SET-EXCLUSIVE-OR|接受两个列表，返回仅来自两个参数列表中的一个而不是两者的那些元素|
+    |SUBSETP|接受两个列表，当第一个列表是第二个列表的子集时返回真|
+
+3. 查询表：alist 和 plist 
+
+    1. alist 的主查询函数是`ASSOC`，其接受一个键和一个 alist 并返回第一个 CAR 匹配该键的点对单元，或是在没有找到匹配时返回 NIL。
+
+        ```[lisp]
+        (assoc 'a '((a . 1) (b . 2) (c . 3)))
+        ; 返回值为 (A . 1)
+
+        (assoc 'd '((a . 1) (b . 2) (c . 3)))
+        ; 返回值为 NIL
+        ```
+
+    2. `COPY-ALIST`与`COPY-TREE`相似，但它只复制那些构成列表结构的点对单元，外加那些单元的 CAR 部分直接引用的点对单元。
+
+    3. `PAIRLIS`函数，从两个分开的键和值的列表中构造一个 alist：
+
+        ```[lisp]
+        (pairlis '(a b c) '(1 2 3))
+        ; 返回值 可能为 ((C . 3) (B . 2) (A . 1))
+        ; 也可能为 ((A . 1) (B . 2) (C . 3))
+        ```
+
+    4. plist 仅支持一种基本查询操作，`GETF`函数，其接受一个 plist 和一个键，返回所关联的值或是在键没有被找到时返回 NIL。
+
+    5. plist 使用`REMF`宏来进行移除一个键/值对，如果给定键被找到并移除成功则返回 T ，否则返回 NIL。
+
+    6. plist 使用`GET-PROPERTIES`来抽取多个值，它接受一个 plist 和一个需要被搜索的键的列表，并返回多个值：第一个被找到的键、其对应的值，以及一个以被找到到的键开始的列表的头部。
+
+4. **DESTRUCTURING-BING**宏
+
+    1. 基本骨架：
+
+        ```[lisp]
+        (destructuring-bind (parameter*) list
+            body-form*)
+        ```
+
+    2. 其作用是将一个原本绑定在单个参数上的列表拆开。其中的 list 形式被求值一次并且应当返回一个列表，其随后被解构并且适当的值会被绑定到形参列表的对应变量中，然后那些 body-form 将在这些绑定的作用下被求值：
+
+        ```[lisp]
+        (destructuring-bind (x y z) (list 1 2 3)
+            (list :x x :y y :z z))
+        ; 返回值为 (:X 1 :Y 2 :Z 3)
+
+        (destructuring-bind (x y z) (list 1 (list 2 20) 3)
+            (list :x x :y y :z z))
+        ; 返回值为 (:X 1 :Y (2 20) :Z 3)
+
+        (destructuring-bind (x (y1 y2) z) (list 1 (list 2 20) 3)
+            (list :x x :y1 y1 :y2 y2 :z z))
+        ; 返回值为 (:X 1 :Y1 2 :Y2 20 :Z 3)
+
+        (destructuring-bind (x (y1 &optional y2) z) (list 1 (list 2) 3)
+            (list :x x :y1 y1 :y2 y2 :z z))
+        ; 返回值为 (:X 1 :Y1 2 :Y2 NIL :Z 3)
+
+        (destructuring-bind (&key x y z) (list :x 1 :y 2 :z 3)
+            (list :x x :y y :z z))
+        ; 返回值为 (:X 1 :Y 2 :Z 3)
+
+        (destructuring-bind (&key x y z) (list :z 1 :y 2 :x 3)
+            (list :x x :y y :z z))
+        ; 返回值为 (:X 3 :Y 2 :Z 1)
+        ```
