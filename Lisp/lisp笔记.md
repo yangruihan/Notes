@@ -867,3 +867,14 @@
         - `CONCATENATED-STREAM`是一个输入流，它从一组输入流中接受其输入，在每个流的结尾处它从一个流移动到另一个，可以使用函数`MAKE-CONCATENATED-STREAM`来构造它，接受任何数量的输入流作为参数
 
         - `TWO-WAY-STREAM`和`ECHO-STREAM`是可以将流以多种方式拼接在一起的双向流，它们的构造函数`MAKE-TWO-WAY-STREAM`和`MAKE-ECHO-STREAM`都接受两个参数，一个输入流和一个输出流，并返回一个适当类型的可同时用于输入和输出函数的流。在`TWO-WAY-STREAM`中，你所做的每一次读取都会返回从底层输入流中读取的数据，而每次写入将把数据发送到底层的输出流上。而在`ECHO-STREAM`中，除了所有从底层输入流中读取的数据也被回显到输出流中之外，它以与`TWO-WAY-STREAM`本质上相同的方式工作，这样，`ECHO-STREAM`中的输出流将含有会话双发的一个副本
+
+#14 广义函数（generic function）
+1. 广义函数定义了抽象操作，指定了其名字和一个参数列表，但不提供实现。例如，下面就是可能定义广义函数`draw`的方式，它将用来在屏幕上绘制不同的形状：
+
+    ```[lisp]
+    (defgeneric draw (shape)
+        (:documentation "Draw the given shape on the screen."))
+    ```
+
+2. 使用`DEFMETHOD`来实现广义函数定义的方法，方法的形参必须和广义函数保持一致
+
