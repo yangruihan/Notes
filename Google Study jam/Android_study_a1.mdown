@@ -1,0 +1,21 @@
+# Google Study Jam -- Android Study 1A 笔记
+
+1. View 对于应用的布局来说是基本的构成元素
+
+2. `XML`以`<`开始，以`/>`结尾，或以`<Name>`开始，以`</Name>`结尾
+
+3. IDE = Integrated Development Environment
+
+4. DP = density-independent pixels
+
+5. 当设计 APP 时，建议所有可接触目标，如按钮长和宽至少是48dps
+
+6. SP = scale independent pixels
+
+7. `TextView`中的`textAppearance`属性可以使字体自动匹配的sp值，使其在不断变化的 Android里，代码可以保持一致都获取到正确的数值
+
+# 补充
+
+1. [Material design - Introduction](http://www.google.com/design/spec/material-design/introduction.html#)
+
+2. [Android Developers](http://developer.android.com/index.html)
