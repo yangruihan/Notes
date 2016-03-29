@@ -1,0 +1,25 @@
+# Google Study Jam -- Android Study 1B 笔记
+
+1. `LinearLayout` 线性布局:
+
+    1. `android:orientation`控制线性布局的方向，垂直`vertical`或者水平`horizontal`
+
+2. `RelativeLayout` 相对布局:
+
+    1. `android:layout_alignParentTop`控制子视图是否与相对布局上边缘对齐，值为`true`和`false`，其他位置同理`Bottom`、`Right`、`Left`
+
+    2. `android:layout_centerHorizontal`控制子视图是否在父视图水平居中，值为`true`和`false`，`centerVertical`同理
+
+3. 设置`android:layout_width`和`android:layout_height`不同值达到不同的效果：
+
+    1. `200dp`固定值，使长或宽固定，超过部分将被截断
+
+    2. `wrap_content`，使长或宽包裹内容，根据内容大小而发生改变
+
+    3. `match_parent`，使长或宽与父容器长宽一致 
+
+4. 属性由带下划线的`layout`开头，如：`android:layout_width`或`android:layout_height`，这些实际上是布局参数，这些是由父视图组使用，用来决定这些视图的大小和位置的参数
+
+5. `@` 符号是指 Android app 资源
+
+6. `padding`是子视图的内间距，`margin`是子视图在父视图中的外边距
