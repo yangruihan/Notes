@@ -1,0 +1,17 @@
+# Google Study Jam -- PS1_PubLearn 笔记
+
+1. `Package name`必须是独一无二的
+
+2. 创建一个应用的三个步骤：
+
+    1. 选择布局和正确的 View
+
+    2. 把这些 View 定位在屏幕上
+
+    3. 为这些 View 设计样式
+
+**附上项目图片：**
+
+![](http://cdn.studyjamscn.com/forum/201603/31/223609d8ts55qftqfqqs8t.png)
+
+![](http://cdn.studyjamscn.com/forum/201603/31/223611f8id48iiqnqt2dxd.png)
