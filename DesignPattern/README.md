@@ -26,6 +26,10 @@
 	
 	10. [观察者模式](https://github.com/yangruihan/Notes/tree/master/DesignPattern/src/com/yrh/pattern/observer_pattern)
 
+	11. [抽象工厂模式](https://github.com/yangruihan/Notes/tree/master/DesignPattern/src/com/yrh/pattern/abstract_factory_pattern)
+
+	12. [状态模式](https://github.com/yangruihan/Notes/tree/master/DesignPattern/src/com/yrh/pattern/state_pattern)
+
 - 原则
 
 	1. [单一职责原则](https://github.com/yangruihan/Notes/tree/master/DesignPattern/src/com/yrh/principle/single_responsibility_principle)
