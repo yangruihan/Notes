@@ -82,3 +82,52 @@ Status SqDoubleStack_Pop(SqDoubleStack *S, SElemType e, int stackNumber)
 
     return OK;
 }
+
+/* 链栈 */
+typedef struct StackNode
+{
+    SElemType data;
+    struct StackNode *next;
+} StackNode *LinkStackPtr;
+
+typedef struct LinkStack
+{
+    LinkStackPtr top;
+    int count;
+} LinkStack;
+
+/* StackEmpty 操作 */
+bool StackEmpty(LinkStack *S)
+{
+    if (S->count == 0)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+/* Push 操作 */
+Status Push(LinkStack *S, SElemType e)
+{
+    LinkStackPtr s = (LinkStackPtr)malloc(sizeof(StackNode));
+    s->data = e;
+    s->next = S->top;
+    S->top = s;
+    S->count++;
+
+    return OK;
+}
+
+/* Pop 操作 */
+Status Pop(LinkStack *S, SElemType *e)
+{
+    LinkStackPtr s;
+    if (StackEmpty(*S))
+        return ERROR;
+    s = S->top;
+    S->top = s->next;
+    *e = s->data;
+    free(s);
+    S->count--;
+
+    return OK;
+}
