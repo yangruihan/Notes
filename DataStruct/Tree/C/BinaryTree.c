@@ -68,6 +68,6 @@ void CreateBiTree(BiTree *T)
 
         (*T)->data = ch; // 生成根结点
         CreateBiTree(&(*T)->lchild); // 递归构造左子树
-        CreateBiTree(&(*T)->rchild); // 递归构造右子树
+        CreateBiTree(&(*T)->rchild); // 递归构造右子树ava
     }
 }
