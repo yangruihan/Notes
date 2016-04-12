@@ -125,3 +125,156 @@ void DFSTraverse(MGraph G)
         if (!visited[i]) // 对未访问过的顶点调用 DFS，若是连通图，只会执行一次ava
             DFS(G, i);
 }
+
+/* Prim 算法生成最小生成树 */
+void MiniSpanTree_Prim(MGraph G)
+{
+    int min, i, j, k;
+    int adjvex[MAXVEX]; // 保存相关顶点下标
+    int lowcost[MAXVEX]; // 保存相关顶点间边的权值
+    lowcost[0] = 0; // 初始化第一个权值为0，即v0已经加入生成树
+    adjvex[0] = 0; // 初始化第一个顶点下标为0
+
+    for (i = 1; i < G.numVertexes; i++) // 循环除下标为0外的全部顶点
+    {
+        lowcost[i] = G.arc[0][i]; // 将v0顶点与之有边的权值存入数组
+        adjvex[i] = 0; // 初始化路径为0
+    }
+
+    for (i = 1; i < G.numVertexes; i++)
+    {
+        min = INFINITY;
+
+        j = 1; k = 0;
+        while(j < G.numVertexes)
+        {
+            if (lowcost[j] != 0 && lowcost[j] < min)
+            {
+                min = lowcost[j];
+                k = j;
+            }
+            j++;
+        }
+
+        printf("(%d, %d) ", adjvex[k], k);
+        lowcost[k] = 0;
+
+        for (j = 1; j < G.numVertexes; j++)
+        {
+            if (lowcost[j] != 0 && G.arc[k][j] < lowcost[j])
+            {
+                lowcost[j] = G.arc[k][j];
+                adjvex[j] = k;
+            }
+        }
+    }
+}
+
+/* Kruskal 算法 */
+/* 对边集数组的定义 */
+typedef struct
+{
+    int begin;
+    int end;
+    int weight;
+} Edge;
+
+// 查找连线顶点的尾部下标
+int Find(int *parent, int f)
+{
+    while (parent[f] > 0)
+        f = parent[f];
+    return f;
+}
+
+void MiniSpanTree_Kruskal(MGraph G)
+{
+    int i, n, m;
+    Edge edges[MAXVEX]; // 定义边集数组
+    int parent[MAXVEX]; // 定义一数组，用来判断是否与边形成环路
+
+    // 省略将邻接矩阵转换成边集数组，并按权有小到大排序的代码
+
+    for (i = 0; i < G.numVertexes; i++)
+        parent[i] = 0; // 初始化数组为0
+
+    for (i = 0; i < G.numEdges; i++) // 循环每一条边
+    {
+        n = Find(parent, edges[i].begin);
+        m = Find(parent, edges[i].end);
+        if (n != m)
+        {
+            parent[n] = m; // 将此边的结尾顶点放入下标为起点的 parent 中
+            printf("(%d, %d) %d ", edges[i].begin, edges[i].end, edges[i].weight);
+        }
+    }
+}
+
+/* 迪杰斯特拉（Dijkstra）算法 */
+typedef int Pathmatirx[MAXVEX]; // 用于存储最短路径下标
+typedef int ShortPathTable[MAXVEX]; // 用于存储到各点最短路径的权值和
+
+void ShortestPath_Dijkstra(MGraph G, int v0, Pathmatirx *P, ShortPathTable *D)
+{
+    int final[MAXVEX]; // final[w] = 1 表示求得顶点v0到vw的最短路径
+    int k;
+
+    for (int v = 0; v < G.numVertexes; v++) // 初始化
+    {
+        (*P)[v] = 0;
+        (*D)[v] = G.matirx[v0][v];
+        final[v] = 0;
+    }
+
+    (*D)[v0] = 0;
+    final[v0] = 1;
+
+    for (int v = 1; v < G.numVertexes; v++)
+    {
+        min = INFINITY;
+
+        for (int w = 0; w < G.numVertexes; w++) // 找到距离当前已进入最短路径队列中的顶点最近的下一顶点，并赋值给K
+        {
+            if (!final[w] && (*D)[w] < min)
+            {
+                k = w;
+                min = (*D)[w];
+            }
+        }
+
+        final[k] = 1;
+
+        for (int w = 0; w < G.numVertexes; w++) // 将K加入最短路径队列，并利用顶点K更新与其他顶点的距离
+        {
+            if (!final[w] && (min + G.matirx[k][w] < (*D)[w]))
+            {
+                (*D)[w] = min + G.matirx[k][w];
+                (*P)[w] = k;
+            }
+        }
+    }
+}
+
+/* 弗洛伊德（Floyd）算法 */
+typedef int Pathmatirx2[MAXVEX][MAXVEX];
+typedef int ShortPathTable2[MAXVEX][MAXVEX];
+void ShortestPath_Floyd(MGraph G, Pathmatirx2 *P, ShortPathTable2 *D)
+{
+    for (int v = 0; v < G.numVertexes; v++)
+        for (int w = 0; w < G.numVertexes; w++)
+        {
+            (*D)[v][w] = G.matirx[v][w];
+            (*P)[v][w] = w;
+        }
+
+    for (int k = 0; k < G.numVertexes; k++)
+        for (int v = 0; v < G.numVertexes; v++)
+            for (int w = 0; w < G.numVertexes; w++)
+            {
+                if ((*D)[v][w] > (*D)[v][k] + (*D)[k][w])
+                {
+                    (*D)[v][w] = (*D)[v][k] + (*D)[k][w];
+                    (*P)[v][w] = (*P)[v][k];
+                }
+            }
+}
