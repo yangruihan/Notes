@@ -1,0 +1,7 @@
+# Google Study Jam -- 2B - Happy 笔记
+
+1. 嵌套的 ViewGroup 可以展现出更加丰富多彩的视图
+
+2. Android 通过 View 层次或者叫 View 的树状结构来管理屏幕上的所有 View
+
+3. 变量名最好具有代表性，才能描述出所保存的数据类型
