@@ -13,19 +13,19 @@
 ### 基本类型长度
 在Java中有很多的基本类型，比如：
 
-    - `byte`，一个字节是 8 位bit，也就是 1B
+- `byte`，一个字节是 8 位bit，也就是 1B
 
-    - `short`，16 位 bit，也就是 2B
+- `short`，16 位 bit，也就是 2B
 
-    - `int`，32 位 bit，也就是 4B
+- `int`，32 位 bit，也就是 4B
 
-    - `long`, 64 位 bit，也就是 8B
+- `long`, 64 位 bit，也就是 8B
 
-    - `char`，16 位 bit，也就是 2B
+- `char`，16 位 bit，也就是 2B
 
-    - `float`，32 位 bit，也就是 4B
+- `float`，32 位 bit，也就是 4B
 
-    - `double`，64 位 bit，也就是 8B
+- `double`，64 位 bit，也就是 8B
 
 不同的类型都会按照自己的位数来存储，并且可以自动进行转换提升。
 
@@ -35,9 +35,9 @@
 
 由于一个数据类型可能有很多个字节组成的，那么它们是如何摆放的。这个是有讲究的：
 
-    - 大端：高地址位 存放 高有效字节
+- 大端：高地址位 存放 高有效字节
 
-    - 小端：低地址位 存放 低有效字节
+- 小端：低地址位 存放 低有效字节
 
 举个例子，一个`char`是有两个字节组成的，这两个字节存储可能会显示成如下的模样，比如字符a:
 
@@ -59,15 +59,15 @@
 
 只不过提供了基于不同数据类型的插入方法，比如：
 
-    - put(byte) 插入一个byte
+- put(byte) 插入一个byte
 
-    - put(byte[]) 插入一个byte数组
+- put(byte[]) 插入一个byte数组
 
-    - putChar(char) 插入字符
+- putChar(char) 插入字符
 
-    - putInt(int) 插入Int
+- putInt(int) 插入Int
 
-    - putLong(long) 插入long
+- putLong(long) 插入long
 
 等等….详细的使用方法，也可以参考下面的图片：
 
@@ -163,11 +163,11 @@ public final Buffer limit(int newLimit) {
 ### 标记位置——mark
 `mark`，就是一个标记为而已，记录当前的`position`的值。常用的场景，就是记录某一次插入数据的位置，方便下一次进行回溯。
 
-    - 可以使用mark()方法进行标记
+- 可以使用mark()方法进行标记
 
-    - 使用reset()方法进行清除
+- 使用reset()方法进行清除
 
-    - 使用rewind()方法进行初始化
+- 使用rewind()方法进行初始化
 
 ```java
 //mark方法标记当前的position,默认为-1
