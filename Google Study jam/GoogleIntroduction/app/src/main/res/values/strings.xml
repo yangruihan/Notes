@@ -1,0 +1,77 @@
+<resources>
+    <string name="app_name">Google Introduction</string>
+    <string name="intro_history">历史</string>
+    <string name="intro_product">产品与服务</string>
+    <string name="intro_culture">企业文化</string>
+    <string name="intro_dispute">争议</string>
+    <string name="intro_fault">故障</string>
+    <string name="google_create_str_1">1996年1月，身为加州斯坦福大学理学博士生的拉里·佩奇和谢尔盖·布林在学校开始一项关于搜索的研究项目。区别于传统的搜索靠搜索字眼在页面中出现次数来进行结果排序的方法，两人开发了一个对网站之间的关系做精确分析的搜寻引擎。这个名为PageRank的引擎通过检查网页中的反向链接以评估站点的重要性，此引擎的精确度胜于当时的基本搜索技术。最初，佩奇和布林将这个搜索引擎命名为‘BackRub’，直到后来改为‘Google’。这个新名字来源于一个数学大数googol（数字1后有100个0，即自然数10100）单词错误的拼写方式，象征着为人们提供搜索海量优质信息的决心。 Google搜索引擎在斯坦福大学的网站上启用，域名为google.stanford.edu。</string>
+
+    <string name="google_create_str_2">1997年9月15日，两人注册了Google域名。一年后，1998年9月4日，佩奇和布林在加州门洛帕克一位朋友家的车库内创建了Google公司，克雷格·西尔弗斯坦（Craig Silverstein）——同为斯坦福大学的博士生——是公司的首位雇员。</string>
+
+    <string name="google_listed_str_1">佩奇和布林在Google项目上最早获得投资是在1998年8月，Sun Microsystems的联合创始人安迪·贝托尔斯海姆给了两人一张十万美元的支票来用于搜索引擎的开发和运营，当时Google公司还尚未成立。到1999年，由于搜索引擎的开发花费了太多的学习时间，佩奇和布林甚至考虑将其出售。两人找到Excite公司CEO乔治·贝尔（George Bell）提出一百万美元的收购价。尽管Excite的风险投资人维诺德·科斯拉在与Google的两位创始人谈判后将价格降低到75万美元，但仍被贝尔拒绝了。1999年6月7日，包括Kleiner Perkins公司和红杉资本在内的投资者为Google注资两千五百万美元。</string>
+
+    <string name="google_listed_str_2">Google在2004年8月19日进行了首次公开募股，公司发行了19,605,052份每股价值85美元的股票。股票由摩根士丹利和瑞士信贷集团承销，以网上拍卖的形式发售。IPO后，Google公司的市值迅速上涨到超过230亿美元，而Google仍然控制着27182万（2.718281828和数学常数e有关）股票中的大多数股份，许多Google公司的雇员也在瞬间变成百万富翁。而作为竞争对手的雅虎，也因为在Google上市前持有840万股票而受益。</string>
+
+    <string name="google_listed_str_3">有人怀疑Google公司的企业文化在上市后，会由于董事会施压或高管们的暴富而不可避免地被改变。两位创始人拉里·佩奇和谢尔盖·布林则在一份报告中承诺，上市不会影响Google的公司文化，以作为对潜在投资者们的怀疑所做的回应。2005年，纽约时报等媒体撰文指出Google已经丧失了原来不作恶的哲学。在此之下，为了保持与众不同的企业文化，Google专门指派了一位首席文化官，来为Google构建和维护企业内部广泛协助的扁平化组织，及其所产生的核心价值。Google也面临前员工性别歧视和年龄歧视的指控。</string>
+
+    <string name="google_listed_str_4">首次公开募股之后，Google的股票形势良好，2007年10月31日，受益于在网络广告市场的强势盈利，股价首次超过700美元。相比较大型机构投资和共同基金，Google股票的股价的变动更多地是由个人投资者们所影响。在2015年第四季起，Google的上市地位由母公司Alphabet Inc.替换（股票代号分别为NASDAQ：GOOG、NASDAQ：GOOGL）。</string>
+
+    <string name="google_grow_str_1">1999年3月，Google公司将的办公场所搬至加州的帕罗奥多，这里是众多知名的硅谷初创公司所在的地方。翌年，Google开始以出售搜索关键词的广告，但这一做法与佩奇和布林以广告赞助搜索的意愿相违背。为了保持页面简洁的设计，提高搜索速度，广告只会以基于文本的形式出现。关键词的出售结合点击次数和价格的竞标，竞标起价为每次点击5美分。这种出售广告关键词的模式最早来源于Goto.com——一个由比尔·葛罗斯的Idealab企业孵化器派生的网站。之后Google受到了这家改名为Overture Services的公司对于次广告出售专利技术侵权的指控。2003年，Overture Services被雅虎收购，并被改名为雅虎搜索营销。最终，雅虎与Google在庭外达成和解：Google用普通股股份换取此专利的永久授权。</string>
+
+    <string name="google_grow_str_2">2001年，Google获得了PageRank的专利权，这项专利被正式颁与斯坦福大学，劳伦斯·佩奇（即拉里·佩奇）为专利发明人。2003年，在发展了两处办公地点以后，公司又向硅谷图形公司租赁了位于芒廷维尤目前所在的综合办公楼。这处办公地点被戏称为‘Googleplex’，数学大数古戈尔普勒克斯（googolplex）单词的变体。三年后，Google以三亿一千九百万的价额向硅谷图形公司买下了这里的产权。在这段时间内，google这个单词逐渐进入各类语言当中，也使得‘google’作为动词被收入至梅里亚姆-韦珀斯特词典和牛津英语词典内，释义为“使用Google搜索引擎在互联网上获取信息”（to use the Google search engine to obtain information on the Internet）。</string>
+
+    <string name="google_grow_str_3">2011年5月，Google的月独立访客数量首次超过十亿，与一年前同期的9亿3100万相比增长8.4%。Google也是首个获取该数据里程碑的网站。</string>
+
+    <string name="google_cooperation_str_1">自2001年始，Google已收购了许多企业，其中尤以小型风投公司为主。2004年7月13日，Google收购照片整理与编辑软件Picasa，同年10月又吞并了Keyhole公司。这家初创公司开发出一个名为Earth Viewer的产品，供用户以3D的视角观察地球。一年后，Google将此服务改名为Google地球。2005年，成立仅22个月的高科技企业Android被Google相中，被收购并成为Google麾下的移动设备操作系统。2006年10月，Google宣布以16.5亿美元的股票收购在线视频分享网站YouTube，并于11月敲定。2007年4月13日，Google与DoubleClick达成协议，DoubleClick以31亿美元的价格被Google收购，并成为后者旗下的一家网络出版与广告商。同年，Google以5千万美元并购了GrandCentral，后来将其改造为Google Voice。2009年8月5日，Google以1亿650万美元买断视频软件制造公司On2 Technologies。2010年，Google将Aardvark纳入旗下，出价为5千万美元，并在内部博客中写道：“我们很期待将其集成进我们的产品中”。同年，Google又大举并购了ITA Software、Slide、Like.com等。2011年，Google继续大笔的收购之路，业已将SageTV等十余家美国和欧洲的企业或团队招致麾下。2011年8月15日，Google官方宣布将以每股40美元现金，总额约125亿美元收购摩托劳拉移动。</string>
+
+    <string name="google_cooperation_str_2">除了收购的方式以外，Google也积极地与其他公司或组织进行合作，从科研到商业广告，都是开展合作所涉及的领域。2005年，Google与美国国家航空航天局艾姆斯研究中心合作建设了用于囊括了大规模数据管理、纳米技术、分布式计算、航空航天产业等科研项目的场所，占地约93000平方米。2005年10月，Google与Sun Microsystems交换并分享了各自的技术。 Google也和AOL及时代华纳达成商业伙伴关系，以增强各自视频搜索服务的质量。2005年，Google与微软、诺基亚、爱立信联手，为顶级域名.mobi融资。而后Google启动了Adsense for Mobile，开拓移动广告市场。2006年，新闻集团旗下的福克斯互动媒体同Google达成一份9亿美元的协议，Google为社交网站MySpace提供搜索与广告业务。2007年，Google与34家手机制造商、芯片制造商、软件开发商和电信运营商一同创建了开放手机联盟，开发Android系统与苹果iOS、微软Windows Phone等移动平台竞争。</string>
+
+    <string name="google_cooperation_str_3">2013年9月11日Google将伙拍哈佛大学和麻省理工（MIT）组成的网上教育平台edX，发展网上教学课程，任何人都可将课程放入网络中。</string>
+
+    <string name="google_ad_str_1">Google九成以上的营收来自其广告系统。如2006年财政年度，公司财报显示104.92亿美元的收入中只有1.12亿来自于非广告收入。为了保持在网络广告代理市场中执牛耳的地位，Google不断实施各种新的手段。例如Google在收购DoubleClick后获取技术，得以获取用户兴趣和确定广告目标。Google Analytics可以让网站站长们查看并追踪访问者在何时，以何种方式访问自己的网站，如检查某一页面上所有链接的点击等。Google的广告系统由两个部分组成，通过第三方网站来放置。AdWords为广告客户提供在网络中展示广告的服务，按点击或显示收费；AdWords的姊妹项目AdSense，允许网站站长在自己的网页中提供广告展示的位置，并参与分成。</string>
+
+    <string name="google_ad_str_2">但Google也由于在网络广告系统中反点击欺诈管理的欠缺而受到诟病——当一个并不是出于对广告中产品感兴趣的访客或一个自动脚本故意点击该则广告后，会引起广告客户过多支付广告费用。2006年的行业报告指出，约有百分之十四至百分十二十的点击属于欺诈点击或无效点击。另一个对Google广告业务的批评来自于对广告客户的审查，有些被怀疑违反数字千年版权法。2003年2月，Google停止了对一个名为Oceana的非营利组织的（抗议大型油轮不合理的污水处理）广告展示。Google引用其编辑政策解释：“Google不接受广告或网站内容为宣扬反对其他个人、团体或组织的广告。”该政策却在随后即被更改。2008年6月，在美国司法部鉴于反托拉斯的促使之下，Google与雅虎两大巨头达成广告协议，雅虎在自己的网站页面上显示Google广告。但最终Google又在2008年11月撤出该协议。</string>
+
+    <string name="google_ad_str_3">为了推销自己的产品，Google启动了一个名为Demo Slam的网站以展示自有产品的技术示范。每一周都会有两个团队竞相把Google的新产品公布到网站上。《搜索引擎杂志》撰文写道：Demo Slam是“创作者和技术娴熟的人们制作视频来使世界上其他人类了解最新最伟大技术的地方”。</string>
+
+    <string name="google_search_str_1">Google搜索是Google公司重要也是最普及的一项功能，是多个国家内使用率最高的互联网搜索引擎。根据comScore2009年11月公布的市场统计，Google在美国搜索引擎市场上占有率为65.6%。Google抓取数十亿的互联网网页，因此用户能通过搜索关键词等操作较为轻松地获取想要搜寻的信息。除了最基本的文字搜索功能之外，Google搜索还提供至少22种特殊功能，如同义词、天气预报、时区、股价、地图、地震数据、电影放映时间、机场、体育赛事比分等。Google搜索在搜索与数字相关的信息时又会有另一些特殊功能：如单位换算、货币换算、数字运算、包裹追踪、地区代码。同时，Google也为搜索页面提供语言翻译功能。2011年，Google先后推出语音搜索和图片搜索。</string>
+
+    <string name="google_search_str_2">尽管Google搜索很受大众喜爱，但也有组织对它发出批评的声音。2003年，纽约时报声称Google对其网站抓取与形成的缓存侵害了网站内容的版权。在这个问题上，内华达地方法院审理了相关的Field v. Google和Parker v. Google两个案件，Google成功地为自己作了辩护，推翻了指控。</string>
+
+    <string name="google_tool_str_1">除了强大的搜索引擎以外，Google也研发了许多在线的工作辅助工具。Gmail是Google开发的一个免费电子邮箱服务，于2004年4月1日进入Beta阶段，2007年2月7日正式面向大众开放。直到2009年7月7日，Gmail才结束其漫长的Beta阶段，当时已有1.64亿用户使用。Gmail是首个拥有1GB存储空间的网络电子邮箱，也是第一个以单线程会话保存邮件的的电邮，这与网络论坛相似。目前，Gmail提供给每个免费用户15GB的邮箱容量，付费用户可缴纳每年每GB 0.25美元的费用来将容量提升至20GB至16TB。Gmail也是AJAX技术开拓的先行者，该技术使人们不用手动刷新浏览器显示就能看到新的网页信息。</string>
+
+    <string name="google_tool_str_2">Google工作包的另一部分——Google文档，与微软的Microsoft Word不同，它允许用户在在线环境下新建、编辑或协同编辑文件。这项服务原名为Writely，但在2006年3月9日被Google收购。6月6日，Google创建了一个实验性的电子表格编辑项目，在随后的10月10日被集成进Google文档中。2007年9月17日，编辑演示文稿的功能也被加入Google文档。2009年7月7日，包括三项功能在内的Google文档与Gmail、Google日历一起组成Google Apps工作包。</string>
+
+    <string name="google_employee_str_1">自上市后Google股票的良好涨势使许多早期员工获得丰厚的回报。IPO之后，创始人拉里·佩奇、谢尔盖·布林和前CEO埃里克·施密特主动要求将他们自己的基本薪水降至1美分，随后公司将他们的资薪调低，而他们的收入主要来自于持有的Google股票。2004年以前，施密特每年收入为25万美元，佩奇和布林则为15万。</string>
+
+    <string name="google_employee_str_2">2007年至2008年初，有多位Google高管离任。2007年10月，YouTube前首席财务官吉迪昂·余同高级工程师本杰明·林一道跳槽至Facebook。2008年3月，雪莉·桑德伯格，当时的全球网络销售与运营副总裁，也离开Google，在Facebook担任首席财务官一职。另外，阿什·艾尔迪佛莱威——前品牌广告负责人前往Netshops公司（一家网络零售企业，在2009年更名为Hayneedle）担任首席营销官。2011年4月4日，拉里·佩奇重任首席执行官（Chief Executive Officer），施密特改任执行董事长（Executive Chairman）。</string>
+
+    <string name="google_employee_str_3">Google有一个称为“创意休息时间”（Innovation Time Off）的政策，允许工程师花20%的工作时间做自己想做的事情，以此来激励更多、更广泛的创新，而这项政策也确确实实激发出了Gmail、Google新闻、Orkut、AdSense等产品的创意。Google的搜索产品和用户体验副总裁玛丽莎·梅耶尔曾在一次斯坦福大学的访谈中展示过当时半数来源于“创意休息时间”的产品。</string>
+
+    <string name="google_employee_str_4">2011年3月，Universum的问卷调查报告显示，Google以接近25%的选择率成为年轻人最向往的雇主。</string>
+
+    <string name="google_place_str_1">Google在美国加州芒廷维尤的总部被昵称为‘Googleplex’，数学大数古戈尔普勒克斯（googolplex，数字1后有10100个0，即自然数1010100=10googol）单词的变体。总部本身也是一栋错综复杂的综合性建筑。大厅用一架钢琴、熔岩灯、老旧的服务器装饰，墙上还有一副搜索请求的投影。门厅则布满了健身球和自行车。建筑内还有娱乐中心供公司员工休闲娱乐，健身房、更衣室、洗衣干衣机、按摩室、配套游戏机、桌上足球、小型三角钢琴、台球桌、乒乓球桌等等日常生活或娱乐设施设备散布在大楼内部。除此以外，Googleplex有着一个填满食物和饮料的餐厅，食物都以重视营养为重点。餐厅和自动售卖机每周七天，每天二十四小时免费向员工开放。</string>
+
+    <string name="google_place_str_2">2003年，为了包括Google地图等项目，Google增加了一支在纽约的工程师队伍。2006年，Google在纽约市的办公地址搬进了位于曼哈顿第八大道的面积为28900平米的新大楼，目前容纳着公司最大的广告销售团队。而这处办公大楼的设计与功能也与Googleplex有着相似之处，甚至同样有着桌上足球、桌上冰球、乒乓球台和电子游戏机。2006年11月，公司在匹兹堡卡内基梅隆大学校区的办公场所开张，Google在这里的工作主要是购物广告代码和智能手机应用。06年底，Google又在密歇根州的安娜堡为AdWords添置了一处新的总部。此外，Google的办公场所遍布全世界，仅在美国就包括亚特兰大、奥斯汀、旧金山、西雅图、华盛顿等多处。</string>
+
+    <string name="google_place_str_3">Google对环境保护抱有相当高的热忱。2006年10月，Google公司宣布投资建造太阳能发电项目的计划，建成后可为Googleplex提供产生1.6兆瓦的电力，满足接近30%的用电需求。这套发电系统成为了全美最大的企业发电系统，也跻身世界最大的企业发电系统之一。在2009年，Google租赁了一群山羊来为Googleplex周围的草地除草。这个方法既能防止季节性的丛林火灾，也可以大大减少大面积除草所产生的碳排放。据透露这个用山羊修剪草坪的点子来自于一位名叫R·J·韦勒的美国国家半导体有限公司的工程师。尽管如此，Google依旧遭到了《哈泼斯》杂志对于能源极端过度使用的指责，同时被指控打着“不作恶”口号和公开举行节能活动的幌子来掩盖企业所运行的服务器实际对能源的海量需求。</string>
+
+    <string name="google_joke_str_1">Google在每年的愚人节有制造玩笑的传统。2000年愚人节，Google推出MentalPlex（意念搜索），号称能以思维意念的力量来进行网络搜索。2007年，Google则宣传发布一套名为TiSP（厕所互联网服务提供者）的免费服务，用户可以凭借将Google所提供的光导纤维电缆的一头冲到厕所下水管道之内来获取宽带服务。同在2007年，Google在Gmail页面上展示即将推出Gmail Paper服务的提示，称将可以满足替用户把邮件打印到纸上并运送给收件人的要求。2008年，Google说Gmail的用户将可以更改已发送邮件的发送时间。2010年的愚人节，为了回应堪萨斯首府托皮卡城市长之前为了申请Google光纤而颁布法令将城市名暂时改为Google，Google戏剧性地把公司名改为Topeka以纪念该城市。2011年的玩笑则名为Gmail运动，号称用户可以通过摄像头前做肢体运动来控制Gmail或计算机。 2013年的愚人节则推出Google嗅觉，号称为一个测试版的香味数据库，使用户可以通过大部分的屏幕闻到各种味道。</string>
+
+    <string name="google_joke_str_2">除了在愚人节会开一些玩笑之外，制作彩蛋也是Google的保留项目。例如Google在搜索引擎的语言选择上非常滑稽的加入了提线木偶剧丹麦厨师中的“Bork bork bork”语言、儿童黑话、黑客语、卡通人物Elmer Fudd的语言、《星际迷航》中的克林贡语等等。Google搜索还能够计算并提供生命、宇宙以及任何事情的终极答案（The answer to life, the universe, and everything，出自于道格拉斯·亚当斯的科幻小说《银河系漫游指南》）。此外，当一个人搜索单词“recursion”（递归）时，系统中的拼写检查会给你一个“纠错”链接，显示的建议依旧是“recursion”这个单词然后一直如此循环。类似的彩蛋还有，当搜索单词“anagram”（一种颠倒字母顺序的字谜）时，Google提供的建议会显示“你是不是在找nag a ram？”如果Google地图中在间隔大片水域的两个地点之间搜寻路线，比如从洛杉矶到东京，搜索结果会建议“划独木舟穿越太平洋”。在2010年世界杯足球赛期间，搜索关键词若是“世界杯”、“FIFA”等，就会导致Google页面底部原为“Goooo…gle”的页面指标变成“Goooo…al!”。</string>
+
+    <string name="google_doodles_str_1">自从BackRub时代起，Google已经有过许多品牌标识，现今Google公司的官方标志是露丝·基达以Catull设计一个文字商标。除了这个主要的商标之外，Google经常会在节日、名人诞辰日或重大事件（如奥运会）发生的时候把标志作修改后替代原商标放在网站上。这些特殊的标志被称为‘Google Doodles’（“谷歌涂鸦”）。截至目前，Google已经制作和更换了超过1000个doodles。</string>
+
+    <string name="google_doodles_str_2">2010年5月21日，为了纪念街机游戏吃豆子30周年，Google在与南梦宫交流之后将标志改成了可以玩吃豆子游戏的迷宫地图。这个小游戏还有着与原版一样的音效。“手气不错”（I\'m Feeling Lucky）键则被“投入硬币”（Insert Coin）键所暂时替换。按下这个键可以加入第二位玩家：“吃豆子女士”，用键盘上的W、S、A、D键操控。两天后的5月23日，吃豆子游戏的doodle被移除。但没过几天，为了满足用户们的要求，Google把这个doodle永久放置在了一个子域名上。</string>
+
+    <string name="google_doodles_str_3">自从BackRub时代起，Google已经有过许多品牌标识，现今Google公司的官方标志是露丝·基达以Catull设计一个文字商标。除了这个主要的商标之外，Google经常会在节日、名人诞辰日或重大事件（如奥运会）发生的时候把标志作修改后替代原商标放在网站上。这些特殊的标志被称为‘Google Doodles’（“谷歌涂鸦”）。截至目前，Google已经制作和更换了超过1000个doodles。</string>
+
+    <string name="google_doodles_str_4">除了官方团队会制作Doodles以外，Google也鼓励人们参与到创造的行列中。Google每年举办“Doodle 4 Google”大赛，吸收参赛者的创意并嘉奖入选者。</string>
+
+    <string name="google_dispute_str_1">2014年8月，Google向美国警方报警，表示其用户Gmail内有大量儿童色情照片，随后该男子遭逮捕，此事一出也引发许多用户对隐私的担忧。</string>
+    <string name="google_fault_str_1">2013年8月17日06:50至06:55，谷歌遭遇了故障，包含Google搜索、YouTube、Google Drive和Gmail等服务都受到了影响。此事导致全球网络流量暴跌40%。</string>
+
+    <string name="google_fault_str_2">2014年1月25日，Google和旗下其他许多服务疑因软件出包故障，据信影响全球数亿民众。</string>
+
+</resources>

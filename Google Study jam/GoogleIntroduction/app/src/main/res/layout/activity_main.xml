@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="cn.studyjams.s1.sj23.yangruihan.MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="32dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="32dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/google_logo" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Introduction"
+                    android:textColor="#6B85F4"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/intro_history_btn"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_margin="16dp"
+                android:textSize="20sp"
+                android:fontFamily="Noto"
+                android:text="@string/intro_history"
+                android:textColor="@color/colorButtonText"
+                android:background="#7986CB"/>
+
+            <Button
+                android:id="@+id/intro_product_btn"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_margin="16dp"
+                android:textSize="20sp"
+                android:textColor="@color/colorButtonText"
+                android:fontFamily="Noto"
+                android:background="#5C6BC0"
+                android:text="@string/intro_product" />
+
+            <Button
+                android:id="@+id/intro_culture_btn"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_margin="16dp"
+                android:fontFamily="Noto"
+                android:textSize="20sp"
+                android:text="@string/intro_culture"
+                android:textColor="@color/colorButtonText"
+                android:background="#3F51B5"/>
+
+            <Button
+                android:id="@+id/intro_dispute_btn"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_margin="16dp"
+                android:fontFamily="Noto"
+                android:textSize="20sp"
+                android:text="@string/intro_dispute"
+                android:textColor="@color/colorButtonText"
+                android:background="#3949AB"/>
+
+            <Button
+                android:id="@+id/intro_fault_btn"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_margin="16dp"
+                android:fontFamily="Noto"
+                android:textSize="20sp"
+                android:textColor="@color/colorButtonText"
+                android:background="#303F9F"
+                android:text="@string/intro_fault" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="声明：文字内容均来自 维基百科"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
