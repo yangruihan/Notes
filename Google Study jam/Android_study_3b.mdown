@@ -1,0 +1,20 @@
+# Google Study Jam -- 3B_Adding 笔记
+
+1. Intent（**目的、意图**）的使用：
+
+    ```java
+    // 定义一个Intent
+    Intent intent = new Intent(AActivity.this, BActivity.class);
+    // 启动Activity
+    startActivity(intent);
+    ```
+
+2. string.xml：
+
+    专门用来存放 app 中字符串的文件，一般用来实现对多国语言的支持
+
+3. style.xml：
+
+    专门用来存放主题样式的文件，可以继承，通过修改其内容来展示丰富多彩的样式
+
+
