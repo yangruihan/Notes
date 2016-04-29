@@ -8,49 +8,49 @@
 
 ## 目录
 
-1. [算法](https://github.com/yangruihan/Notes/tree/master/Algorithm)
+- [算法](https://github.com/yangruihan/Notes/tree/master/Algorithm)
 
-2. [Android相关](https://github.com/yangruihan/Notes/tree/master/Android)
+- [Android相关](https://github.com/yangruihan/Notes/tree/master/Android)
 
-3. [C相关](https://github.com/yangruihan/Notes/tree/master/C)
+- [C相关](https://github.com/yangruihan/Notes/tree/master/C)
 
-4. [设计模式](https://github.com/yangruihan/Notes/tree/master/DesignPattern)
+- [设计模式](https://github.com/yangruihan/Notes/tree/master/DesignPattern)
 
-5. [Git相关](https://github.com/yangruihan/Notes/tree/master/Git)
+- [Git相关](https://github.com/yangruihan/Notes/tree/master/Git)
 
-6. [Google Study jam 相关](https://github.com/yangruihan/Notes/tree/master/Google%20Study%20jam)
+- [Google Study jam 相关](https://github.com/yangruihan/Notes/tree/master/Google%20Study%20jam)
 
-7. [Gradle相关](https://github.com/yangruihan/Notes/tree/master/Gradle)
+- [Gradle相关](https://github.com/yangruihan/Notes/tree/master/Gradle)
 
-8. [Java相关](https://github.com/yangruihan/Notes/tree/master/Java)
+- [Java相关](https://github.com/yangruihan/Notes/tree/master/Java)
 
-9. [Linux相关](https://github.com/yangruihan/Notes/tree/master/Linux)
+- [Linux相关](https://github.com/yangruihan/Notes/tree/master/Linux)
 
-10. [Lisp相关](https://github.com/yangruihan/Notes/tree/master/Lisp)
+- [Lisp相关](https://github.com/yangruihan/Notes/tree/master/Lisp)
 
-11. [Mac相关](https://github.com/yangruihan/Notes/tree/master/Mac)
+- [Mac相关](https://github.com/yangruihan/Notes/tree/master/Mac)
 
-12. [Markdown相关](https://github.com/yangruihan/Notes/tree/master/Markdown)
+- [Markdown相关](https://github.com/yangruihan/Notes/tree/master/Markdown)
 
-13. [操作系统](https://github.com/yangruihan/Notes/tree/master/OperatingSystem)
+- [操作系统](https://github.com/yangruihan/Notes/tree/master/OperatingSystem)
 
-14. [Python相关](https://github.com/yangruihan/Notes/tree/master/Python)
+- [Python相关](https://github.com/yangruihan/Notes/tree/master/Python)
 
-15. [ROS (Robot Operating System)](https://github.com/yangruihan/Notes/tree/master/ROS)
+- [ROS (Robot Operating System)](https://github.com/yangruihan/Notes/tree/master/ROS)
 
-16. [正则表达式](https://github.com/yangruihan/Notes/tree/master/RegularExpression)
+- [正则表达式](https://github.com/yangruihan/Notes/tree/master/RegularExpression)
 
-17. [Sublime Text 相关](https://github.com/yangruihan/Notes/tree/master/Sublime%20Text)
+- [Sublime Text 相关](https://github.com/yangruihan/Notes/tree/master/Sublime%20Text)
 
-18. [计算机组成原理](https://github.com/yangruihan/Notes/tree/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86)
+- [SVN](https://github.com/yangruihan/Notes/tree/master/SVN)
 
-19. [数据结构](https://github.com/yangruihan/Notes/tree/master/DataStruct)
+- [计算机组成原理](https://github.com/yangruihan/Notes/tree/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86)
 
-20. [面试题](https://github.com/yangruihan/Notes/tree/master/%E9%9D%A2%E8%AF%95%E9%A2%98)
+- [数据结构](https://github.com/yangruihan/Notes/tree/master/DataStruct)
 
-21. [个人简历](https://github.com/yangruihan/Notes/blob/master/%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86/%E6%9D%A8%E7%9D%BF%E6%B6%B5%E7%9A%84%E7%AE%80%E5%8E%86.pdf)
+- [面试题](https://github.com/yangruihan/Notes/tree/master/%E9%9D%A2%E8%AF%95%E9%A2%98)
 
-22. [SVN](https://github.com/yangruihan/Notes/tree/master/SVN)
+- [个人简历](https://github.com/yangruihan/Notes/blob/master/%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86/%E6%9D%A8%E7%9D%BF%E6%B6%B5%E7%9A%84%E7%AE%80%E5%8E%86.pdf)
 
-23. [其他](https://github.com/yangruihan/Notes/tree/master/Others)
+- [其他](https://github.com/yangruihan/Notes/tree/master/Others)
 
