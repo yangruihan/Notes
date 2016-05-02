@@ -18,6 +18,8 @@
 
 - [Git相关](https://github.com/yangruihan/Notes/tree/master/Git)
 
+- [《游戏引擎架构》笔记](https://github.com/yangruihan/Notes/tree/master/GameEngineArchitecture)
+
 - [Google Study jam 相关](https://github.com/yangruihan/Notes/tree/master/Google%20Study%20jam)
 
 - [Gradle相关](https://github.com/yangruihan/Notes/tree/master/Gradle)
