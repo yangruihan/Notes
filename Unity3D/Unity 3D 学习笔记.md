@@ -2,7 +2,7 @@
 ## 基本概念
 ### 场景和游戏对象
 
-![](u3d-1-1.jpg)
+![](https://github.com/yangruihan/Notes/blob/master/Unity3D/image_res/u3d-1-1.jpg)
 
 一个游戏项目由多个**场景**组成
 
