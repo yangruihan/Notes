@@ -36,6 +36,8 @@
 
 - [操作系统](https://github.com/yangruihan/Notes/tree/master/OperatingSystem)
 
+- [OpenGL相关](https://github.com/yangruihan/Notes/tree/master/OpenGL)
+
 - [Python相关](https://github.com/yangruihan/Notes/tree/master/Python)
 
 - [ROS (Robot Operating System)](https://github.com/yangruihan/Notes/tree/master/ROS)
