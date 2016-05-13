@@ -360,7 +360,11 @@ void keyboard(unsigned char key, int x, int y)
 
 *注：*
 
-*特殊按键，如`F1`，`UP`键等，在 GLUT 中定义了常量：`GLUT_KEY_F1`、`GLUT_KEY_UP`，并且需要采用特殊函数注册回调函数`void glutSpecialFunc(void (*func) (int key, int x, int y))`*
+*特殊按键，如`F1`，`UP`键等，在 GLUT 中定义了常量：`GLUT_KEY_F1`、`GLUT_KEY_UP`，并且需要采用特殊函数注册回调函数：*
+
+```cpp
+void glutSpecialFunc(void (*func) (int key, int x, int y))
+```
 
 *如果在鼠标或键盘事件产生是按下修饰键，如`Ctrl`、`Alt`、`Shift`，则需要使用`int glutGetModifiers()`函数来进行捕获，其返回值为：`GLUT_ACTIVE_SHIFT`、`GLUT_ACTIVE_CTRL`、`GLUT_ACTIVE_ALT`*
 
@@ -456,9 +460,9 @@ GLUT 支持弹出式菜单，且可以有子菜单
 
 ## 第五章 几何对象与变换
 ### 矢量空间与仿射空间
-**标量场**：包括实数、复数和有理函数
+- **标量场**：包括实数、复数和有理函数
 
-**矢量空间**：包括标量和矢量
+- **矢量空间**：包括标量和矢量
 
     矢量空间里的一个重要概念是：任何一个矢量都可以唯一地用基向量来表示
 
