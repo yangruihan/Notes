@@ -530,4 +530,91 @@ z ← z / w
 
 矩阵 M 是 4×4 阶，定义了齐次坐标下的一个仿射变换
 
+### 变换
+- 线性变换与仿射变换
+
+- 标准变换
+
+    - 平移 translation
+    - 旋转 rotation
+    - 缩放 scaling
+    - 错切 shear
+
+- 复杂变换
+
+### OpenGL 中的矩阵
+在 OpenGL 中，矩阵是状态的一部分
+
+矩阵有多种类型：
+
+- 模型视图（`GL_MODELVIEW`)
+
+- 投影（`GL_PROJECTION`）
+
+- 纹理（`GL_TEXTURE`）
+
+- 颜色（`GL_COLOR`）
+
+所有的矩阵都是由一组共同的函数来设置或修改：`glMatrixMode(mode)`
+
+
+### 通用变换函数
+- `void glMatrixMode(Glenum mode)`
+
+    指定要修改的矩阵类型：`GL_MODELVIEW`、`GL_PROJECTION`、`GL_TEXTURE`、`GL_COLOR`
+
+- `void glLoadIdentity(void)`
+
+    把当前矩阵设置为 4×4 单位阵
+
+- `void glLoadMatrix(constTYPE *m)`
+
+    把当前矩阵的 16 个值设置为 m 所指定的值
+
+- `void glMultMatrix(constTYPE *m)`
+
+    把当前矩阵右乘由 m 的 16 个值构成的矩阵
+
+- `void glRotate(theta, Vx, Vy, Vz)`
+
+    以原点为旋转固定点，以 (Vx, Vy, Vz) 为旋转轴，旋转`theta`角度；其中`theta`以角度为单位
+
+- `void glTranslate(Dx, Dy, Dz)`
+
+    对象上的所有点沿同一个方向移动 (Dx, Dy, Dz)
+
+- `void glScale(Sx, Sy, Sz)`
+
+    以原点为中心缩放
+
+### 矩阵堆栈
+很多情况中需要保存变换矩阵，待稍后在用，例如：
+
+- 遍历层次数据结构
+
+- 当执行显示列表时避免状态改变
+
+- 不同对象有不同的变换矩阵
+
+OpenGL 为每种类型的矩阵保持一个堆栈：
+
+- 模型-视图矩阵堆栈：32 个 4×4 矩阵
+
+- 投影矩阵堆栈：2 个 4×4 矩阵
+
+应用下列函数处理矩阵堆栈：
+
+- `void glLoadIdentity()`
+
+    将矩阵堆栈中的栈顶置为单位矩阵
+
+- `void glPushMatrix()`
+
+    当前矩阵堆栈中的矩阵下压一级，复制当前矩阵，拷贝到栈顶。最顶部的两个矩阵相同
+
+- `glPopMatrix()`
+
+    弹出并丢弃栈顶矩阵
+
+*注：应先由`glMatrixMode(mode)`设置矩阵类型*
 
