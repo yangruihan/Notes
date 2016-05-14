@@ -678,4 +678,73 @@ OpenGL 为每种类型的矩阵保持一个堆栈：
 
 > → Model-view → Projection → Perspective division →
 
+## 第七章 从顶点到片段
+### 构成场景的基本算法
+- **面向图像（image-oriented）的方法（也称为先排序，sort-first）**：
 
+    对于每个像素，确定投影到这个像素的离观察者最近的那个对象，从而基于该对象计算像素的明暗值
+
+- **面向对象（object-oriented）的方法（也称为后排序，sort-last）**：
+
+    对于每个对象，确定它所覆盖的像素，并用对象的状态确定像素的明暗值
+
+    缺陷：
+
+    - 过去：需要占用大量内存，每个对象单独处理的代价较大
+
+    - 现在：不能得到大多数全局效果，隐藏面消除例外
+
+### 光栅化（rasterization）
+在进行了扫描后，得到的就是二维对象，虽然可能已用屏幕坐标表示了对象，但是所拥有的只是用顶点给出的表示
+
+基于顶点给出表示对象的一组像素就称为**光栅化（rasterization）**或者**扫描转化（scan conversion）**
+
+### 线段裁剪算法
+- 直观方法：计算线段与裁剪窗口各条边界的交点
+
+- [Cohen-Sutherland 算法](https://en.wikipedia.org/wiki/Cohen%E2%80%93Sutherland_algorithm)
+
+- [Liang-Barsky 裁剪算法](https://en.wikipedia.org/wiki/Liang%E2%80%93Barsky_algorithm)
+
+- [Sutherland-Hodgeman 算法](https://en.wikipedia.org/wiki/Sutherland%E2%80%93Hodgman_algorithm)
+
+### 多边形的裁剪
+多边形的裁剪不像线段裁剪那样简单：
+
+- 裁剪一条线段最多得到一条线段
+
+- 裁剪一个多边形可以得到多个多边形（裁剪一个凸多边形最多得到一个凸多边形）
+
+### 多边形的裁剪算法
+- 一种方法就是把非凸（凹）多边形用一组三角形代替，这个过程称为**划分（tessellation）**
+
+- [Sutherland-Hodgeman 算法](https://en.wikipedia.org/wiki/Sutherland%E2%80%93Hodgman_algorithm)
+
+- 包围盒（bounding box）
+
+### 隐藏面消除
+- 对象空间方法
+
+    - 画家算法
+
+    - 背向面剔除
+
+- 图像空间方法
+
+    - Z 缓冲区算法
+
+### 线段的光栅化方法
+- DDA 算法
+
+- Bresenham 算法
+
+### 多边形的光栅化方法
+- 种子填充算法
+
+    区域指已经表示成点阵形式的填充图形，它是像素的集合
+
+    适合于像素表示的多边形
+
+- 扫描线填充算法
+
+    适合于顶点表示的多边形
