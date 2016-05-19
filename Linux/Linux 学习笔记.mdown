@@ -1416,3 +1416,151 @@ fi
 3. `false` 表示总为假，其退出值是 255
 
 如前所述，命令退出值若为 0，表示条件测试为真；若退出值不等于 0，则为假
+
+### case
+`case`语句允许进行多重条件选择，其一般语法形式是：
+
+```shell
+case 字符串 in
+模式字符串1)
+            命令
+            ...
+            命令;;
+模式字符串2)
+            命令
+            ...
+            命令;;
+    ...
+模式字符串n)
+            命令
+            ...
+            命令;;
+esac
+```
+
+其执行过程是，用“字符串”的值依次与各模式字符串进行比较，如果发现同某一个匹配，那么就执行该模式字符串之后的各个命令，直至遇到两个分号为止
+
+示例：
+
+```shell
+echo "Please choose either 1, 2 or 3"
+echo "[1] print a file"
+echo "[2] delete a file"
+echo "[3] quit"
+
+read response
+
+case $response in
+1) lp myfile;;
+2) rm myfile;;
+3) echo "Good bye";;
+esac
+```
+
+### while
+`while`用于循环，一般形式是：
+
+```shell
+while 测试条件
+do
+    命令表
+done
+```
+
+其执行过程是：先进行条件测试，如果结果为真，则进入循环体（do-done之间部分），执行其中命令，然后在做条件测试……直至测试条件为假时，才终止`while`语句的执行
+
+示例：
+
+```shell
+while [ $1 ]
+do
+    if [ -f $1 ]
+    then
+        echo "display: $1"
+        cat $1
+    else
+        echo "$1 is not a file name. "
+    fi
+    shift
+done
+```
+
+### until
+`until`语句用于循环，其一般形式是：
+
+```shell
+until 测试条件
+do
+    命令表
+done
+```
+
+它与`while`语句相类似，只是测试条件不同，即当测试条件为**假**，才进入循环体，直至测试条件为**真**时终止循环
+
+示例：
+
+```shell
+until [ "$2" = "" ]
+do
+    cp $1 $2
+    shift 2
+done
+
+if [ "$1" != "" ]
+then
+    echo "bad argument!"
+fi
+```
+
+### for
+`for`语句是最常用的循环结构语句。其使用方式主要有两种：一种是值表方式，另一种是算数表达式方式：
+
+1. 值表方式
+
+    一般格式为：
+
+    ```shell
+    for 变量 [in 值表]
+    do
+        命令表
+    done
+    ```
+
+    循环变量的值取自给出的值表
+
+    示例：
+
+    ```shell
+    for day in Monday Wednesday Friday Sunday
+    do
+        echo $day
+    done
+    ```
+
+2. 算术表达式方式
+
+    一般形式为：
+
+    ```shell
+    for ((e1;e2;e3))
+    do
+        命令表
+    done
+    ```
+
+    其中，`e1`，`e2`，`e3`是算术表达式。它的执行过程与 C 语言中的`for`语句相似：（1）先按算术运算规则计算表达式`e1`；（2）接着计算`e2`，如果`e2`值不为 0，则执行命令表中的命令，并且计算`e3`；然后重复（2）直至`e2`为 0，退出循环
+
+    `e1`，`e2`，`e3`这三个表达式中任何一个都可以缺少，但彼此间的分号不能缺少。在此情况下，缺少的表达式的值默认为 1
+
+    整个`for`语句的返回值是命令表中最后一条命令执行后的返回值。如果任一算术表达式非法，那么该语句失败
+
+    示例：
+
+    ```shell
+    for ((i=1;i<=5;i++))
+    do
+        echo "$i"
+    done
+    ```
+
+
