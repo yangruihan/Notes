@@ -1563,4 +1563,56 @@ fi
     done
     ```
 
+### break 和 continue
+1. `break`命令
 
+    `break`命令可以使脚本从循环体中退出来。其语法格式是：
+
+    ```shell
+    break [n]
+    ```
+
+    其中，`n`表示要跳出 n 层循环。默认值是 1，表示跳出一层循环。如果 n=3，则表示一次跳出 3 层循环
+
+    执行`break`命令时，是从包含它的那个循环体中向外跳出
+
+    示例：
+
+    ```shell
+    count=$#
+    cmd=echo
+    while true
+    do
+        cmd="$cmd \$$count"
+        count=`expr $count-1`
+        if [ $count -eq 0 ]
+        then
+            break
+        fi
+    done
+    eval $cmd
+    ```
+
+2. `continue`命令
+
+    `continue`命令跳出循环体中在它之后的语句，回到本层循环的开头，进行下一次循环。其语法格式是：
+
+    ```shell
+    continue [n]
+    ```
+
+    其中，`n`表示从包含`continue`语句的最内层循环体向外跳到第 n 层循环。默认值是 1。循环层数是由内向外编号
+
+    示例：
+
+    ```shell
+    for i in 1 2 3 4 5
+    do
+        if [ "$i" -eq 3 ]
+        then
+            continue
+        else
+            echo "$i"
+        fi
+    done
+    ```
