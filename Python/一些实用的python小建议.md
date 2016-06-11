@@ -46,3 +46,72 @@ b = a[:]
 a = {'male':0, 'female': 1}
 b = a.copy()
 ```
+
+## 时间转换相关
+### 获取今天的年月日时间(date)
+```python
+from datetime import datetime
+ 
+n_date = datetime.now().date()
+n_date = datetime.today().date()
+```
+
+### date -> datetime
+```python
+from datetime import datetime
+ 
+b = datetime.combine(n_date, datetime.min.time())
+# datetime.datetime(2015, 9, 8, 0, 0)
+```
+
+### datetime -> date
+```python
+# datetime.datetime(2015, 6, 5, 11, 45, 45, 393548)
+a = datetime.datetime()
+# datetime.datetime(2016, 6, 5)
+b = a.date()
+```
+
+### time.struct_time -> datetime
+一般`time.localtime()`或者用`time.striptime()`得到的就是`time.struct_time`
+
+使用位置参数
+
+```python
+structTime = time.localtime()
+datetime.datetime(*structTime[:6])
+# datetime.datetime(2009, 11, 8, 20, 32, 35)
+```
+
+或者使用datetime.fromtimestamp，但是要注意此处的时间不能早于1970-01-01 00:00
+
+```python
+from time import mktime
+from datetime import datetime
+ 
+dt = datetime.fromtimestamp(mktime(struct))
+```
+
+### 计算日期之差
+```python
+from datetime import date
+ 
+d0 = date(2008, 8, 18)
+d1 = date(2008, 9, 26)
+delta = d0 - d1
+print delta.days
+```
+
+### 获取milliseconds(13位数字)
+```python
+import time
+from datetime import datetime
+ 
+time.time()  # 1441769033.549239
+int(time.time() * 1000)   # 1441769033549
+ 
+# or
+def unix_time_milliseconds:
+    time_gap = datetime.utcnow() - datetime.utcfromtimestamp(0)
+    return int(time_gap.total_seconds() * 1000)   # 1441769033549
+```
