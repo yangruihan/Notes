@@ -83,7 +83,7 @@ datetime.datetime(*structTime[:6])
 # datetime.datetime(2009, 11, 8, 20, 32, 35)
 ```
 
-或者使用datetime.fromtimestamp，但是要注意此处的时间不能早于1970-01-01 00:00
+或者使用`datetime.fromtimestamp`，但是要注意此处的时间不能早于 1970-01-01 00:00
 
 ```python
 from time import mktime
@@ -114,4 +114,37 @@ int(time.time() * 1000)   # 1441769033549
 def unix_time_milliseconds:
     time_gap = datetime.utcnow() - datetime.utcfromtimestamp(0)
     return int(time_gap.total_seconds() * 1000)   # 1441769033549
+```
+
+## 使用`map`作 iterator
+当将`func`设置为`None`时，可起到 iterator 的作用，结果类似于使用了`zip`，唯一的区别是`map`可以按最长的列表扩展
+
+python2.x 中的`itertools.zip_longest`可以起到与此处`map`相同的效果
+
+```python
+map(None, xrange(3), xrange(10,12))
+# [(0, 10), (1, 11), (2, None)]
+zip(xrange(3), xrange(10,12))
+# [(0, 10), (1, 11)]
+```
+
+## 判断奇数
+自然是使用位操作最快了
+
+```python
+if a & 1:
+    print 'it is even'
+```
+
+## dict删除key
+要删除的`key`数量较多(超多一半)的话，建议重新生成`dict`；如果数量较少，在`pop`和`del`都可以的情况下，`del`稍快一些
+
+```python
+python -m timeit -s "d = {'f':1,'foo':2,'bar':3}" "d1 = d.copy()" "for k in d1.keys():" "  if k.startswith('f'):" "    del d1[k]"
+# 1000000 loops, best of 3: 0.827 usec per loop
+```
+
+```python
+python -m timeit -s "d = {'f':1,'foo':2,'bar':3}" "d1 = d.copy()" "for k in d1.keys():" "  if k.startswith('f'):" "    d1.pop(k)"
+# 1000000 loops, best of 3: 0.96 usec per loop
 ```
