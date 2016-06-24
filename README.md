@@ -8,21 +8,11 @@
 
 ## 目录
 
-- [算法](https://github.com/yangruihan/Notes/tree/master/Algorithm)
-
 - [Android相关](https://github.com/yangruihan/Notes/tree/master/Android)
 
 - [C相关](https://github.com/yangruihan/Notes/tree/master/C)
 
-- [设计模式](https://github.com/yangruihan/Notes/tree/master/DesignPattern)
-
-- [数据库相关](https://github.com/yangruihan/Notes/tree/master/Database)
-
-- [网络相关](https://github.com/yangruihan/Notes/tree/master/Network)
-
 - [Git相关](https://github.com/yangruihan/Notes/tree/master/Git)
-
-- [《游戏引擎架构》笔记](https://github.com/yangruihan/Notes/tree/master/GameEngineArchitecture)
 
 - [Google Study jam 相关](https://github.com/yangruihan/Notes/tree/master/Google%20Study%20jam)
 
@@ -38,21 +28,31 @@
 
 - [Markdown相关](https://github.com/yangruihan/Notes/tree/master/Markdown)
 
-- [操作系统](https://github.com/yangruihan/Notes/tree/master/OperatingSystem)
-
 - [OpenGL相关](https://github.com/yangruihan/Notes/tree/master/OpenGL)
 
 - [Python相关](https://github.com/yangruihan/Notes/tree/master/Python)
 
 - [ROS (Robot Operating System)](https://github.com/yangruihan/Notes/tree/master/ROS)
 
-- [正则表达式](https://github.com/yangruihan/Notes/tree/master/RegularExpression)
-
 - [Sublime Text 相关](https://github.com/yangruihan/Notes/tree/master/Sublime%20Text)
 
 - [SVN](https://github.com/yangruihan/Notes/tree/master/SVN)
 
 - [Unity3D](https://github.com/yangruihan/Notes/tree/master/Unity3D)
+
+- [算法](https://github.com/yangruihan/Notes/tree/master/Algorithm)
+
+- [设计模式](https://github.com/yangruihan/Notes/tree/master/DesignPattern)
+
+- [数据库相关](https://github.com/yangruihan/Notes/tree/master/Database)
+
+- [网络相关](https://github.com/yangruihan/Notes/tree/master/Network)
+
+- [《游戏引擎架构》笔记](https://github.com/yangruihan/Notes/tree/master/GameEngineArchitecture)
+
+- [操作系统](https://github.com/yangruihan/Notes/tree/master/OperatingSystem)
+
+- [正则表达式](https://github.com/yangruihan/Notes/tree/master/RegularExpression)
 
 - [计算机组成原理](https://github.com/yangruihan/Notes/tree/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86)
 
