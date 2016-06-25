@@ -100,12 +100,109 @@ void FixedUpdate ()
 ## 获取用户输入
 ### 获取键盘输入
 - `Input.GetKeyDown()`
+
 - `Input.GetKeyUp()`
+
 - `Input.GetKey()`
 
 ### 获取鼠标输入
 - `Input.GetMouseButtonDown()`
+
 - `Input.GetMouseButtonUp()`
+
 - `Input.GetMouseButton()`
 
 ## GameObject
+### 概念
+场景中的每一个物体都是一个**游戏对象（GameObject）**
+
+每一个游戏对象都有很多**组件**，**Transform组件**是每个游戏对象所必须有的
+
+游戏对象更像一个容器，用来存放各种各样的组件，需要什么样的功能，就把相应功能的组件添加上去
+
+### 代码操作演示
+```csharp
+// gameObject 获取当前脚本所挂载的游戏对象
+// 一般来说，在属性视图中能够看到或修改的属性，我们同样可以在脚本中获取并修改
+
+// 1. 游戏对象的名字
+print (gameObject.name);
+gameObject.name = "张三";
+
+// 2. 获取游戏对象的 Tag
+print (gameObject.tag);
+gameObject.tag = "Player";
+
+// 3. 游戏对象是否激活
+print (gameObject.activeSelf);
+
+// 4. 设置游戏对象的激活状态
+gameObject.SetActive(false);
+
+// 5. 获取游戏对象身上的组件
+CubeController c = gameObject.GetComponent <CubeController> ();
+print (c.controllerStr);
+
+// 6. 给游戏对象添加指定类型的组件
+Light l = gameObject.AddComponent <Light> ();
+
+// 7. 通过 Tag 值查找游戏对象
+GameObject g = GameObject.FindGameObjectWithTag ("Player");
+print (g.name);
+
+GameObject gg = GameObject.FindWithTag ("Player"); // 与上面效果一样
+
+// 8. 通过游戏对象 name 来查找游戏对象
+GameObject ggg = GameObject.Find ("Main Camera");
+ggg.name = "主摄像机";
+
+// 9. 销毁某个游戏对象
+GameObject.Destroy (gg);
+
+// 10. 通过 Tag 值来查找多个游戏对象
+GameObject[] gs = GameObject.FindGameObjectsWithTag ("Player");
+```
+
+## Vector3——三维向量类
+
+```csharp
+// 新建一个向量
+Vector3 v = new Vector3 ();
+// 获取 v 向量的单位向量
+v.Normalize ();                 // V 本身会变成长度为1，方向不变的单位向量
+Vector3 no2 = v.normalized;     // V 本身不会发生改变，返回 V 方向上的单位向量
+// 获取 V 向量的长度
+float l = v.magnitude;
+
+// 创建一个（0,1,0) 默认向量，Y轴正方向
+Vector3 up = Vector3.up ();
+// 创建一个 (0,-1,0) 默认向量，Y轴负方向
+Vector3 down = Vector3.down ();
+
+// 创建一个 (1,0,0) 默认向量，X轴正方向
+Vector3 right = Vector3.right ();
+// 创建一个 (-1,0,0) 默认向量，X轴负方向
+Vector3 left = Vector3.left ();
+
+// 创建一个 (0,0,1) 默认向量，Z轴正方向
+Vector3 forward = Vector3.forward ();
+// 创建一个 (0,0,-1) 默认向量，Z轴负方向
+Vector3 back = Vector3.back ();
+
+// 创建一个 (0,0,0) 默认向量
+Vector3 zero = Vector3.zero ();
+
+Vector3 v1 = new Vector3 (1f, 1f, 1f);
+Vector3 v2 = new Vector3 (-1f, 1f, -1f);
+// 求两个向量的夹角
+float angle = Vector3.Angle (v1, v2);
+
+// 求两个点的距离
+float dis = Vector3.Distance (v1, v2);
+
+// 向量点乘
+float res = Vector3.Dot (v1, v2);
+
+// 向量×乘
+float res2 = Vector3.Cross (v1, v2);
+```
