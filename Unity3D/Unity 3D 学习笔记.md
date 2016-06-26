@@ -175,22 +175,22 @@ Vector3 no2 = v.normalized;     // V 本身不会发生改变，返回 V 方向�
 float l = v.magnitude;
 
 // 创建一个（0,1,0) 默认向量，Y轴正方向
-Vector3 up = Vector3.up ();
+Vector3 up = Vector3.up;
 // 创建一个 (0,-1,0) 默认向量，Y轴负方向
-Vector3 down = Vector3.down ();
+Vector3 down = Vector3.down;
 
 // 创建一个 (1,0,0) 默认向量，X轴正方向
-Vector3 right = Vector3.right ();
+Vector3 right = Vector3.right;
 // 创建一个 (-1,0,0) 默认向量，X轴负方向
-Vector3 left = Vector3.left ();
+Vector3 left = Vector3.left;
 
 // 创建一个 (0,0,1) 默认向量，Z轴正方向
-Vector3 forward = Vector3.forward ();
+Vector3 forward = Vector3.forward;
 // 创建一个 (0,0,-1) 默认向量，Z轴负方向
-Vector3 back = Vector3.back ();
+Vector3 back = Vector3.back;
 
 // 创建一个 (0,0,0) 默认向量
-Vector3 zero = Vector3.zero ();
+Vector3 zero = Vector3.zero;
 
 Vector3 v1 = new Vector3 (1f, 1f, 1f);
 Vector3 v2 = new Vector3 (-1f, 1f, -1f);
@@ -204,5 +204,10 @@ float dis = Vector3.Distance (v1, v2);
 float res = Vector3.Dot (v1, v2);
 
 // 向量×乘
-float res2 = Vector3.Cross (v1, v2);
+Vector3 res2 = Vector3.Cross (v1, v2);
 ```
+
+## Transform组件
+- 控制游戏对象的位置、旋转、缩放
+
+- 管理游戏对象间的父子关系
