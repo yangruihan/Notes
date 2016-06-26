@@ -211,3 +211,44 @@ Vector3 res2 = Vector3.Cross (v1, v2);
 - 控制游戏对象的位置、旋转、缩放
 
 - 管理游戏对象间的父子关系
+
+```csharp
+// 获取当前脚本所挂载的游戏对象身上的 Transform 组件
+// transform
+
+// 1. 控制游戏对象的位置、旋转、缩放
+
+// position 属性 - 世界坐标系中的位置
+Vector3 position = transform.position;
+print (position);
+
+// localPosition 属性 - 局部坐标系中的位置
+Vector3 localPosition = transform.localPosition;
+print (localPosition);
+
+// 一般不直接修改四元数
+// transform.rotation;
+// transform.localRotation;
+
+// localScale - 控制游戏对象的缩放
+Vector3 localScale = transform.localScale;
+
+// 变换当前游戏对象，使游戏对象产生移动的方法
+transform.Translate (new Vector3(0f, 1f, 0f));
+// 变换当前游戏对象，使游戏对象产生旋转
+transform.Rotate (Vector3.up, 10f);
+// 使用欧拉角进行旋转
+transform.eulerAngles = new Vector3 (0f, 45f, 0f);
+
+// 2. 控制游戏对象间的父子关系
+
+// 获取/重新制定 当前对象父对象的 Transform 组件
+Transform parent = transform.parent;
+
+// 获取当前对象的根对象的 Transform 组件
+Transform root = transform.root;
+
+// 通过名字来获得对象的子对象
+Transform child = transform.Find ("Cube");
+Transform child2 = transform.FindChild ("Cube");
+```
