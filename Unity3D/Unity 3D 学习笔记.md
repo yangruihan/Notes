@@ -252,3 +252,49 @@ Transform root = transform.root;
 Transform child = transform.Find ("Cube");
 Transform child2 = transform.FindChild ("Cube");
 ```
+
+## 常用工具类
+### Time 类
+
+```csharp
+// Time 类用来进行时间控制
+
+// 获取从游戏开始到当前帧，所消耗的总时长，单位为 s
+float t = Time.time;
+print (t);
+
+// 获取从上一帧开始到当前帧结束，所消耗的总时长，单位 s
+float delta = Time.deltaTime;
+print (delta);
+
+// 表示时间流逝的快慢
+// 1 表示正常时间流逝
+// 2 表示二倍速时间流逝
+// 0 表示时间停止，游戏暂停
+float ts = Time.timeScale;
+```
+
+### Mathf 类
+
+```csharp
+// Mathf 类用来进行数学计算
+
+// 求绝对值
+int i = Mathf.Abs (-12); // i = 12
+// 求最大最小值
+int max = Mathf.Max (1, 5, 2, 4); // max = 5
+int min = Mathf.Min (1, 5, 2, 4); // min = 1
+// 三角函数
+float sin = Mathf.Sin (0.5f);
+float cos = Mathf.Cos (0.5f);
+float pi = Mathf.PI;
+// 求平方根
+float res = Mathf.Sqrt (4);
+```
+
+## 预设体
+- 预设体能够使游戏对象和资源重复使用
+
+- 相同的游戏对象可以使用同一个预设体来创建
+
+- 对预设体进行修改后，所有游戏对象都会相应改变
