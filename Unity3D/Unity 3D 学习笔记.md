@@ -298,3 +298,70 @@ float res = Mathf.Sqrt (4);
 - 相同的游戏对象可以使用同一个预设体来创建
 
 - 对预设体进行修改后，所有游戏对象都会相应改变
+
+```csharp
+// 利用预设体随机生成 GameObject 对象代码段
+Vector3 v = new Vector3 ();
+v.y = 0.5f;
+v.x = Random.Range (-5f, 5f);
+v.z = Random.Range (-5f, 5f);
+
+Quaternion q = Quaternion.AngleAxis (Random.Range (0, 360f), transform.up);
+
+// 根据给定的 GameObject 生成其的克隆实例
+Instantiate (playerPrefab, v, q);
+```
+
+## 鼠标事件
+- `OnMouseDown()`
+
+- `OnMouseEnter()`
+
+- `OnMouseDrag()`
+
+- `OnMouseOver()`
+
+- `OnMouseUp()`
+
+- `OnMouseExit()`
+
+- `OnMouseUpAsButton()`
+
+```csharp
+// 鼠标事件，直接在类中重写以下方法即可
+
+// 1. 当鼠标点击下去游戏对象时，调用该方法
+void OnMouseDown () {
+    print ("Down");
+}
+
+// 2. 当鼠标点击松开游戏对象时，调用该方法
+void OnMouseUp () {
+    print ("Up");
+}
+
+// 3. 当鼠标点击下去还未松开游戏对象时，调用该方法
+void OnMouseDrag () {
+    print ("Drag");
+}
+
+// 4. 当鼠标移动到游戏对象内部时，调用该方法
+void OnMouseEnter () {
+    print ("Enter");
+}
+
+// 5. 当鼠标移出游戏对象内部时，调用该方法
+void OnMouseExit () {
+    print ("Exit");
+}
+
+// 6. 当鼠标持续停留在游戏对象内部时，调用该方法
+void OnMouseOver () {
+    print ("Over");
+}
+
+// 7. 当我们像点击按钮一样点击游戏对象，即鼠标松开时仍然在游戏对象内部时，调用该方法
+void OnMouseUpAsButton () {
+    print ("UpAsButton");
+}
+```
