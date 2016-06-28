@@ -367,12 +367,14 @@ void OnMouseUpAsButton () {
 ```
 
 ## 物理引擎
+### 简介
 - 物理引擎能够真实的模拟物理效果
 
 - Unity 中使用的是 NVIDIA 的 PhysX 物理引擎
 
 - 在 Unity 中使用 Rigidbody 让游戏对象受物理引擎控制
 
+### 属性
 |属性名|作用|
 |:---:|:---:|
 |Mass|质量，主要用于控制惯性|
@@ -383,3 +385,19 @@ void OnMouseUpAsButton () {
 |Interpolate|插值方式，默认为 None，有 Interpolate 内插值和 Extrapolate 外插值|
 |Collision Detection|碰撞检测方式|
 |Constraints|约束，当设置约束后，相应的值不会发生改变|
+
+### 方法
+
+- `AddForce()` 施加力
+
+- `AddExplosionForce()` 施加爆炸力
+
+- `AddTorque()` 施加力矩
+
+- `AddForceAtPosition()` 在指定位置施加力
+
+## Colliser 组件
+
+- Colliser 组件的主要功能是进行碰撞检测
+
+- 使用刚体时，一般都会和 Colliser 共同使用
