@@ -401,3 +401,53 @@ void OnMouseUpAsButton () {
 - Colliser 组件的主要功能是进行碰撞检测
 
 - 使用刚体时，一般都会和 Colliser 共同使用
+
+## 碰撞事件
+- 发生碰撞的两个物体都必须带有 Colliser
+
+- 发生碰撞的两个物体至少有一个带有刚体
+
+- 发生碰撞的两个物体必须有相对运动
+
+```csharp
+// 碰撞相关的三个事件，直接在类中重写以下方法即可
+
+// 碰撞开始时会调用一次
+void OnCollisionEnter (Collision other) {
+    print ("碰撞开始");
+}
+
+// 碰撞结束时会调用一次
+void OnCollisionExit (Collision other) {
+    print ("碰撞结束");
+}
+
+// 当碰撞持续发生的时候调用
+void OnCollisionStay (Collision other) {
+    print ("碰撞进行中");
+}
+```
+
+## 触发器事件
+- 发生碰撞的两个物体都必须带有 Colliser，并且至少其中一个物体的 Is Trigger 选项是勾选的
+
+- 发生碰撞的两个物体至少有一个带有刚体
+
+```csharp
+// 触发器相关的三个事件
+
+// 刚刚进入触发范围时，会调用一次
+void OnTriggerEnter (Collider other) {
+    print ("进入触发范围");
+}
+
+// 持续呆在触发范围内，会一直调用
+void OnTriggerStay (Collider other) {
+    print ("持续触发");
+}
+
+// 离开触发范围时，会调用一次
+void OnTriggerExit (Collider other) {
+    print ("离开触发范围");
+}
+```
