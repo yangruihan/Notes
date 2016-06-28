@@ -396,14 +396,14 @@ void OnMouseUpAsButton () {
 
 - `AddForceAtPosition()` 在指定位置施加力
 
-## Colliser 组件
+## Collier 组件
 
-- Colliser 组件的主要功能是进行碰撞检测
+- Collier 组件的主要功能是进行碰撞检测
 
-- 使用刚体时，一般都会和 Colliser 共同使用
+- 使用刚体时，一般都会和 Collier 共同使用
 
 ## 碰撞事件
-- 发生碰撞的两个物体都必须带有 Colliser
+- 发生碰撞的两个物体都必须带有 Collier
 
 - 发生碰撞的两个物体至少有一个带有刚体
 
@@ -429,7 +429,7 @@ void OnCollisionStay (Collision other) {
 ```
 
 ## 触发器事件
-- 发生碰撞的两个物体都必须带有 Colliser，并且至少其中一个物体的 Is Trigger 选项是勾选的
+- 发生碰撞的两个物体都必须带有 Collier，并且至少其中一个物体的 Is Trigger 选项是勾选的
 
 - 发生碰撞的两个物体至少有一个带有刚体
 
@@ -451,3 +451,13 @@ void OnTriggerExit (Collider other) {
     print ("离开触发范围");
 }
 ```
+
+## 物理材质
+- 物理材质能够给物体添加摩擦力和弹力
+
+- 物理材质只能够添加到带有 Collier 的对象上
+
+## 射线
+- 虚拟射线能够检测所碰撞到的物体
+
+- 使用 Physics 类的 Raycast 方法实现射线碰撞检测功能
