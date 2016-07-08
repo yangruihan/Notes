@@ -90,3 +90,63 @@ Atlas（图集）：把多张小图制作成一张大图，以节省图片所占
     - ISubmitHandler
 
     - ICancelHandler
+
+## UI 组件分类
+- Unselectable 不可选、不可交互组件
+
+    - Image
+
+    - Image Raw
+
+    - Text
+
+    - Mask
+
+    - Scroll Rect
+
+    - UI Effects
+
+- Selectable 可选、可交互组件
+
+    - Button
+
+    - Slider
+
+    - ScrollBar
+
+    - Toggle
+
+    - InputField
+
+## 四种 Image Type
+- Simple 原始图片
+
+- Sliced 切割图片
+
+- Tiled 平铺图片
+
+- Filled 填充图片
+
+## 六种 Auto Layout
+- Layout Controllers
+
+    - Horizontal Layout Group
+
+    - Vertical Layout Group
+
+    - Grid Layout Group
+
+    - Content Size Fitter
+
+    - Aspect Ratio Fitter
+
+- Layout Elements
+
+    - Layout Element Component
+
+## Layout Element 布局元素
+- Min Width/Height 最小宽高
+
+- Preferred Width/Height 最大宽高
+
+- Flexible Width/Height 拉伸布局比例
