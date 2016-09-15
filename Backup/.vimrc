@@ -27,6 +27,14 @@ Plugin 'L9'
 " git repos on your local machine (i.e. when working on your own plugin)
 Plugin 'file:///home/yrh/~.vim/bundle/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+Plugin 'tell-k/vim-autopep8'
+Plugin 'Yggdroot/indentLine'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'kien/rainbow_parentheses.vim'
+
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -142,6 +150,20 @@ if has('langmap') && exists('+langnoremap')
   set langnoremap
 endif
 
+" Python Conf
+"按F5运行python"
+map <F5> :Autoformat<CR> :w<CR> :call RunPython()<CR>
+function RunPython()
+  let mp = &makeprg
+  let ef = &errorformat
+  let exeFile = expand("%:t")
+  setlocal makeprg=python\ -u
+  set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+  silent make %
+  copen
+  let &makeprg = mp
+  let &errorformat = ef
+endfunction
 
 " Add optional packages.
 "
@@ -175,6 +197,14 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
+let NERDTreeChDirMode=1
+"显示书签"
+let NERDTreeShowBookmarks=1
+"设置忽略文件类型"
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
+"窗口大小"
+let NERDTreeWinSize=25
+
 
 " Autoformat conf
 noremap <F3> :Autoformat<CR>
@@ -182,3 +212,23 @@ au BufWrite * :Autoformat
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
+
+" indentLine conf
+"缩进指示线"
+let g:indentLine_char='┆'
+let g:indentLine_enabled = 1
+ 
+"autopep8设置"
+let g:autopep8_disable_show_diff=1
+
+" nerdcommenter conf
+let mapleader=','
+map <F4> <leader>ci <CR>
+
+" rainbow_parentheses conf
+let g:rbpt_colorpairs = [ ['brown', 'RoyalBlue3'], ['Darkblue', 'SeaGreen3'], ['darkgray', 'DarkOrchid3'], ['darkgreen', 'firebrick3'],['darkcyan', 'RoyalBlue3'],['darkred', 'SeaGreen3'],['darkmagenta', 'DarkOrchid3'],['brown', 'firebrick3'],['gray', 'RoyalBlue3'],['black',       'SeaGreen3'],['darkmagenta', 'DarkOrchid3'],['Darkblue',  'firebrick3'],['darkgreen', 'RoyalBlue3'],['darkcyan', 'SeaGreen3'],['darkred', 'DarkOrchid3'],['red', 'firebrick3'] ]
+let g:rbpt_max = 16
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
