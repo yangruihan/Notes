@@ -25,6 +25,7 @@ Plugin 'L9'
 " Git plugin not hosted on GitHub
 "Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'file:///home/yrh/~.vim/bundle/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 
