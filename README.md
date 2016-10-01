@@ -58,9 +58,10 @@
 
 - [数据结构](https://github.com/yangruihan/Notes/tree/master/DataStruct)
 
+- [个人脚本](https://github.com/yangruihan/Notes/tree/master/Scripts)
+
 - [面试题](https://github.com/yangruihan/Notes/tree/master/%E9%9D%A2%E8%AF%95%E9%A2%98)
 
 - [个人简历](https://github.com/yangruihan/Notes/blob/master/%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86/%E6%9D%A8%E7%9D%BF%E6%B6%B5%E7%9A%84%E7%AE%80%E5%8E%86.pdf)
 
 - [其他](https://github.com/yangruihan/Notes/tree/master/Others)
-
