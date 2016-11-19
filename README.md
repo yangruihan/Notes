@@ -58,7 +58,7 @@
 
 - [数据结构](https://github.com/yangruihan/Notes/tree/master/DataStruct)
 
-- [自制编程语言]()
+- [自制编程语言](https://github.com/yangruihan/Notes/tree/master/%E8%87%AA%E5%88%B6%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/book)
 
 - [个人脚本](https://github.com/yangruihan/Notes/tree/master/Scripts)
 
