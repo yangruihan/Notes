@@ -50,3 +50,6 @@ sudo apt install oracle-java8-installer -y
 
 echo 'export JAVA_HOME="/usr/lib/jvm/java-8-oracle/jre/bin"' >> ~/.zshenv
 exec $SHELL
+
+# 安装 tmux
+sudo apt install tmux
