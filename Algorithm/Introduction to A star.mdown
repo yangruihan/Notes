@@ -1,1 +1,1 @@
-阅读[原文](http://www.redblobgames.com/pathfinding/a-star/introduction.html)
+[阅读原文](http://www.redblobgames.com/pathfinding/a-star/introduction.html)
