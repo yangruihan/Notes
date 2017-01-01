@@ -32,6 +32,8 @@
 
 - [Python相关](https://github.com/yangruihan/Notes/tree/master/Python)
 
+- [Python开发的小工具](https://github.com/yangruihan/Notes/tree/master/PythonUtils)
+
 - [ROS (Robot Operating System)](https://github.com/yangruihan/Notes/tree/master/ROS)
 
 - [Sublime Text 相关](https://github.com/yangruihan/Notes/tree/master/Sublime%20Text)
