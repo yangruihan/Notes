@@ -1,0 +1,1087 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/home/yrh/.emacs.d/style.css" type="text/css" />
+</head>
+<body>
+<h1 id="emacs-快捷键列表">Emacs 快捷键列表</h1>
+<ul>
+<li>Author: Yrh</li>
+<li>Date: 2017/1/2</li>
+</ul>
+<h2 id="前言">前言</h2>
+<p>用 Vim 和 Sublime Text 很久了（其中Sublime Text 为主力），新年新气象，决定抽元旦3天小长假尝试一下新鲜事物，于是便选择了 Emacs——神的编辑器，3天时间刚好入门，写篇文章记录一下快捷键，以便以后复习和查找。</p>
+<p>正好找到了一片整理的比较好的文章，借鉴一下它的内容。原文来自<a href="http://aifreedom.com/">aifreedom.com</a></p>
+<h2 id="约定">约定</h2>
+<ul>
+<li>C = Control</li>
+<li>M = Meta = Alt | ESC</li>
+<li>Del = Backspace</li>
+</ul>
+<h2 id="基本快捷键">基本快捷键</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">快捷键</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">C-c C-f</td>
+<td align="left">&quot;Find&quot;文件，即在缓冲区打开/新建一个文件</td>
+</tr>
+<tr class="even">
+<td align="center">C-x C-s</td>
+<td align="left">保存文件</td>
+</tr>
+<tr class="odd">
+<td align="center">C-x C-w</td>
+<td align="left">文件另存为</td>
+</tr>
+<tr class="even">
+<td align="center">C-x C-v</td>
+<td align="left">关闭当前缓冲区文件并打开新文件</td>
+</tr>
+<tr class="odd">
+<td align="center">C-x i</td>
+<td align="left">在当前光标处插入文件</td>
+</tr>
+<tr class="even">
+<td align="center">C-x b</td>
+<td align="left">新建/切换缓冲区</td>
+</tr>
+<tr class="odd">
+<td align="center">C-x C-b</td>
+<td align="left">显示缓冲区列表</td>
+</tr>
+<tr class="even">
+<td align="center">C-x k</td>
+<td align="left">关闭当前缓冲区</td>
+</tr>
+<tr class="odd">
+<td align="center">C-z</td>
+<td align="left">挂起 Emacs</td>
+</tr>
+<tr class="even">
+<td align="center">C-x C-c</td>
+<td align="left">关闭 Emacs</td>
+</tr>
+</tbody>
+</table>
+<h2 id="光标移动基本快捷键">光标移动基本快捷键</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">快捷键</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">C-f</td>
+<td align="left">后一个字符</td>
+</tr>
+<tr class="even">
+<td align="center">C-b</td>
+<td align="left">前一个字符</td>
+</tr>
+<tr class="odd">
+<td align="center">C-p</td>
+<td align="left">上一行</td>
+</tr>
+<tr class="even">
+<td align="center">C-n</td>
+<td align="left">下一行</td>
+</tr>
+<tr class="odd">
+<td align="center">M-f</td>
+<td align="left">后一个单词</td>
+</tr>
+<tr class="even">
+<td align="center">M-b</td>
+<td align="left">前一个单词</td>
+</tr>
+<tr class="odd">
+<td align="center">C-a</td>
+<td align="left">行首</td>
+</tr>
+<tr class="even">
+<td align="center">C-e</td>
+<td align="left">行尾</td>
+</tr>
+<tr class="odd">
+<td align="center">C-v</td>
+<td align="left">向下翻一页</td>
+</tr>
+<tr class="even">
+<td align="center">M-v</td>
+<td align="left">向上翻一页</td>
+</tr>
+<tr class="odd">
+<td align="center">M-&lt;</td>
+<td align="left">到文件开头</td>
+</tr>
+<tr class="even">
+<td align="center">M-&gt;</td>
+<td align="left">到文件结尾</td>
+</tr>
+</tbody>
+</table>
+<h2 id="编辑">编辑</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">快捷键</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">M-n</td>
+<td align="left">重复执行后一个命令n次</td>
+</tr>
+<tr class="even">
+<td align="center">C-u</td>
+<td align="left">重复执行后一个命令4次</td>
+</tr>
+<tr class="odd">
+<td align="center">C-u n</td>
+<td align="left">重复执行后一个命令n次</td>
+</tr>
+<tr class="even">
+<td align="center">C-d</td>
+<td align="left">删除（delete）后一个字符</td>
+</tr>
+<tr class="odd">
+<td align="center">M-d</td>
+<td align="left">删除后一个单词</td>
+</tr>
+<tr class="even">
+<td align="center">Del</td>
+<td align="left">删除前一个字符</td>
+</tr>
+<tr class="odd">
+<td align="center">M-Del</td>
+<td align="left">删除前一个单词</td>
+</tr>
+<tr class="even">
+<td align="center">C-k</td>
+<td align="left">移除（kill）一行</td>
+</tr>
+<tr class="odd">
+<td align="center">---</td>
+<td align="left">----</td>
+</tr>
+<tr class="even">
+<td align="center">C-Space</td>
+<td align="left">设置开始标记（例如标记区域）</td>
+</tr>
+<tr class="odd">
+<td align="center">C-@</td>
+<td align="left">功能同上</td>
+</tr>
+<tr class="even">
+<td align="center">C-w</td>
+<td align="left">移除（kill）标记区域的内容</td>
+</tr>
+<tr class="odd">
+<td align="center">M-w</td>
+<td align="left">复制标记区域的内容</td>
+</tr>
+<tr class="even">
+<td align="center">C-y</td>
+<td align="left">召回（yank）复制/移除的区域/行</td>
+</tr>
+<tr class="odd">
+<td align="center">M-y</td>
+<td align="left">召回（yank）更早的内容（在kill缓冲区内循环）</td>
+</tr>
+<tr class="even">
+<td align="center">C-x C-x</td>
+<td align="left">交换光标和标记</td>
+</tr>
+<tr class="odd">
+<td align="center">---</td>
+<td align="left">----</td>
+</tr>
+<tr class="even">
+<td align="center">C-t</td>
+<td align="left">交换两个字符的位置</td>
+</tr>
+<tr class="odd">
+<td align="center">M-t</td>
+<td align="left">交换两个单词的位置</td>
+</tr>
+<tr class="even">
+<td align="center">C-x C-t</td>
+<td align="left">交换两行的位置</td>
+</tr>
+<tr class="odd">
+<td align="center">M-u</td>
+<td align="left">使从光标位置到单词结尾处的字母变成大写</td>
+</tr>
+<tr class="even">
+<td align="center">M-l</td>
+<td align="left">与<code>M-u</code>相反</td>
+</tr>
+<tr class="odd">
+<td align="center">M-c</td>
+<td align="left">使从光标位置开始的单词首字母变大写</td>
+</tr>
+</tbody>
+</table>
+<h2 id="重要快捷键">重要快捷键</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">快捷键</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">C-g</td>
+<td align="left">停止当前运行/输入的命令</td>
+</tr>
+<tr class="even">
+<td align="center">C-x u</td>
+<td align="left">撤销前一个命令</td>
+</tr>
+<tr class="odd">
+<td align="center">M-x command—name</td>
+<td align="left">执行<code>command-name</code>命令</td>
+</tr>
+<tr class="even">
+<td align="center">M-x revert-buffer RETURN</td>
+<td align="left">撤销上次存盘后所有的改动</td>
+</tr>
+<tr class="odd">
+<td align="center">M-x recover-file RETURN</td>
+<td align="left">从自动存盘文件中恢复</td>
+</tr>
+<tr class="even">
+<td align="center">M-x recover-session RETURN</td>
+<td align="left">如果你编辑了几个文件，用这个可以恢复</td>
+</tr>
+</tbody>
+</table>
+<h2 id="在线帮助">在线帮助</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">快捷键</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">C-h c</td>
+<td align="left">显示快捷键绑定的命令</td>
+</tr>
+<tr class="even">
+<td align="center">C-h k</td>
+<td align="left">显示快捷键绑定的命令和它的作用</td>
+</tr>
+<tr class="odd">
+<td align="center">C-h l</td>
+<td align="left">显示最后100个键入的内容</td>
+</tr>
+<tr class="even">
+<td align="center">C-h w</td>
+<td align="left">显示命令被绑定到哪些快捷键上</td>
+</tr>
+<tr class="odd">
+<td align="center">C-h f</td>
+<td align="left">显示函数的功能</td>
+</tr>
+<tr class="even">
+<td align="center">C-h v</td>
+<td align="left">显示变量的含义和值</td>
+</tr>
+<tr class="odd">
+<td align="center">C-h b</td>
+<td align="left">显示当前缓冲区所有可用的快捷键</td>
+</tr>
+<tr class="even">
+<td align="center">C-h t</td>
+<td align="left">打开Emacs教程</td>
+</tr>
+<tr class="odd">
+<td align="center">C-h i</td>
+<td align="left">打开Info阅读器</td>
+</tr>
+<tr class="even">
+<td align="center">C-h C-f</td>
+<td align="left">显示Emacs FAQ</td>
+</tr>
+<tr class="odd">
+<td align="center">C-h p</td>
+<td align="left">显示本机Elisp包的信息</td>
+</tr>
+</tbody>
+</table>
+<h2 id="搜索替换">搜索/替换</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">快捷键</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">C-s</td>
+<td align="left">向后搜索</td>
+</tr>
+<tr class="even">
+<td align="center">C-r</td>
+<td align="left">向前搜索</td>
+</tr>
+<tr class="odd">
+<td align="center">C-g</td>
+<td align="left">回到搜索开始前的位置</td>
+</tr>
+<tr class="even">
+<td align="center">M-%</td>
+<td align="left">询问并替换</td>
+</tr>
+<tr class="odd">
+<td align="center">---</td>
+<td align="left">----</td>
+</tr>
+<tr class="even">
+<td align="center">Space/y</td>
+<td align="left">替换当前匹配</td>
+</tr>
+<tr class="odd">
+<td align="center">Del/n</td>
+<td align="left">不要替换当前匹配</td>
+</tr>
+<tr class="even">
+<td align="center">.</td>
+<td align="left">仅仅替换当前匹配并退出（替换）</td>
+</tr>
+<tr class="odd">
+<td align="center">,</td>
+<td align="left">替换并暂停（按Space或y继续）</td>
+</tr>
+<tr class="even">
+<td align="center">!</td>
+<td align="left">替换一下所有匹配</td>
+</tr>
+<tr class="odd">
+<td align="center">^</td>
+<td align="left">回到上一个匹配位置</td>
+</tr>
+<tr class="even">
+<td align="center">RETURN/q</td>
+<td align="left">退出替换</td>
+</tr>
+</tbody>
+</table>
+<h2 id="使用正则表达式进行搜索替换">使用正则表达式进行搜索/替换</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">符号</th>
+<th align="left">表示含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">^</td>
+<td align="left">行首</td>
+</tr>
+<tr class="even">
+<td align="center">$</td>
+<td align="left">行尾</td>
+</tr>
+<tr class="odd">
+<td align="center">.</td>
+<td align="left">单个字符</td>
+</tr>
+<tr class="even">
+<td align="center">.*</td>
+<td align="left">任意多个（包括没有）字符</td>
+</tr>
+<tr class="odd">
+<td align="center">&lt;</td>
+<td align="left">单词开头</td>
+</tr>
+<tr class="even">
+<td align="center">&gt;</td>
+<td align="left">单词结尾</td>
+</tr>
+<tr class="odd">
+<td align="center">[]</td>
+<td align="left">括号中的任意一个字符</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th align="center">快捷键</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">M C-s RETURN</td>
+<td align="left">使用正则表达式向后搜索</td>
+</tr>
+<tr class="even">
+<td align="center">M C-r RETURN</td>
+<td align="left">使用正则表达式向前搜索</td>
+</tr>
+<tr class="odd">
+<td align="center">C-s</td>
+<td align="left">增量搜索</td>
+</tr>
+<tr class="even">
+<td align="center">C-s</td>
+<td align="left">重复增量搜索</td>
+</tr>
+<tr class="odd">
+<td align="center">C-r</td>
+<td align="left">向前增量搜索</td>
+</tr>
+<tr class="even">
+<td align="center">C-r</td>
+<td align="left">重复向前增量搜索</td>
+</tr>
+<tr class="odd">
+<td align="center">M-x query-replace-regexp</td>
+<td align="left">使用正则表达式搜索并替换</td>
+</tr>
+</tbody>
+</table>
+<h2 id="窗口命令">窗口命令</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">快捷键</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">C-x 2</td>
+<td align="left">水平分割窗格</td>
+</tr>
+<tr class="even">
+<td align="center">C-x 3</td>
+<td align="left">垂直分割窗格</td>
+</tr>
+<tr class="odd">
+<td align="center">C-x o</td>
+<td align="left">切换至其他窗格</td>
+</tr>
+<tr class="even">
+<td align="center">C-x 0</td>
+<td align="left">关闭窗格</td>
+</tr>
+<tr class="odd">
+<td align="center">C-x 1</td>
+<td align="left">关闭除了光标所在窗格外的所有窗格</td>
+</tr>
+<tr class="even">
+<td align="center">C-x ^</td>
+<td align="left">扩大窗格</td>
+</tr>
+<tr class="odd">
+<td align="center">M-x shrink-window</td>
+<td align="left">缩小窗格</td>
+</tr>
+<tr class="even">
+<td align="center">M C-v</td>
+<td align="left">滚动其他窗格内容</td>
+</tr>
+<tr class="odd">
+<td align="center">C-x 4 f</td>
+<td align="left">在其他窗格中打开文件</td>
+</tr>
+<tr class="even">
+<td align="center">C-x 4 0</td>
+<td align="left">关闭当前缓冲区和窗格</td>
+</tr>
+<tr class="odd">
+<td align="center">C-x 5 2</td>
+<td align="left">新建窗口</td>
+</tr>
+<tr class="even">
+<td align="center">C-x 5 f</td>
+<td align="left">在新窗口中打开文件</td>
+</tr>
+<tr class="odd">
+<td align="center">C-x 5 o</td>
+<td align="left">切换至其他窗口</td>
+</tr>
+<tr class="even">
+<td align="center">C-x 5 0</td>
+<td align="left">关闭当前窗口</td>
+</tr>
+</tbody>
+</table>
+<h2 id="书签命令">书签命令</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">快捷键</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">C-x r m</td>
+<td align="left">在光标当前位置创建书签</td>
+</tr>
+<tr class="even">
+<td align="center">C-x r b</td>
+<td align="left">转到书签</td>
+</tr>
+<tr class="odd">
+<td align="center">M-x bookmark-rename</td>
+<td align="left">重命名书签</td>
+</tr>
+<tr class="even">
+<td align="center">M-x bookmark-delete</td>
+<td align="left">删除书签</td>
+</tr>
+<tr class="odd">
+<td align="center">M-x bookmark-save</td>
+<td align="left">保存书签</td>
+</tr>
+<tr class="even">
+<td align="center">C-x r l</td>
+<td align="left">列出书签清单</td>
+</tr>
+<tr class="odd">
+<td align="center">---</td>
+<td align="left">----</td>
+</tr>
+<tr class="even">
+<td align="center">d</td>
+<td align="left">标记等待删除</td>
+</tr>
+<tr class="odd">
+<td align="center">Del</td>
+<td align="left">取消删除标记</td>
+</tr>
+<tr class="even">
+<td align="center">x</td>
+<td align="left">删除被标记的书签</td>
+</tr>
+<tr class="odd">
+<td align="center">r</td>
+<td align="left">重命名</td>
+</tr>
+<tr class="even">
+<td align="center">s</td>
+<td align="left">保存列表内所有书签</td>
+</tr>
+<tr class="odd">
+<td align="center">f</td>
+<td align="left">转到当前书签指向的位置</td>
+</tr>
+<tr class="even">
+<td align="center">m</td>
+<td align="left">标记在多窗口中打开</td>
+</tr>
+<tr class="odd">
+<td align="center">v</td>
+<td align="left">显示被标记的书签（或者光标当前位置的书签）</td>
+</tr>
+<tr class="even">
+<td align="center">t</td>
+<td align="left">切换是否显示路径列表</td>
+</tr>
+<tr class="odd">
+<td align="center">w</td>
+<td align="left">显示当前文件路径</td>
+</tr>
+<tr class="even">
+<td align="center">q</td>
+<td align="left">退出书签列表</td>
+</tr>
+<tr class="odd">
+<td align="center">---</td>
+<td align="left">----</td>
+</tr>
+<tr class="even">
+<td align="center">M-x bookmark-write</td>
+<td align="left">将所有书签导出至指定文件</td>
+</tr>
+<tr class="odd">
+<td align="center">M-x bookmark-load</td>
+<td align="left">从指定文件导入书签</td>
+</tr>
+</tbody>
+</table>
+<h2 id="shell">Shell</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">快捷键</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">M-x shell</td>
+<td align="left">打开shell模式</td>
+</tr>
+<tr class="even">
+<td align="center">C-c C-c</td>
+<td align="left">类似Unix里的C-c（停止正在运行的程序）</td>
+</tr>
+<tr class="odd">
+<td align="center">C-d</td>
+<td align="left">删除光标后一个字符</td>
+</tr>
+<tr class="even">
+<td align="center">C-c C-d</td>
+<td align="left">发送EOF</td>
+</tr>
+<tr class="odd">
+<td align="center">C-c C-z</td>
+<td align="left">挂起程序（Unix下的C-z）</td>
+</tr>
+<tr class="even">
+<td align="center">M-p</td>
+<td align="left">显示前一条命令</td>
+</tr>
+<tr class="odd">
+<td align="center">M-n</td>
+<td align="left">显示后一条命令</td>
+</tr>
+</tbody>
+</table>
+<h2 id="directory-editordired">DIRectory EDitor(dired)</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">快捷键</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">C-x d</td>
+<td align="left">打开dired</td>
+</tr>
+<tr class="even">
+<td align="center">C（大写C）</td>
+<td align="left">复制</td>
+</tr>
+<tr class="odd">
+<td align="center">d</td>
+<td align="left">标记等待删除</td>
+</tr>
+<tr class="even">
+<td align="center">D</td>
+<td align="left">立即删除</td>
+</tr>
+<tr class="odd">
+<td align="center">e/f</td>
+<td align="left">打开文件或目录</td>
+</tr>
+<tr class="even">
+<td align="center">g</td>
+<td align="left">刷新当前目录</td>
+</tr>
+<tr class="odd">
+<td align="center">G</td>
+<td align="left">改变文件所属组</td>
+</tr>
+<tr class="even">
+<td align="center">k</td>
+<td align="left">从屏幕上的列表里删除一行（不是真的删除）</td>
+</tr>
+<tr class="odd">
+<td align="center">m</td>
+<td align="left">用*标记</td>
+</tr>
+<tr class="even">
+<td align="center">n</td>
+<td align="left">光标移动到下一行</td>
+</tr>
+<tr class="odd">
+<td align="center">o</td>
+<td align="left">在另一个窗格打开文件并移动光标</td>
+</tr>
+<tr class="even">
+<td align="center">C-o</td>
+<td align="left">在另一个窗格打开文件但不移动光标</td>
+</tr>
+<tr class="odd">
+<td align="center">p</td>
+<td align="left">打印文件</td>
+</tr>
+<tr class="even">
+<td align="center">q</td>
+<td align="left">退出dired</td>
+</tr>
+<tr class="odd">
+<td align="center">Q</td>
+<td align="left">在标记的文件中替换</td>
+</tr>
+<tr class="even">
+<td align="center">R</td>
+<td align="left">重命名文件</td>
+</tr>
+<tr class="odd">
+<td align="center">u</td>
+<td align="left">移除标记</td>
+</tr>
+<tr class="even">
+<td align="center">v</td>
+<td align="left">显示文件内容</td>
+</tr>
+<tr class="odd">
+<td align="center">x</td>
+<td align="left">删除有D标记的文件</td>
+</tr>
+<tr class="even">
+<td align="center">Z</td>
+<td align="left">压缩/解压文件</td>
+</tr>
+<tr class="odd">
+<td align="center">M-Del</td>
+<td align="left">移除标记（默认为所有类型的标记）</td>
+</tr>
+<tr class="even">
+<td align="center">~</td>
+<td align="left">标记备份文件（文件名有<code>~</code>的文件）等待删除</td>
+</tr>
+<tr class="odd">
+<td align="center">#</td>
+<td align="left">标记自动保存文件（文件名形如<code>#name#</code>的文件）等待删除</td>
+</tr>
+<tr class="even">
+<td align="center">*/</td>
+<td align="left">用*标记所有文件夹（用C-u */n移除标记）</td>
+</tr>
+<tr class="odd">
+<td align="center">=</td>
+<td align="left">将当前文件和标记文件（使用C-<span class="citation">@标记而不是dired的m标记</span>）比较</td>
+</tr>
+<tr class="even">
+<td align="center">M-=</td>
+<td align="left">将当前文件和它的备份比较</td>
+</tr>
+<tr class="odd">
+<td align="center">!</td>
+<td align="left">对当前文件应用shell命令</td>
+</tr>
+<tr class="even">
+<td align="center">M-}</td>
+<td align="left">移动光标至下一个用*或D标记的文件</td>
+</tr>
+<tr class="odd">
+<td align="center">M-{</td>
+<td align="left">移动光标至上一个用*或D标记的文件</td>
+</tr>
+<tr class="even">
+<td align="center">%d</td>
+<td align="left">使用正则表达式标记文件等待删除</td>
+</tr>
+<tr class="odd">
+<td align="center">%m</td>
+<td align="left">使用正则表达式标记文件为*</td>
+</tr>
+<tr class="even">
+<td align="center">+</td>
+<td align="left">新建文件夹</td>
+</tr>
+<tr class="odd">
+<td align="center">&gt;</td>
+<td align="left">移动光标至后一个文件夹</td>
+</tr>
+<tr class="even">
+<td align="center">&lt;</td>
+<td align="left">移动光标至前一个文件夹</td>
+</tr>
+<tr class="odd">
+<td align="center">s</td>
+<td align="left">切换排序模式（按文件名/日期）</td>
+</tr>
+<tr class="even">
+<td align="center">M-x speedbar</td>
+<td align="left">打开一个独立的目录显示窗口</td>
+</tr>
+</tbody>
+</table>
+<h2 id="telnet">Telnet</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">快捷键</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">M-x telnet</td>
+<td align="left">打开telnet模式</td>
+</tr>
+<tr class="even">
+<td align="center">C-d</td>
+<td align="left">删除后一个字符或发送EOF</td>
+</tr>
+<tr class="odd">
+<td align="center">C-c C-c</td>
+<td align="left">停止正在运行的程序</td>
+</tr>
+<tr class="even">
+<td align="center">C-c C-d</td>
+<td align="left">发送EOF</td>
+</tr>
+<tr class="odd">
+<td align="center">C-c C-o</td>
+<td align="left">清除最后一个命令的输出</td>
+</tr>
+<tr class="even">
+<td align="center">C-c C-z</td>
+<td align="left">挂起正在运行的命令</td>
+</tr>
+<tr class="odd">
+<td align="center">C-c C-u</td>
+<td align="left">移除前一行</td>
+</tr>
+<tr class="even">
+<td align="center">M-p</td>
+<td align="left">显示前一条命令</td>
+</tr>
+</tbody>
+</table>
+<h2 id="text">Text</h2>
+<p><em>注：只能在text模式中使用</em></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">快捷键</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">M-s</td>
+<td align="left">使当前行居中</td>
+</tr>
+<tr class="even">
+<td align="center">M-S</td>
+<td align="left">使当前段落居中</td>
+</tr>
+<tr class="odd">
+<td align="center">M-x center-region</td>
+<td align="left">使选中的区域居中</td>
+</tr>
+</tbody>
+</table>
+<h2 id="宏命令">宏命令</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">快捷键</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">C-x (</td>
+<td align="left">开始定义宏</td>
+</tr>
+<tr class="even">
+<td align="center">C-x )</td>
+<td align="left">结束定义宏</td>
+</tr>
+<tr class="odd">
+<td align="center">C-x e</td>
+<td align="left">运行最近定义的宏</td>
+</tr>
+<tr class="even">
+<td align="center">M-n C-x e</td>
+<td align="left">运行最近定义的宏n次</td>
+</tr>
+<tr class="odd">
+<td align="center">M-x name-last-kbd-macro</td>
+<td align="left">给最近定义的宏命令（用来保存）</td>
+</tr>
+<tr class="even">
+<td align="center">M-x insert-kbd-macro</td>
+<td align="left">将已命令的宏保存到文件</td>
+</tr>
+<tr class="odd">
+<td align="center">M-x load-file</td>
+<td align="left">载入宏</td>
+</tr>
+</tbody>
+</table>
+<h2 id="编程">编程</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">快捷键</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">M C-\</td>
+<td align="left">自动缩进光标和标记间的区域</td>
+</tr>
+<tr class="even">
+<td align="center">M-m</td>
+<td align="left">移动光标到行首第一个（非空格）字符</td>
+</tr>
+<tr class="odd">
+<td align="center">M-^</td>
+<td align="left">将当前行接到上一行末尾处</td>
+</tr>
+<tr class="even">
+<td align="center">M-;</td>
+<td align="left">添加缩进并格式化的注释</td>
+</tr>
+</tbody>
+</table>
+<p><strong>C，C++和java模式</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">快捷键</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">M-a</td>
+<td align="left">移动光标到声明的开始处</td>
+</tr>
+<tr class="even">
+<td align="center">M-e</td>
+<td align="left">移动光标到声明的结束处</td>
+</tr>
+<tr class="odd">
+<td align="center">M C-a</td>
+<td align="left">移动光标到函数的开始处</td>
+</tr>
+<tr class="even">
+<td align="center">M C-e</td>
+<td align="left">移动光标到函数的结尾处</td>
+</tr>
+<tr class="odd">
+<td align="center">C-c RETURN</td>
+<td align="left">将光标移动到函数的开始处并标记到结尾处</td>
+</tr>
+<tr class="even">
+<td align="center">C-c C-q</td>
+<td align="left">根据缩进风格缩进整个函数</td>
+</tr>
+<tr class="odd">
+<td align="center">C-c C-a</td>
+<td align="left">切换自动换行功能</td>
+</tr>
+<tr class="even">
+<td align="center">C-c C-d</td>
+<td align="left">一次性删除光标后的一串空格</td>
+</tr>
+</tbody>
+</table>
+<p><strong>为了实现下面的一些技术，你需要在保存源代码的目录里运行<code>etags *.c *.h *&amp;.cpp</code>（或者源代码的其他扩展名）</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">快捷键</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">M-.</td>
+<td align="left">搜索标签</td>
+</tr>
+<tr class="even">
+<td align="center">M-x tags-search ENTER</td>
+<td align="left">在所有标签里搜索（使用正则表达式）</td>
+</tr>
+<tr class="odd">
+<td align="center">M-,</td>
+<td align="left">在tags-search里跳至下一个匹配处</td>
+</tr>
+<tr class="even">
+<td align="center">M-x tags-query-replace</td>
+<td align="left">在设置过标签的所有文件里替换文本</td>
+</tr>
+</tbody>
+</table>
+<h2 id="gdb调试器">GDB（调试器）</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">快捷键</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">M-x gdb</td>
+<td align="left">在另一个窗格中打开gdb</td>
+</tr>
+</tbody>
+</table>
+<h2 id="版本控制">版本控制</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">快捷键</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">C-x v d</td>
+<td align="left">显示当前目录下所有注册过的文件</td>
+</tr>
+<tr class="even">
+<td align="center">C-x v =</td>
+<td align="left">比较不同版本间的差异</td>
+</tr>
+<tr class="odd">
+<td align="center">C-x v u</td>
+<td align="left">移除上次提交之后的更改</td>
+</tr>
+<tr class="even">
+<td align="center">C-x v l</td>
+<td align="left">打印日志</td>
+</tr>
+<tr class="odd">
+<td align="center">C-x v i</td>
+<td align="left">标记文件等待添加版本控制</td>
+</tr>
+<tr class="even">
+<td align="center">C-x v h</td>
+<td align="left">给文件添加版本控制头文件</td>
+</tr>
+<tr class="odd">
+<td align="center">C-x v r</td>
+<td align="left">获取命名过的快照</td>
+</tr>
+<tr class="even">
+<td align="center">C-x v s</td>
+<td align="left">创建命令快照</td>
+</tr>
+<tr class="odd">
+<td align="center">C-x v a</td>
+<td align="left">创建gnu风格的更改日志</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
