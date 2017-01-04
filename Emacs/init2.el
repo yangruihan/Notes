@@ -35,9 +35,6 @@
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t)
-
 ;; 基本设置
 ;; --------------------------------------
 
@@ -56,7 +53,7 @@
 (setq auto-save-default nil) ;不生成名为#filename#的临时文件
 (setq x-select-enable-clipboard t) ;支持和外部程序的拷贝
 (global-font-lock-mode t) ;打开语法高亮
-(set-default-font "Monaco-14") ;设置默认字体
+; (set-default-font "Monaco-14") ;设置默认字体
 
 ;; 设置空格代替tab键，并且宽度为4个空格
 (setq default-tab-width 4)
