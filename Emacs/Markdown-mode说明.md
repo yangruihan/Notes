@@ -62,4 +62,71 @@ markdown-mode 同时也存在与一些包管理系统中，你首先可能需要
 - MacPorts: [markdown-mode.el](https://trac.macports.org/browser/trunk/dports/editors/markdown-mode.el/Portfile) ([pending](http://trac.macports.org/ticket/35716))
 - FreeBSD: [textproc/markdown-mode.el](http://svnweb.freebsd.org/ports/head/textproc/markdown-mode.el)
 
-TODO...
+### 依赖
+`markdown-mode`依赖于`cl-lib`，`cl-lib`自GNU Emacs 24.3之后才默认自带。GNU Emacs 24.1和2。4.2 的用户可以通过`package.el`来安装`cl-lib`。
+
+## 使用
+快捷键绑定根据其功能按前缀进行分组。举个例子，用来插入一个链接的命令使`C-c C-a`，其中`C-a`是对HTML`<a>`标签的一种表示。其他情况下，快捷键前缀与HTML的联系不是直接的。举个例子，用来处理标题的命令以`C-c C-t`（`C-t`代表titling）开头。每一组的主要命令将在下面描述。你可以通过快捷键`C-c C-h`来获得快捷键绑定列表。移动和位移指令往往与配对的分隔符有关，如`M-{`和`M-}`或`C-c <`和`C-c >`。大纲导航的快捷键与`org-mode`使一致的。最后，用于运行Markdown或对打开的文件进行维护的命令分组在`C-c C-c`前缀下。你可以通过快捷键`C-c C-h`来获得快捷键绑定列表。
+
+- 超链接：`C-c C-a`
+
+    |快捷键|作用|
+    |:---:|:---:|
+    |C-c C-a l|插入`[text](url)`|
+    |C-c C-a L|插入`[text][label]`|
+    |C-c C-a u|插入`<url>`|
+    |C-c C-a f|在该点插入一个脚标注即|
+    |C-c C-a w|插入`[[]]`|
+
+- 图片：`C-c C-i`
+
+    |快捷键|作用|
+    |:---:|:---:|
+    |C-c C-i i|插入一个内联图片`![]()`|
+    
+- 样式：`C-c C-s`
+
+    |快捷键|作用|
+    |:---:|:---:|
+    |C-c C-s e|使一个区域字变成斜体`*text*`|
+    |C-c C-s b|添加引用`> text`|
+    |C-c C-s C-b|使一个区域变成引用|
+    |C-c C-s p|添加代码块|
+
+- 标题：`C-c C-t`
+
+    |快捷键|作用|
+    |:---:|:---:|
+    |C-c C-t h|自动根据层级插入标题`#`|
+    |C-c C-k|删除标题|
+    
+- 水平标尺：`C-c -`
+
+    |快捷键|作用|
+    |:---:|:---:|
+    |C-c -|插入`------------`|
+    
+- Markdown和维护命令：`C-c C-c`
+
+    |快捷键|作用|
+    |:---:|:---:|
+    |C-c C-c m|编译|
+    |C-c C-c p|预览|
+    |C-c C-c e|将结果保存到`basename.html`|
+    |C-c C-c v|导出文件并且在浏览器中预览|
+    |C-c C-c o|打开Markdown源文件|
+    |C-c C-c l|实时预览|
+    |C-c C-c c|检查未定义的引用|
+    |C-c C-c n|将缓冲区的列表重新排序|
+    |C-c C-c ]|在缓冲中完成所有标题和标准化的所有水平的规则|
+
+    总结一下：
+    - C-c C-c m: markdown-command > *markdown-output* buffer.
+    - C-c C-c p: markdown-command > temporary file > browser.
+    - C-c C-c e: markdown-command > basename.html.
+    - C-c C-c v: markdown-command > basename.html > browser.
+    - C-c C-c w: markdown-command > kill ring.
+    - C-c C-c o: markdown-open-command.
+    - C-c C-c l: markdown-live-preview-mode > *eww* buffer.
+
+TODO ...
