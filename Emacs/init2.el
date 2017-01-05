@@ -43,7 +43,7 @@
 (global-linum-mode t) ;显示行号
 (setq column-number-mode t) ;显示列号
 
-;;; 括号匹配时显示另一个括号而不是跳到另一个括号
+;; 括号匹配时显示另一个括号而不是跳到另一个括号
 (show-paren-mode t)
 (setq show-paren-style 'parentheses)
 
@@ -60,3 +60,30 @@
 (setq-default indent-tabs-mode nil)
 (setq c-default-style "Linux")
 (setq c-basic-offset 4)
+
+;; 设置Org模式自动换行
+(add-hook 'org-mode-hook (lambda () (setq truncate-lines nil)))
+
+;; 开启org-mode转markdown
+(setq org-export-backends (quote (ascii html icalendar latex md)))
+
+;; 自定义函数
+;; -----------------------------------------------------
+
+(defun org-insert-src-block (src-code-type)
+  "Insert a `SRC-CODE-TYPE' type source code block in org-mode."
+  (interactive
+   (let ((src-code-types
+          '("emacs-lisp" "python" "C" "sh" "java" "js" "clojure" "C++" "css"
+            "calc" "asymptote" "dot" "gnuplot" "ledger" "lilypond" "mscgen"
+            "octave" "oz" "plantuml" "R" "sass" "screen" "sql" "awk" "ditaa"
+            "haskell" "latex" "lisp" "matlab" "ocaml" "org" "perl" "ruby"
+            "scheme" "sqlite")))
+     (list (ido-completing-read "Source code type: " src-code-types))))
+  (progn
+    (newline-and-indent)
+    (insert (format "#+BEGIN_SRC %s\n" src-code-type))
+    (newline-and-indent)
+    (insert "#+END_SRC\n")
+    (previous-line 2)
+    (org-edit-src-code)))

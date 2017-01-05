@@ -46,7 +46,7 @@
 (global-linum-mode t) ;显示行号
 (setq column-number-mode t) ;显示列号
 
-;;; 括号匹配时显示另一个括号而不是跳到另一个括号
+;; 括号匹配时显示另一个括号而不是跳到另一个括号
 (show-paren-mode t)
 (setq show-paren-style 'parentheses)
 
@@ -63,3 +63,6 @@
 (setq-default indent-tabs-mode nil)
 (setq c-default-style "Linux")
 (setq c-basic-offset 4)
+
+;; 打开org-mode转markdown选项
+(setq org-export-backends (quote (ascii html icalendar latex md)))
