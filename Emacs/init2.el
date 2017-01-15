@@ -35,6 +35,8 @@
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 
+(add-hook 'after-init-hook 'global-company-mode)
+
 ;; 基本设置
 ;; --------------------------------------
 
