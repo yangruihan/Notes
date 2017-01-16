@@ -69,6 +69,9 @@
 ;; 开启org-mode转markdown
 (setq org-export-backends (quote (ascii html icalendar latex md)))
 
+;; 打开文件时不打开新的窗口，而是作为当前窗口的一个Buffer
+(setq ns-pop-up-frames nil)
+
 ;; 自定义函数
 ;; -----------------------------------------------------
 
