@@ -72,6 +72,13 @@
 ;; 打开文件时不打开新的窗口，而是作为当前窗口的一个Buffer
 (setq ns-pop-up-frames nil)
 
+;; 设置重新载入Buffer而不需要确认
+;; Source: http://www.emacswiki.org/emacs-en/download/misc-cmds.el
+(defun revert-buffer-no-confirm ()
+    "Revert buffer without confirmation."
+    (interactive)
+    (revert-buffer :ignore-auto :noconfirm))
+
 ;; 自定义函数
 ;; -----------------------------------------------------
 
