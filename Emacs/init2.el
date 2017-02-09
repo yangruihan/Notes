@@ -72,16 +72,20 @@
 ;; 打开文件时不打开新的窗口，而是作为当前窗口的一个Buffer
 (setq ns-pop-up-frames nil)
 
+;; 自定义函数
+;; -----------------------------------------------------
+
 ;; 设置重新载入Buffer而不需要确认
 ;; Source: http://www.emacswiki.org/emacs-en/download/misc-cmds.el
+;; ----------
 (defun revert-buffer-no-confirm ()
     "Revert buffer without confirmation."
     (interactive)
     (revert-buffer :ignore-auto :noconfirm))
+;; ----------
 
-;; 自定义函数
-;; -----------------------------------------------------
-
+;; 设置 Org 模式下，插入不同风格的代码段
+;; ----------
 (defun org-insert-src-block (src-code-type)
   "Insert a `SRC-CODE-TYPE' type source code block in org-mode."
   (interactive
@@ -99,3 +103,22 @@
     (insert "#+END_SRC\n")
     (previous-line 2)
     (org-edit-src-code)))
+;; ----------
+
+;; 设置 F7 切换透明和非透明
+;; ----------
+(global-set-key [(f7)] 'loop-alpha)
+    
+(setq alpha-list '((85 55) (100 100)))    
+    
+(defun loop-alpha ()    
+  (interactive)    
+  (let ((h (car alpha-list)))                    
+    ((lambda (a ab)    
+       (set-frame-parameter (selected-frame) 'alpha (list a ab))    
+       (add-to-list 'default-frame-alist (cons 'alpha (list a ab)))    
+       ) (car h) (car (cdr h)))    
+    (setq alpha-list (cdr (append alpha-list (list h))))    
+    )    
+)
+;; ----------
