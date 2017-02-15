@@ -108,17 +108,17 @@
 ;; 设置 F7 切换透明和非透明
 ;; ----------
 (global-set-key [(f7)] 'loop-alpha)
-    
-(setq alpha-list '((85 55) (100 100)))    
-    
-(defun loop-alpha ()    
-  (interactive)    
-  (let ((h (car alpha-list)))                    
-    ((lambda (a ab)    
-       (set-frame-parameter (selected-frame) 'alpha (list a ab))    
-       (add-to-list 'default-frame-alist (cons 'alpha (list a ab)))    
-       ) (car h) (car (cdr h)))    
-    (setq alpha-list (cdr (append alpha-list (list h))))    
-    )    
+
+(setq alpha-list '((85 55) (100 100)))
+
+(defun loop-alpha ()
+  (interactive)
+  (let ((h (car alpha-list)))
+    ((lambda (a ab)
+       (set-frame-parameter (selected-frame) 'alpha (list a ab))
+       (add-to-list 'default-frame-alist (cons 'alpha (list a ab)))
+       ) (car h) (car (cdr h)))
+    (setq alpha-list (cdr (append alpha-list (list h))))
+    )
 )
 ;; ----------
