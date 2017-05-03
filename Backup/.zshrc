@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/yrh/.oh-my-zsh
+export ZSH=/Users/yangruihan/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -84,14 +84,41 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH=${PATH}:$HOME/WorkSpace/Android/sdk/platform-tools:$HOME/WorkSpace/Android/sdk/tools
+
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+# export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
-# Custom cmd
-alias gitp="sh ~/Workspace/Scripts/git_add_commit_push.sh"
+alias gitp="sh ~/WorkSpace/Scripts/git_add_commit_push.sh"
+
 alias p35="pyenv activate pyenv_3_5_2"
 alias p27="pyenv activate pyenv_2_7_12"
+alias p277="pyenv activate pyenv_2_7_7"
 
-alias gitpla="p35 && python ~/Workspace/Python_ws/all_git_pull.py"
+alias gitpla="p35 && python ~/Workspace/Scripts/all_git_pull.py"
+
+alias update="sh ~/WorkSpace/Scripts/update.sh"
+
+alias sshu="ssh yrh@192.168.42.131"
+
+alias emacs="open -a /Applications/Emacs.app"
+
+alias szsh="source ~/.zshrc"
+
+vcode () {
+   if [[ $# = 0 ]]
+   then
+       open -a "Visual Studio Code"
+   else
+       [[ $1 = /* ]] && F="$1" || F="$PWD/${1#./}"
+       open -a "Visual Studio Code" --args "$F"
+   fi
+}
+
+alias fuck-it='export THEFUCK_REQUIRE_CONFIRMATION=False; fuck; export THEFUCK_REQUIRE_CONFIRMATION=True'
+
+
+eval $(thefuck --alias)
+
+alias py="python"
