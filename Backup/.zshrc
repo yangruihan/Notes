@@ -100,7 +100,7 @@ alias gitpla="p35 && python ~/Workspace/Scripts/all_git_pull.py"
 
 alias update="sh ~/WorkSpace/Scripts/update.sh"
 
-alias sshu="ssh yrh@192.168.42.131"
+alias sshu="ssh ubuntu@119.29.167.139"
 
 alias emacs="open -a /Applications/Emacs.app"
 
@@ -122,3 +122,14 @@ alias fuck-it='export THEFUCK_REQUIRE_CONFIRMATION=False; fuck; export THEFUCK_R
 eval $(thefuck --alias)
 
 alias py="python"
+
+alias rn="react-native"
+
+alias show_file="defaults write com.apple.finder AppleShowAllFiles -boolean true ; killall Finder"
+alias hide_file="defaults write com.apple.finder AppleShowAllFiles -boolean false ; killall Finder"
+
+alias unity="/Applications/Unity5.6.3/Unity.app/Contents/MacOS/Unity -projectPath"
+alias unity2017="/Applications/Unity2017/Unity.app/Contents/MacOS/Unity -projectPath"
+
+alias finder="open -a Finder ./"
+alias cls="clear"
