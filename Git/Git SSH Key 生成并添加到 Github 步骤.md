@@ -23,7 +23,7 @@ $ git config --global user.email "your email address"
 ### 2.2 生成 ssh 密钥
 在命令行中输入
 ```
-$ ssh-keygen -t rsa -C “your email address”
+$ ssh-keygen -t rsa -C "your email address"
 ```
 连续按3个回车（密码默认为空），得到 id_rsa 和 id_rsa.pub 文件，说明生成成功
 
