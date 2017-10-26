@@ -14,6 +14,8 @@
 
 - [Emacs相关](https://github.com/yangruihan/Notes/tree/master/Emacs)
 
+- [GameDevelopment](https://github.com/yangruihan/Notes/tree/master/GameDevelopment)
+
 - [Git相关](https://github.com/yangruihan/Notes/tree/master/Git)
 
 - [Google Study jam 相关](https://github.com/yangruihan/Notes/tree/master/Google%20Study%20jam)
