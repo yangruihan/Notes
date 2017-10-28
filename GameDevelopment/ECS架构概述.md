@@ -103,9 +103,9 @@ Github：https://github.com/yangruihan
 
 点击绿色按钮 Generate，如果没有任何报错，则配置没有问题。接下来就可以开始写代码了。
 
-我们 Demo 第一个目标是控制一个矩形进行上下左右移动。由上文可知，我们至少需要 2 个组件：`PositionComponent`和`VelocityComponent`。在 Scripts/Components 目录下分别新建这两个脚本：
+我们 Demo 的目标是控制一个矩形进行上下左右移动。由上文可知，我们至少需要 2 个组件：`PositionComponent`和`VelocityComponent`。在 Scripts/Components 目录下分别新建这两个脚本：
 
-```
+```c#
 // PositionComponent.cs
 using Entitas;
 using UnityEngine;
@@ -116,7 +116,7 @@ public class PositionComponent : IComponent
 }
 ```
 
-```
+```c#
 // VelocityComponent.cs
 using Entitas;
 using UnityEngine;
@@ -128,7 +128,7 @@ public class VelocityComponent : IComponent {
 
 由于在我们 Demo 中，玩家只能操控一个矩形，我们需要对其进行标记，告诉系统这个实体是玩家的代表，于是我们还要加上一个`PlayerComponent`来进行标记。
 
-```
+```c#
 // PlayerComponent.cs
 using Entitas;
 
@@ -143,4 +143,89 @@ public class PlayerComponent : IComponent { }
 
 没有看到任何报错，很好我们继续。
 
-接着我们要实现`ChangeVelocitySystem`，它会根据用户`w`、`a`、`s`、`d`输入来改变
+接着我们要实现`ChangePlayerVelocitySystem`，它每一帧都会运行，根据玩家是否输入`w`、`a`、`s`、`d`来改变矩形的速度。
+
+```c#
+using Entitas;
+using UnityEngine;
+
+public class ChangePlayerVelocitySystem : IExecuteSystem
+{
+    // 每一帧都会执行
+    public void Execute()
+    {
+        // 得到拥有 Player、Position、Velocity 组件的实体集合
+        var playerCollection = Contexts.sharedInstance.game.GetGroup(
+            GameMatcher.AllOf(
+                GameMatcher.Player,
+                GameMatcher.Position,
+                GameMatcher.Velocity));
+
+        var velocity = Vector2.zero;
+        if (Input.GetKey(KeyCode.W))
+        {
+            velocity.y += 1;
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            velocity.y -= 1;
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            velocity.x += 1;
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            velocity.x -= 1;
+        }
+
+        foreach (var player in playerCollection)
+        {
+            player.ReplaceVelocity(velocity);
+        }
+    }
+}
+```
+
+这里实现了`IExecuteSystem`接口，每一帧其`Execute`方法都会执行。
+
+至此，我们每一帧都会根据用户的输入去改变矩形的速度，还需要一个`ChangePositionSystem`，它会根据实体身上速度组件的值，去改变位置组件的值。
+
+```c#
+using System.Collections.Generic;
+using Entitas;
+using UnityEngine;
+
+public class ChangePositionSystem : ReactiveSystem<GameEntity>
+{
+    public ChangePositionSystem(Contexts contexts) : base(contexts.game)
+    {
+    }
+
+    protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
+    {
+        return context.CreateCollector(GameMatcher.AllOf(GameMatcher.Position, GameMatcher.Velocity));
+    }
+
+    protected override bool Filter(GameEntity entity)
+    {
+        return entity.hasPosition && entity.hasVelocity;
+    }
+
+    protected override void Execute(List<GameEntity> entities)
+    {
+        foreach (var entity in entities)
+        {
+            var velocity = entity.velocity.Value;
+            var newPosition = entity.position.Value + velocity * Time.deltaTime;
+
+            entity.ReplacePosition(newPosition);
+        }
+    }
+}
+```
+
+这里我们用到了`ReactiveSystem<GameEntity>`基类，稍微讲解一下，它应该算是一种特殊的`IExecuteSystem`接口实现，它也会每一帧都执行，但它会帮助我们监听我们感兴趣的组件，只有当这些组件发生变化时，它的`Execute`方法才会被调用，`GetTrigger`和`Filter`两个方法相当于过滤器，具体就不细讲了，可以去官网查看一下文档。
