@@ -146,6 +146,7 @@ public class PlayerComponent : IComponent { }
 接着我们要实现`ChangePlayerVelocitySystem`，它每一帧都会运行，根据玩家是否输入`w`、`a`、`s`、`d`来改变矩形的速度。
 
 ```c#
+// ChangePlayerVelocitySystem.cs
 using Entitas;
 using UnityEngine;
 
@@ -174,12 +175,12 @@ public class ChangePlayerVelocitySystem : IExecuteSystem
 
         if (Input.GetKey(KeyCode.A))
         {
-            velocity.x += 1;
+            velocity.x -= 1;
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            velocity.x -= 1;
+            velocity.x += 1;
         }
 
         foreach (var player in playerCollection)
@@ -195,6 +196,7 @@ public class ChangePlayerVelocitySystem : IExecuteSystem
 至此，我们每一帧都会根据用户的输入去改变矩形的速度，还需要一个`ChangePositionSystem`，它会根据实体身上速度组件的值，去改变位置组件的值。
 
 ```c#
+// ChangePositionSystem.cs
 using System.Collections.Generic;
 using Entitas;
 using UnityEngine;
@@ -229,3 +231,62 @@ public class ChangePositionSystem : ReactiveSystem<GameEntity>
 ```
 
 这里我们用到了`ReactiveSystem<GameEntity>`基类，稍微讲解一下，它应该算是一种特殊的`IExecuteSystem`接口实现，它也会每一帧都执行，但它会帮助我们监听我们感兴趣的组件，只有当这些组件发生变化时，它的`Execute`方法才会被调用，`GetTrigger`和`Filter`两个方法相当于过滤器，具体就不细讲了，可以去官网查看一下文档。
+
+由于使用了 Unity3d 游戏引擎，我们的框架需要由引擎来驱动，因此我们还要添加一个继承自`MonoBehaviour`的`GameController`脚本，在其中的`Start`方法里实例化各个系统，`Update`方法里调用`Excute`。
+
+```c#
+// GameController.cs
+using UnityEngine;
+using Entitas;
+
+public class GameController : MonoBehaviour
+{
+
+    private Systems _systems;
+
+    private void Start()
+    {
+        Contexts contexts = Contexts.sharedInstance;
+
+        // 创建系统
+        _systems = CreateSystems(contexts);
+
+        // 创建我们的玩家实体
+        var player = contexts.game.CreateEntity();
+        // 为其添加相应的组件
+        player.isPlayer = true;
+        player.AddPosition(Vector2.zero);
+        player.AddVelocity(Vector2.zero);
+
+        // 初始化系统
+        _systems.Initialize();
+    }
+
+    private void Update()
+    {
+        _systems.Execute();
+        _systems.Cleanup();
+    }
+
+    private void OnDestroy()
+    {
+        _systems.TearDown();
+    }
+
+    private Systems CreateSystems(Contexts contexts)
+    {
+        // Feature 是 Entitas 框架提供的在 Editor 下进行调试的类
+        return new Feature("Game")
+            .Add(new ChangePlayerVelocitySystem())
+            .Add(new ChangePositionSystem(contexts));
+    }
+}
+```
+
+在场景中新建一个名为“GameController”的空物体，将该脚本添加上去，运行游戏，在“Hierarchy”页签下就可以看到我们创建的系统和实体了，如下图：
+
+![Ecs_004](./Images/Ecs_004.png)
+
+当我们按下`w`、`a`、`s`、`d`可以看到左侧 Position 下面的数值和 Velocity 下面的数值都发生了变化。
+
+至此，虽然还没有图形显示在场景中，但一个可操控的 Demo 已经完成了。
