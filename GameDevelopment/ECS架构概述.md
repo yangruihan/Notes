@@ -1,5 +1,9 @@
 # ECS 架构概述
 
+作者：C.y.
+
+Github：https://github.com/yangruihan
+
 ## 0x00 何为ECS架构
 
 ***ECS***，即 Entity-Component-System（实体-组件-系统） 的缩写，其模式遵循[组合优于继承](https://en.wikipedia.org/wiki/Composition_over_inheritance)原则，游戏内的每一个基本单元都是一个**实体**，每个**实体**又由一个或多个**组件**构成，每个**组件**仅仅包含代表其特性的数据（即在组件中没有任何方法），例如：移动相关的组件`MoveComponent`包含速度、位置、朝向等属性，一旦一个实体拥有了`MoveComponent`组件便可以认为它拥有了移动的能力，**系统**便是来处理拥有一个或多个相同**组件**的**实体**集合的工具，其只拥有行为（即在系统中没有任何数据），在这个例子中，处理移动的**系统**仅仅关心拥有移动能力的**实体**，它会遍历所有拥有`MoveComponent`**组件**的**实体**，并根据相关的数据（速度、位置、朝向等），更新实体的位置。
@@ -75,7 +79,68 @@
 
 *注：括号前为系统名，括号内为该系统关心的组件集合*
 
-## 0x03 ECS实现
+## 0x03 ECS架构实战
+
+接下来终于到了实战环节，这里笔者使用 Unity3d 游戏引擎（5.6.3p4），配合现成的 [Entitas](https://github.com/sschmid/Entitas-CSharp) 框架来实现一个小 Demo。由于 Unity3d 游戏引擎已经为我们提供了输入类和物理引擎，因此 Demo 中有部分内容可能与上文不太一致，主要以展示整体架构为主，请读者忽略这些细节。
+
+### 1. Entitas介绍
+
+> Entitas is a super fast Entity Component System Framework (ECS) specifically made for C# and Unity. Internal caching and blazing fast component access makes it second to none. Several design decisions have been made to work optimal in a garbage collected environment and to go easy on the garbage collector. Entitas comes with an optional code generator which radically reduces the amount of code you have to write and [makes your code read like well written prose.](https://cleancoders.com/)
+
+以上是 Entitas 官方介绍，简单来说该框架提供了代码生成器，只需要按照它的规范实现组件和系统，便可以一键生成我们需要的属性和方法，同时为了方便我们在系统中获得感兴趣的组件，它还提供了强大的分组、匹配功能。多说无益，直接开始实战吧。
 
 
 
+### 2. 实战
+
+下载[Unity3d游戏引擎](https://store.unity.com/cn)的步骤这里就省略了，我们先从 [Github](https://github.com/sschmid/Entitas-CSharp/releases) 上下载 Entitas，笔者这里使用的是 [Entitas 0.42.4](https://github.com/sschmid/Entitas-CSharp/releases/tag/0.42.4) 。下载好解压后，将其 CodeGenerator 和 Entitas 目录导入到一个新的 Unity 工程（这里一切从简，创建了一个空的 2D 项目），如下图所示。
+
+![Ecs_001](./Images/Ecs_001.png)
+
+接着，在工具栏找到 Tools -> Entitas ->Preference 对 Entitas 进行配置，由于这只是一个演示 ECS架构的小 Demo，就不对各种配置项进行解释了，对这些感兴趣的同学可以去官网查看文档，配置如下：
+
+![Ecs_002](./Images/Ecs_002.png)
+
+点击绿色按钮 Generate，如果没有任何报错，则配置没有问题。接下来就可以开始写代码了。
+
+我们 Demo 第一个目标是控制一个矩形进行上下左右移动。由上文可知，我们至少需要 2 个组件：`PositionComponent`和`VelocityComponent`。在 Scripts/Components 目录下分别新建这两个脚本：
+
+```
+// PositionComponent.cs
+using Entitas;
+using UnityEngine;
+
+public class PositionComponent : IComponent
+{
+    public Vector2 Value;
+}
+```
+
+```
+// VelocityComponent.cs
+using Entitas;
+using UnityEngine;
+
+public class VelocityComponent : IComponent {
+    public Vector2 Value;
+}
+```
+
+由于在我们 Demo 中，玩家只能操控一个矩形，我们需要对其进行标记，告诉系统这个实体是玩家的代表，于是我们还要加上一个`PlayerComponent`来进行标记。
+
+```
+// PlayerComponent.cs
+using Entitas;
+
+public class PlayerComponent : IComponent { }
+```
+
+它不需要任何数据，仅仅用自身就可以实现标记的效果，拥有该组件的实体便是我们玩家控制的代表了。
+
+实现完这 3 个组件后，我们需要利用 Entitas 框架提供的代码生成器，生成一下相应的代码，Tools -> Entitas -> Generate 或者快捷键`control + shift + g`。
+
+![Ecs_003](./Images/Ecs_003.png)
+
+没有看到任何报错，很好我们继续。
+
+接着我们要实现`ChangeVelocitySystem`，它会根据用户`w`、`a`、`s`、`d`输入来改变
