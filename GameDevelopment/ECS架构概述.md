@@ -287,6 +287,23 @@ public class GameController : MonoBehaviour
 
 ![Ecs_004](./Images/Ecs_004.png)
 
-当我们按下`w`、`a`、`s`、`d`可以看到左侧 Position 下面的数值和 Velocity 下面的数值都发生了变化。
+当我们按下`w`、`a`、`s`、`d`时，可以看到左侧 Position 下面的数值和 Velocity 下面的数值都根据我们的输入产生了对应的变化，这说明功能实现的没有问题。
 
 至此，虽然还没有图形显示在场景中，但一个可操控的 Demo 已经完成了。
+
+为了节省篇幅，`SpriteComponent`（精灵组件）和`RenderSystem`（渲染系统），这里就不再展示了，完整项目可以在我的 [Github](https://github.com/yangruihan/ECSDemo) 里查看。
+
+## 0x04 后记
+
+到此，整篇文章也进入了尾声，不知读者是否对 ECS 架构有了自己的理解，其实笔者也是最近这段时间才开始使用该架构编写一些小项目，还未在商业项目中使用过，因此有些地方的理解可能存在一定的偏差，欢迎大家讨论与指正，感谢大家的阅读。
+
+
+
+#### 参考
+
+- [《守望先锋》架构设计与网络同步 -- GDC2017 精品分享实录](http://gad.qq.com/article/detail/28682)（文章）
+- [《守望先锋》回放技术-阵亡镜头、全场最佳和亮眼表现](http://gad.qq.com/article/detail/29595)（文章）
+- [浅谈《守望先锋》中的 ECS 构架](https://blog.codingnow.com/2017/06/overwatch_ecs.html)（文章）
+- [Entity system architecture with Unity](https://www.youtube.com/watch?v=1wvMXur19M4)（视频）
+- [ECS architecture with Unity by example](https://www.youtube.com/watch?v=lNTaC-JWmdI)（视频）
+
