@@ -147,5 +147,19 @@ private void Handle(Text text)
 }
 ```
 
+到这里，我们想要的功能都已经实现了。
+
+![](./image_res/u3d_tool_text_match_2.gif)
+
+整个代码都很简单、直观，不仅如此，`Handle`方法还可以添加任意你需要的逻辑，比如更改文字颜色，添加自定义脚本等。
+
+## 不足与扩展
+
+- 代码中文字匹配直接调用了系统的`Contains`方法，显然不够准确也不够强大，未来可以扩展支持**[正则表达式](https://zh.wikipedia.org/wiki/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F)**。
+- `Handle`方法不够灵活，不容易扩展，可以使用**[策略模式](https://zh.wikipedia.org/zh-hans/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F)**或其他方法来进行优化。
+- 对处理结果的展示不够完善，可以根据需要生成对应报表来展示处理结果。
+- ……（欢迎补充）
 
 
+
+最后，这里查看**[完整代码](https://gist.github.com/yangruihan/f18d18fbdc6a74297fdde986414683b9)**
