@@ -6,7 +6,7 @@
 
 用法:
 
-```[c++]
+```[cpp]
 #include <cstdio>
 #include <climits>
 
@@ -29,7 +29,7 @@ int main()
 
 1. 非`#`和`##`的情况
 
-    ```[c++]
+    ```[cpp]
     #define TOW         (2)
     #define MUL(a, b)   (a*b)
 
@@ -38,7 +38,7 @@ int main()
 
     这行的宏会被展开为：
 
-    ```[c++]
+    ```[cpp]
     printf("%d*%d=%d/n", (2), (2), ((2)*(2)));
     ```
 
@@ -46,7 +46,7 @@ int main()
 
 2. 当有`#`或`##`的时候
 
-    ```[c++]
+    ```[cpp]
     #define A          (2)
     #define STR(s)     #s
     #define CONS(a,b)  int(a##e##b)
@@ -56,19 +56,19 @@ int main()
 
     这行会被展开为：
 
-    ```[c++]
+    ```[cpp]
     printf("int max: %s/n", "INT_MAX");
     ```
 
     然而
 
-    ```[c++]
+    ```[cpp]
     printf("%s/n", CONS(A, A));               // compile error
     ```
 
     这一行会被展开为：
 
-    ```[c++]
+    ```[cpp]
     printf("%s/n", int(AeA));
     ```
 
@@ -76,7 +76,7 @@ int main()
 
     加这层宏的用意是把所有宏的参数在这层里全部展开, 那么在转换宏里的那一个宏`(_STR)`就能得到正确的宏参数。
 
-    ```[c++]
+    ```[cpp]
     #define A           (2)
     #define _STR(s)     #s
     #define STR(s)      _STR(s)                     // 转换宏
@@ -102,7 +102,7 @@ int main()
 
 1. 合并匿名变量名
 
-    ```[c++]
+    ```[cpp]
     #define  ___ANONYMOUS1(type, var, line)   type var##line
     #define  __ANONYMOUS0(type, line)         ___ANONYMOUS1(type, _anonymous, line)
     #define  ANONYMOUS(type)                  __ANONYMOUS0(type, __LINE__)
@@ -128,7 +128,7 @@ int main()
 
 2. 填充结构
 
-    ```[c++]
+    ```[cpp]
     #define  FILL(a)   {a, #a}
 
     enum IDD {OPEN, CLOSE};
@@ -143,14 +143,14 @@ int main()
 
     相当于：
 
-    ```[c++]
+    ```[cpp]
     MSG _msg[] = {{OPEN, "OPEN"},
                 {CLOSE, "CLOSE"}};
     ```
 
 3. 记录文件名
 
-    ```[c++]
+    ```[cpp]
     #define  _GET_FILE_NAME(f)   #f
     #define  GET_FILE_NAME(f)    _GET_FILE_NAME(f)
     static char FILE_NAME[] = GET_FILE_NAME(__FILE__);
@@ -158,7 +158,7 @@ int main()
 
 4. 得到一个数值类型所对应的字符串缓冲大小
 
-    ```[c++]
+    ```[cpp]
     #define  _TYPE_BUF_SIZE(type)  sizeof #type
     #define  TYPE_BUF_SIZE(type)   _TYPE_BUF_SIZE(type)
     char  buf[TYPE_BUF_SIZE(INT_MAX)];
