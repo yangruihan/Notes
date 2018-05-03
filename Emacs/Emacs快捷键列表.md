@@ -344,3 +344,5 @@
 |C-c C-d|删除文件或目录|
 |C-c C-r|重命名文件或目录|
 |C-c C-c|改变根目录|
+
+*注：NeoTree [Github 地址](https://github.com/jaypei/emacs-neotree)*
