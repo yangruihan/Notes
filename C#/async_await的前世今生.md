@@ -2,6 +2,7 @@
 
 > 作者：Jesse<br>
 > 出处： http://jesse2013.cnblogs.com/
+> 原文地址：http://www.cnblogs.com/jesse2013/p/async-and-await.html
 
 ## 前言
 
