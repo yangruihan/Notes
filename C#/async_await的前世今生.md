@@ -11,12 +11,12 @@ async 和 await 出现在 C# 5.0 之后，给并行编程带来了不少的方�
 
 - [创建线程](#创建线程)
 - [线程池](#线程池)
-- [参数](#参数)
+- [传入参数](#传入参数)
 - [返回值](#返回值)
 - [共享数据](#共享数据)
 - [线程安全](#线程安全)
 - [锁](#锁)
-- [Semaphore 信号量](#Semaphore-信号量)
+- [Semaphore 信号量](#semaphore-信号量)
 - [异常处理](#异常处理)
 - [一个小例子认识async & await](#一个小例子认识async--await)
 - [await 的原型](#await-的原型)
@@ -29,7 +29,7 @@ static void Main(){
     Task.Factory.StartNew(Go); // .NET 4.0 引入了 TPL
     Task.Run(new Action(Go)); // .NET 4.5 新增了一个Run的方法
 }
- 
+
 public static void Go(){
     Console.WriteLine("我是另一个线程");
 }
@@ -41,14 +41,14 @@ public static void Go(){
 
 线程的创建是比较占用资源的一件事情，.NET 为我们提供了线程池来帮助我们创建和管理线程。Task 是默认会直接使用线程池，但是 Thread 不会。如果我们不使用 Task，又想用线程池的话，可以使用 ThreadPool 类。
 
-```[c#]
+```c#
 static void Main() {
     Console.WriteLine("我是主线程：Thread Id {0}", Thread.CurrentThread.ManagedThreadId);
     ThreadPool.QueueUserWorkItem(Go);
- 
+
     Console.ReadLine();
 }
- 
+
 public static void Go(object data) {
     Console.WriteLine("我是另一个线程:Thread Id {0}",Thread.CurrentThread.ManagedThreadId);
 }
@@ -58,27 +58,27 @@ public static void Go(object data) {
 
 ## 传入参数
 
-```[c#]
+```c#
 static void Main() {
     new Thread(Go).Start("arg1"); // 没有匿名委托之前，我们只能这样传入一个object的参数
- 
+
     new Thread(delegate(){  // 有了匿名委托之后...
         GoGoGo("arg1", "arg2", "arg3");
     });
- 
+
     new Thread(() => {  // 当然,还有 Lambada
         GoGoGo("arg1","arg2","arg3");
     }).Start();
- 
+
     Task.Run(() =>{  // Task能这么灵活，也是因为有了Lambda呀。
         GoGoGo("arg1", "arg2", "arg3");
     });
 }
- 
+
 public static void Go(object name){
     // TODO
 }
- 
+
 public static void GoGoGo(string arg1, string arg2, string arg3){
     // TODO
 }
@@ -88,7 +88,7 @@ public static void GoGoGo(string arg1, string arg2, string arg3){
 
 Thead 是不能返回值的，但是作为更高级的 Task 当然要弥补一下这个功能。
 
-```[c#]
+```c#
 static void Main() {
     // GetDayOfThisWeek 运行在另外一个线程中
     var dayName = Task.Run<string>(() => { return GetDayOfThisWeek(); });
@@ -100,13 +100,13 @@ static void Main() {
 
 上面说了参数和返回值，我们来看一下线程之间共享数据的问题。
 
-```[c#]
-private static bool _isDone = false;   
+```c#
+private static bool _isDone = false;
 static void Main(){
     new Thread(Done).Start();
     new Thread(Done).Start();
 }
- 
+
 static void Done(){
     if (!_isDone) {
         _isDone = true; // 第二个线程来的时候，就不会再执行了(也不是绝对的，取决于计算机的CPU数量以及当时的运行情况)
@@ -123,14 +123,14 @@ static void Done(){
 
 我们先把上面的代码小小的调整一下，就知道什么是线程安全了。我们把 Done 方法中的两句话对换了一下位置。
 
-```[c#]
-private static bool _isDone = false;   
+```c#
+private static bool _isDone = false;
 static void Main(){
     new Thread(Done).Start();
     new Thread(Done).Start();
     Console.ReadLine();
 }
- 
+
 static void Done(){
     if (!_isDone) {
        Console.WriteLine("Done"); // 猜猜这里面会被执行几次？
@@ -145,7 +145,7 @@ static void Done(){
 
 要解决上面遇到的问题，我们就要用到锁。锁的类型有独占锁，互斥锁，以及读写锁等，我们这里就简单演示一下独占锁。
 
-```[c#]
+```c#
 private static bool _isDone = false;
 private static object _lock = new object();
 static void Main(){
@@ -153,7 +153,7 @@ static void Main(){
     new Thread(Done).Start();
     Console.ReadLine();
 }
- 
+
 static void Done(){
     lock (_lock){
         if (!_isDone){
@@ -170,19 +170,19 @@ static void Done(){
 
 我实在不知道这个单词应该怎么翻译，从官方的解释来看，我们可以这样理解。它可以控制对某一段代码或者对某个资源访问的线程的数量，超过这个数量之后，其它的线程就得等待，只有等现在有线程释放了之后，下面的线程才能访问。这个跟锁有相似的功能，只不过不是独占的，它允许一定数量的线程同时访问。
 
-```[c#]
+```c#
 static SemaphoreSlim _sem = new SemaphoreSlim(3);    // 我们限制能同时访问的线程数量是3
 static void Main(){
     for (int i = 1; i <= 5; i++) new Thread(Enter).Start(i);
     Console.ReadLine();
 }
- 
+
 static void Enter(object id){
     Console.WriteLine(id + " 开始排队...");
     _sem.Wait();
-    Console.WriteLine(id + " 开始执行！");         
-    Thread.Sleep(1000 * (int)id);              
-    Console.WriteLine(id + " 执行完毕，离开！");     
+    Console.WriteLine(id + " 开始执行！");
+    Thread.Sleep(1000 * (int)id);
+    Console.WriteLine(id + " 执行完毕，离开！");
     _sem.Release();
 }
 ```
@@ -195,7 +195,7 @@ static void Enter(object id){
 
 其它线程的异常，主线程可以捕获到么？
 
-```[c#]
+```c#
 public static void Main(){
     try{
         new Thread(Go).Start();
@@ -210,12 +210,12 @@ static void Go() { throw null; }
 
 那么升级了的Task呢？
 
-```[c#]
+```c#
 public static void Main(){
     try{
         var task = Task.Run(() => { Go(); });
         task.Wait();  // 在调用了这句话之后，主线程才能捕获task里面的异常
- 
+
         // 对于有返回值的Task, 我们接收了它的返回值就不需要再调用Wait方法了
         // GetName 里面的异常我们也可以捕获到
         var task2 = Task.Run(() => { return GetName(); });
@@ -231,21 +231,21 @@ static string GetName() { throw null; }
 
 ## 一个小例子认识async & await
 
-```[c#]
+```c#
 static void Main(string[] args){
     Test(); // 这个方法其实是多余的, 本来可以直接写下面的方法
-    // await GetName() 
+    // await GetName()
     // 但是由于控制台的入口方法不支持async,所有我们在入口方法里面不能 用 await
-             
+
     Console.WriteLine("Current Thread Id :{0}", Thread.CurrentThread.ManagedThreadId);
 }
- 
+
 static async Task Test(){
     // 方法打上async关键字，就可以用await调用同样打上async的方法
     // await 后面的方法将在另外一个线程中执行
     await GetName();
 }
- 
+
 static async Task GetName(){
     // Delay 方法来自于.net 4.5
     await Task.Delay(1000);  // 返回值前面加 async 之后，方法里面就可以用await了
@@ -266,14 +266,14 @@ static async Task GetName(){
 
 await 不会开启新的线程，当前线程会一直往下走直到遇到真正的Async方法（比如说HttpClient.GetStringAsync），这个方法的内部会用Task.Run或者Task.Factory.StartNew 去开启线程。也就是如果方法不是.NET为我们提供的Async方法，我们需要自己创建Task，才会真正的去创建线程。
 
-```[c#]
+```c#
 static void Main(string[] args)
 {
     Console.WriteLine("Main Thread Id: {0}\r\n", Thread.CurrentThread.ManagedThreadId);
     Test();
     Console.ReadLine();
 }
- 
+
 static async Task Test()
 {
     Console.WriteLine("Before calling GetName, Thread Id: {0}\r\n", Thread.CurrentThread.ManagedThreadId);
@@ -282,7 +282,7 @@ static async Task Test()
     Console.WriteLine("End calling GetName.\r\n");
     Console.WriteLine("Get result from GetName: {0}", await name);
 }
- 
+
 static async Task<string> GetName()
 {
     // 这里还是主线程
@@ -314,12 +314,12 @@ static async Task<string> GetName()
 
 ### 只有async方法在调用前才能加await么？
 
-```[c#]
+```c#
 static void Main(){
     Test();
     Console.ReadLine();
 }
- 
+
 static async void Test(){
     Task<string> task = Task.Run(() =>{
         Thread.Sleep(5000);
@@ -334,22 +334,22 @@ static async void Test(){
 
 ### 不用await关键字，如何确认Task执行完毕了？
 
-```[c#]
+```c#
 static void Main(){
     var task = Task.Run(() =>{
         return GetName();
     });
- 
+
     task.GetAwaiter().OnCompleted(() =>{
         // 2 秒之后才会执行这里
         var name = task.Result;
         Console.WriteLine("My name is: " + name);
     });
- 
+
     Console.WriteLine("主线程执行完毕");
     Console.ReadLine();
 }
- 
+
 static string GetName(){
     Console.WriteLine("另外一个线程在获取名称");
     Thread.Sleep(2000);
@@ -371,19 +371,19 @@ static string GetName(){
 
 上面的右边是属于没有挂起主线程的情况，和我们的await仍然有一点差别，那么在获取Task的结果前如何挂起主线程呢？
 
-```[c#]
+```c#
 static void Main(){
     var task = Task.Run(() =>{
         return GetName();
     });
- 
+
     var name = task.GetAwaiter().GetResult();
     Console.WriteLine("My name is:{0}",name);
- 
+
     Console.WriteLine("主线程执行完毕");
     Console.ReadLine();
 }
- 
+
 static string GetName(){
     Console.WriteLine("另外一个线程在获取名称");
     Thread.Sleep(2000);
@@ -397,18 +397,18 @@ static string GetName(){
 
 ### await 实质是在调用 awaitable 对象的`GetResult`方法
 
-```[c#]
+```c#
 static async Task Test(){
     Task<string> task = Task.Run(() =>{
         Console.WriteLine("另一个线程在运行！");  // 这句话只会被执行一次
         Thread.Sleep(2000);
         return "Hello World";
     });
- 
+
     // 这里主线程会挂起等待，直到task执行完毕我们拿到返回结果
-    var result = task.GetAwaiter().GetResult(); 
+    var result = task.GetAwaiter().GetResult();
     // 这里不会挂起等待，因为task已经执行完了，我们可以直接拿到结果
-    var result2 = await task;    
+    var result2 = await task;
     Console.WriteLine(str);
 }
 ```
