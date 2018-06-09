@@ -16,6 +16,8 @@
 
 - [C++相关](https://github.com/yangruihan/Notes/tree/master/C%2B%2B)
 
+- [C#相关](https://github.com/yangruihan/Notes/blob/master/C%23)
+
 - [Emacs相关](https://github.com/yangruihan/Notes/tree/master/Emacs)
 
 - [Git相关](https://github.com/yangruihan/Notes/tree/master/Git)
