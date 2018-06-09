@@ -14,7 +14,7 @@ Github：https://github.com/yangruihan
 
 一个使用ECS架构开发的游戏基本结构如下图所示：
 
-![](./Images/Ecs_arch.png)
+![](../Images/Ecs_arch.png)
 
 先有一个World，它是**系统**和**实体**的集合，而**实体**就是一个ID，这个ID对应了**组件**的集合。**组件**用来存储游戏状态并且没有任何行为，**系统**拥有处理**实体**的行为但是没有状态。
 
@@ -95,11 +95,11 @@ Github：https://github.com/yangruihan
 
 下载[Unity3d游戏引擎](https://store.unity.com/cn)的步骤这里就省略了，我们先从 [Github](https://github.com/sschmid/Entitas-CSharp/releases) 上下载 Entitas，笔者这里使用的是 [Entitas 0.42.4](https://github.com/sschmid/Entitas-CSharp/releases/tag/0.42.4) 。下载好解压后，将其 CodeGenerator 和 Entitas 目录导入到一个新的 Unity 工程（这里一切从简，创建了一个空的 2D 项目），如下图所示。
 
-![Ecs_001](./Images/Ecs_001.png)
+![Ecs_001](../Images/Ecs_001.png)
 
 接着，在工具栏找到 Tools -> Entitas ->Preference 对 Entitas 进行配置，由于这只是一个演示 ECS架构的小 Demo，就不对各种配置项进行解释了，对这些感兴趣的同学可以去官网查看文档，配置如下：
 
-![Ecs_002](./Images/Ecs_002.png)
+![Ecs_002](../Images/Ecs_002.png)
 
 点击绿色按钮 Generate，如果没有任何报错，则配置没有问题。接下来就可以开始写代码了。
 
@@ -139,7 +139,7 @@ public class PlayerComponent : IComponent { }
 
 实现完这 3 个组件后，我们需要利用 Entitas 框架提供的代码生成器，生成一下相应的代码，Tools -> Entitas -> Generate 或者快捷键`control + shift + g`。
 
-![Ecs_003](./Images/Ecs_003.png)
+![Ecs_003](../Images/Ecs_003.png)
 
 没有看到任何报错，很好我们继续。
 
@@ -285,7 +285,7 @@ public class GameController : MonoBehaviour
 
 在场景中新建一个名为“GameController”的空物体，将该脚本添加上去，运行游戏，在“Hierarchy”页签下就可以看到我们创建的系统和实体了，如下图：
 
-![Ecs_004](./Images/Ecs_004.png)
+![Ecs_004](../Images/Ecs_004.png)
 
 当我们按下`w`、`a`、`s`、`d`时，可以看到左侧 Position 下面的数值和 Velocity 下面的数值都根据我们的输入产生了对应的变化，这说明功能实现的没有问题。
 
