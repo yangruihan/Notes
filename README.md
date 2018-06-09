@@ -8,6 +8,8 @@
 
 ## 目录
 
+- [游戏开发](https://github.com/yangruihan/Notes/tree/master/GameDevelopment)
+
 - [Android相关](https://github.com/yangruihan/Notes/tree/master/Android)
 
 - [C相关](https://github.com/yangruihan/Notes/tree/master/C)
@@ -15,8 +17,6 @@
 - [C++相关](https://github.com/yangruihan/Notes/tree/master/C%2B%2B)
 
 - [Emacs相关](https://github.com/yangruihan/Notes/tree/master/Emacs)
-
-- [GameDevelopment](https://github.com/yangruihan/Notes/tree/master/GameDevelopment)
 
 - [Git相关](https://github.com/yangruihan/Notes/tree/master/Git)
 
