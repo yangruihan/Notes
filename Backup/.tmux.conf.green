@@ -19,7 +19,7 @@ set -g set-titles-string '#T'
 
 # status bar with load and time 
 set -g status-bg green
-set -g status-fg '#ffffff'
+set -g status-fg blue
 set -g status-left-fg blue
 set -g status-left-bg green
 set -g status-right-fg blue
@@ -32,4 +32,4 @@ set -g status-justify "centre"
 set -g window-status-format '#I #W'
 set -g window-status-current-format ' #I #W '
 setw -g window-status-current-bg green
-setw -g window-status-current-fg blue
+setw -g window-status-current-fg '#ffffff'
