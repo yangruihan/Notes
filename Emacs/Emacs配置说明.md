@@ -14,4 +14,4 @@ cp init.el ~/.emacs.d/init.el # 拷贝核心配置文件
 
 - neotree
 - [multiple-cursors](https://github.com/magnars/multiple-cursors.el)
-
+- [projectile](https://github.com/bbatsov/projectile)
