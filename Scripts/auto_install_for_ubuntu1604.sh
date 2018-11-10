@@ -21,6 +21,7 @@ sh -x install.sh
 
 # 安装 zsh
 sudo apt install zsh -y
+sudo apt install curl -y
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # 安装 pyenv
