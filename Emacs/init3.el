@@ -133,3 +133,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; set tab width for text-mode
+(add-hook 'text-mode-hook
+          '(lambda()
+             (setq indent-tabs-mode nil)
+             (setq tab-width 4)
+             (setq indent-line-function (quote insert-tab))))
+
