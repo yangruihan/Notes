@@ -33,3 +33,7 @@ set -g window-status-format '#I #W'
 set -g window-status-current-format ' #I #W '
 setw -g window-status-current-bg green
 setw -g window-status-current-fg '#ffffff'
+
+# change prefix C-b -> C-\
+unbind-key C-b
+set-option -g prefix C-'\'
