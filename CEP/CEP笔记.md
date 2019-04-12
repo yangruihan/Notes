@@ -96,7 +96,7 @@ Application
 
   打开文件选项:
 
-  ![](/images/p2.png)
+  ![](./images/p2.png)
 
   ```[js]
   // Set the ruler units to pixels
@@ -135,4 +135,46 @@ Application
   保存文件选项：
 
   ![](./images/p3.png)
+
+- create an ArtLayer object:
+
+  ```[javascript]
+  //make a new document
+  app.documents.add();
+
+  // Create a new art layer at the beginning of the current document
+  var layerRef = app.activeDocument.artLayers.add();
+  layerRef.name = "MyBlendLayer";
+  layerRef.blendMode = BlendMode.NORMAL;
+
+  // Select all so we can apply a fill to the selection
+  app.activeDocument.selection.selectAll;
+
+  // Create a color to be used with the fill command
+  var colorRef = new SolidColor;
+  colorRef.rgb.red = 255;
+  colorRef.rgb.green = 100;
+  colorRef.rgb.blue = 0;
+
+  // Now apply fill to the current selection
+  app.activeDocument.selection.fill(colorRef);
+  ```
+
+- create a Layer Set object:
+
+  ```[javascript]
+  // make a new document and a layer in the document
+  app.documents.add();
+  app.activeDocument.artLayers.add();
+
+  // Get a reference to the first layer in the document
+  var layerRef = app.activeDocument.layers[0];
+
+  // Create a new LayerSet (it will be created at the beginning of the
+  // document)
+  var newLayerSetRef = app.activeDocument.layerSets.add();
+
+  // Move the new layer to after the first layer
+  newLayerSetRef.move(layerRef, ElementPlacement.PLACEAFTER);
+  ```
 
