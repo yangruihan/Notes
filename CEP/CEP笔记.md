@@ -178,3 +178,27 @@ Application
   newLayerSetRef.move(layerRef, ElementPlacement.PLACEAFTER);
   ```
 
+- place the layer during the duplication method
+
+  ```[javascript]
+  var docRef = app.documents.add();
+  docRef.artlayers.add();
+
+  var layerSetRef = docRef.layerSets.add();
+  var layerRef = docRef.artLayers[0].duplicate(layerSetRef, ElementPlacement.PLACEATEND);
+  ```
+
+- create a text item object:
+
+  ```[javascript]
+  var newLayerRef = docRef.artLayers.add();
+  newLayerRef.kind = LayerKind.TEXT;
+
+  newLayerRef.name = "Text Layer";
+
+  var textItemRef = newLayerRef.textItem;
+  textItemRef.contents = "Hello, World!";
+  textItemRef.justification = Justification.LEFT;
+  ```
+
+
