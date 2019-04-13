@@ -56,6 +56,10 @@ Application
 
 - `Layer set` 对应的是Layer Group
 
+## SolidColor Class
+
+![](images/p4.png)
+
 ## Script Tips
 
 - creating new objects in script: `add()`
@@ -201,4 +205,31 @@ Application
   textItemRef.justification = Justification.LEFT;
   ```
 
+- clipboard interaction
+
+  clipboard commands of the *ArtLayer* and *Selection*
+
+  - `copy`
+
+  - `copy(merge parameter value)`
+
+  - `cut`
+
+  clipboard commands of the *Document*
+
+  - `paste`
+
+  - `paste(intoSelection parameter value)`
+
+- history states
+
+  ```[javascript]
+   docRef = app.activeDocument;
+   var savedState = docRef.activeHistoryState;
+   docRef.artLayers[0].applyMotionBlur( 20, 20 );
+   docRef.activeHistoryState = savedState;
+
+   // 清除历史记录
+   // app.purge(PurgeTarget.HISTORYCACHES);
+  ```
 
