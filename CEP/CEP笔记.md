@@ -233,3 +233,29 @@ Application
    // app.purge(PurgeTarget.HISTORYCACHES);
   ```
 
+- rulerUnits && typeUnits
+
+  ```[javascript]
+  startRulerUnits = app.preferences.rulerUnits;
+  startTypeUnits = app.preferences.TypeUnits;
+  startDisplayDislogs = app.displayDialogs;
+
+  // change settings
+  app.preferences.rulerUnits = Units.INCHES;
+  app.preferences.typeUnits = TypeUnits.PIXELS;
+  app.displayDialogs = DialogModes.NO;
+
+  var docWidthInInches = 4;
+  var docHeightInInches = 2;
+  var resolution = 72;
+  var docName = "Hello world";
+
+  if (app.documents.length === 0)
+     app.documents.add(docWidthInInches, docHeightInInches, resolution, docName);
+
+  // restore beginning preferences
+  app.preferences.rulerUnits = startRulerUnits;
+  app.preferences.typeUnits = startTypeUnits;
+  app.displayDialogs = startDisplayDislogs;
+  ```
+
