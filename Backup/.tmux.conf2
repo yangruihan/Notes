@@ -1,0 +1,36 @@
+# reload settings # 重新读取加载配置文件
+bind R source-file ~/.tmux.conf \; display-message "Config reloaded..."
+
+# Ctrl-Left/Right cycles thru windows (no prefix) 
+# 不使用prefix键，使用Ctrl和左右方向键方便切换窗口
+bind-key -n "C-Left" select-window -t :-
+bind-key -n "C-Right" select-window -t :+
+
+set -g default-terminal "screen-256color"   # use 256 colors
+set -g display-time 5000                    # status line messages display
+#set -g status-utf8 on                       # enable utf-8 
+set -g history-limit 100000                 # scrollback buffer n lines
+
+bind | split-window -h      # 使用|竖屏，方便分屏
+bind - split-window -v      # 使用-横屏，方便分屏
+
+# window title string (uses statusbar variables)
+set -g set-titles-string '#T'
+
+# status bar with load and time 
+set -g status-style fg=blue,bg=green
+set -g status-left-style fg=blue,bg=green
+set -g status-right-style fg=blue,bg=green
+set -g status-left-length 90
+set -g status-right-length 90
+set -g status-left '[#(whoami)]'
+set -g status-right '[#(date +" %m-%d %H:%M ")]'
+set -g status-justify "centre"
+set -g window-status-format '#I #W'
+set -g window-status-current-format ' #I #W '
+set-window-option -g window-status-current-style bg=green
+set-window-option -g window-status-current-style fg=white
+
+# change prefix C-b -> C-\
+unbind-key C-b
+set-option -g prefix C-'\'
