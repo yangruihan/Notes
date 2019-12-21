@@ -28,6 +28,8 @@
 
 - [Java相关](https://github.com/yangruihan/Notes/tree/master/Java)
 
+- [Lua](https://github.com/yangruihan/Notes/tree/master/Lua)
+
 - [Linux相关](https://github.com/yangruihan/Notes/tree/master/Linux)
 
 - [Lisp相关](https://github.com/yangruihan/Notes/tree/master/Lisp)
