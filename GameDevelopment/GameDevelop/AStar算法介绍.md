@@ -1,5 +1,7 @@
 # A* 算法介绍
 
+原文：https://www.redblobgames.com/pathfinding/a-star/introduction.html
+
 在游戏中，我们经常想找从一个位置到另一个位置的路径。我们不仅试图找到其中最短的路径，还希望考虑到时间成本。
 
 ![](../Images/as_1.png)
@@ -42,3 +44,83 @@ A* 算法只看图的数据，看不到其他任何内容。它不知道某物�
 
 我将从最简单的广度优先搜索开始，然后一次添加一个功能，将其转换为 A*
 
+## 广度优先搜索
+
+所有这些算法的关键思想是，我们跟踪一个被称为边界的扩张环。在网格上，此过程有时称为“洪水填充（Flood fill）”，但相同的技术也适用于非网格。下图展示了这一过程：
+
+![](../Images/as_4_1.png)
+
+![](../Images/as_4_2.png)
+
+![](../Images/as_4_3.png)
+
+![](../Images/as_4_4.png)
+
+如何实现这个过程呢？重复下面这些步骤，直到边界为空：
+
+1. 从边界列表中选择并移除一个节点
+2. 通过寻找它的相邻节点来扩展它。任意一个尚未寻找过的相邻节点，都要将其添加到边界列表中，同时将其添加到寻找过的列表中
+
+让我们近距离看一下。图块按照我们访问它们的顺序编号。逐步查看扩展过程：
+
+![](../Images/as_5_1.png)
+
+![](../Images/as_5_2.png)
+
+![](../Images/as_5_3.png)
+
+![](../Images/as_5_4.png)
+
+仅仅只需要10行代码（Python）便可以做到：
+
+```python
+frontier = Queue()
+frontier.put(start)
+visited = {}
+visited[start] = True
+
+while not frontier.empty():
+   current = frontier.get()
+   for next in graph.neighbors(current):
+      if next not in visited:
+         frontier.put(next)
+         visited[next] = True
+```
+
+这个循环是本文所介绍的图搜索算法的本质，包括 A*。但是，我们如何找到最短的路径呢？循环实际上并没有构造路径；它仅告诉我们如何访问地图上的任意位置。这是因为，广度优先搜索不仅可以用于查找路径，还有很多其他用途。在本文中，我将展示它如何用于塔防游戏中，除此之外，它还可以用于距离图，过程式图生成，以及许多其他功能。这里由于我们要使用它来查找路径，所以让我们修改循环以跟踪每个访问过的位置的来源（从哪个节点访问到它），并将访问过的集合重命名为`came_from`表（表的键是访问过集合）
+
+```python
+frontier = Queue()
+frontier.put(start)
+came_from = {}
+came_from[start] = None
+
+while not frontier.empty():
+   current = frontier.get()
+   for next in graph.neighbors(current):
+      if next not in came_from:
+         frontier.put(next)
+         came_from[next] = current
+```
+
+现在，每一个位置的`came_from`都指向它们的来源。这些就像泥土路上的“面包屑”，它们足以重建整条路径。
+
+![](../Images/as_6.png)
+
+重建路径的代码很简单：遵循箭头的方向反向从目标点到起点。路径是一系列边，但通常存储节点更容易：
+
+```python
+current = goal
+path = []
+while current != start:
+   path.append(current)
+   current = came_from[current]
+path.append(start) # optional
+path.reverse() # optional
+```
+
+这是最简单的寻路算法。它不仅适用于上图所示的网格组成的地图，还适用于任何类型的图数据结构。在地牢中，图中的位置可以是房间，而图中的边则是位于它们之间的走道。在平台游戏中，图中的位置可以是游戏世界中的位置，而图中的边，它们是可能的动作，例如向左移动，向右移动，向上跳跃，向下跳跃。通常，将图视为状态和更改状态的动作。[这里](http://theory.stanford.edu/~amitp/GameProgramming/MapRepresentations.html)有更多关于地图表示法的文章。在本文的其余部分，我将继续使用网格图示例，并探讨为什么你可能会使用广度优先搜索的变体。
+
+
+
+未完待续......
