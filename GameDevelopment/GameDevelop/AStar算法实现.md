@@ -40,7 +40,7 @@
 class SimpleGraph:
     def __init__(self):
         self.edges = {}
-    
+
     def neighbors(self, id):
         return self.edges[id]
 ```
@@ -72,13 +72,13 @@ import collections
 class Queue:
     def __init__(self):
         self.elements = collections.deque()
-    
+
     def empty(self):
         return len(self.elements) == 0
-    
+
     def put(self, x):
         self.elements.append(x)
-    
+
     def get(self):
         return self.elements.popleft()
 ```
@@ -96,7 +96,7 @@ def breadth_first_search_1(graph, start):
     frontier.put(start)
     visited = {}
     visited[start] = True
-    
+
     while not frontier.empty():
         current = frontier.get()
         print("Visiting %r" % current)
@@ -116,4 +116,106 @@ Visiting 'C'
 Visiting 'D'
 Visiting 'E'
 ```
+
+网格（Grids）也可以用图来表示。现在我将定义一个名为 SquareGrid 的图，其中包含位置元组（int，int）。在此地图中，图中的位置（“状态”）与游戏地图上的位置相同，但在许多其他问题中，图中的位置与地图上的位置是不同的。我将不再显示存储边信息，而是使用`neighbors`函数来计算它们。不过在许多问题中，将它们显示存储更好。
+
+```python
+class SquareGrid:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.walls = []
+
+    def in_bounds(self, id):
+        (x, y) = id
+        return 0 <= x < self.width and 0 <= y < self.height
+
+    def passable(self, id):
+        return id not in self.walls
+
+    def neighbors(self, id):
+        (x, y) = id
+        results = [(x + 1, y), (x, y - 1), (x - 1, y), (x, y + 1)]
+        if (x + y) % 2 == 0: results.reverse()
+        results = filter(self.in_bounds, results)
+        results = filter(self.passable, results)
+        return results
+```
+
+让我们尝试使用它处理本文的第一个网格：
+
+```python
+from implementation import *
+g = SquareGrid(30, 15)
+g.walls = DIAGRAM1_WALLS # 长列表, [(21, 0), (21, 2), ...]
+draw_grid(g)
+```
+
+```
+运行结果：
+. . . . . . . . . . . . . . . . . . . . . ####. . . . . . .
+. . . . . . . . . . . . . . . . . . . . . ####. . . . . . .
+. . . . . . . . . . . . . . . . . . . . . ####. . . . . . .
+. . . ####. . . . . . . . . . . . . . . . ####. . . . . . .
+. . . ####. . . . . . . . ####. . . . . . ####. . . . . . .
+. . . ####. . . . . . . . ####. . . . . . ##########. . . .
+. . . ####. . . . . . . . ####. . . . . . ##########. . . .
+. . . ####. . . . . . . . ####. . . . . . . . . . . . . . .
+. . . ####. . . . . . . . ####. . . . . . . . . . . . . . .
+. . . ####. . . . . . . . ####. . . . . . . . . . . . . . .
+. . . ####. . . . . . . . ####. . . . . . . . . . . . . . .
+. . . ####. . . . . . . . ####. . . . . . . . . . . . . . .
+. . . . . . . . . . . . . ####. . . . . . . . . . . . . . .
+. . . . . . . . . . . . . ####. . . . . . . . . . . . . . .
+. . . . . . . . . . . . . ####. . . . . . . . . . . . . . .
+```
+
+为了重建路径，我们需要存储算法是如何到达每一个位置的（即每一个位置的来源），因此我将`visited`数组（只记录`True`和`False`，表明是否已经访问）重命名为`came_from`（记录位置信息）：
+
+```python
+from implementation import *
+
+def breadth_first_search_2(graph, start):
+    # return "came_from"
+    frontier = Queue()
+    frontier.put(start)
+    came_from = {}
+    came_from[start] = None
+
+    while not frontier.empty():
+        current = frontier.get()
+        for next in graph.neighbors(current):
+            if next not in came_from:
+                frontier.put(next)
+                came_from[next] = current
+
+    return came_from
+
+g = SquareGrid(30, 15)
+g.walls = DIAGRAM1_WALLS
+
+parents = breadth_first_search_2(g, (8, 7))
+draw_grid(g, width=2, point_to=parents, start=(8, 7))
+```
+
+```
+运行结果：
+> > > > V V V V V V V V V V V V < < < < < ####V V V V V V V
+> > > > > V V V V V V V V V V < < < < < < ####V V V V V V V
+> > > > > V V V V V V V V V < < < < < < < ####> V V V V V V
+> > ^ ####V V V V V V V V < < < < < < < < ####> > V V V V V
+> ^ ^ ####> V V V V V V < ####^ < < < < < ####> > > V V V V
+^ ^ ^ ####> > V V V V < < ####^ ^ < < < < ##########V V V <
+^ ^ ^ ####> > > V V < < < ####^ ^ ^ < < < ##########V V < <
+^ ^ ^ ####> > > A < < < < ####^ ^ ^ ^ < < < < < < < < < < <
+V V V ####> > ^ ^ ^ < < < ####^ ^ ^ ^ ^ < < < < < < < < < <
+V V V ####> ^ ^ ^ ^ ^ < < ####^ ^ ^ ^ ^ ^ < < < < < < < < <
+V V V ####^ ^ ^ ^ ^ ^ ^ < ####^ ^ ^ ^ ^ ^ ^ < < < < < < < <
+> V V ####^ ^ ^ ^ ^ ^ ^ ^ ####^ ^ ^ ^ ^ ^ ^ ^ < < < < < < <
+> > > > > ^ ^ ^ ^ ^ ^ ^ ^ ####^ ^ ^ ^ ^ ^ ^ ^ ^ < < < < < <
+> > > > ^ ^ ^ ^ ^ ^ ^ ^ ^ ####^ ^ ^ ^ ^ ^ ^ ^ ^ ^ < < < < <
+> > > ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ####^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ < < < <
+```
+
+一些实现使用内部存储（面向对象），创建一个 Node 类，将`came_from`和其他一些信息存储到类中。相反，我选择使用外部存储，创建一个哈希表（`dict`）来存储图中所有节点的来源（`came_from`）。如果你能确定你的地图位置采用整数索引，则可以选择使用数组（`list`）来存储`came_from`。
 
