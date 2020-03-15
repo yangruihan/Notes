@@ -1,5 +1,7 @@
 # A* 算法实现
 
+已联系原作者，取得翻译授权
+
 原文地址：https://www.redblobgames.com/pathfinding/a-star/implementation.html
 
 前文：[A*算法介绍](https://github.com/yangruihan/Notes/blob/master/GameDevelopment/GameDevelop/AStar%E7%AE%97%E6%B3%95%E4%BB%8B%E7%BB%8D.md)
