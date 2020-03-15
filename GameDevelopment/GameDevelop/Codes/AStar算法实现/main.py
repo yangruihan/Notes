@@ -28,7 +28,7 @@ def breadth_first_search_1(graph: SimpleGraph, start):
                 visited[next] = True
 
 
-def breadth_first_search_2(graph: SquareGrid, start):
+def breadth_first_search_2(graph: SquareGrid, start: tuple):
     frontier = Queue()
     frontier.put(start)
     came_from = {}
@@ -36,6 +36,26 @@ def breadth_first_search_2(graph: SquareGrid, start):
 
     while not frontier.empty():
         current = frontier.get()
+        for next in graph.neighbors(current):
+            if next not in came_from:
+                frontier.put(next)
+                came_from[next] = current
+
+    return came_from
+
+
+def breadth_first_search_3(graph: SquareGrid, start: tuple, goal: tuple):
+    frontier = Queue()
+    frontier.put(start)
+    came_from = {}
+    came_from[start] = None
+
+    while not frontier.empty():
+        current = frontier.get()
+
+        if current == goal:
+            break
+
         for next in graph.neighbors(current):
             if next not in came_from:
                 frontier.put(next)
@@ -82,10 +102,44 @@ def draw_grid(g: SquareGrid, width: int, point_to: list, start: tuple):
                     print('V' + space, end='')
         print()
 
+
+def draw_grid2(g: SquareGrid, width: int,
+               point_to: list,
+               start: tuple,
+               goal: tuple):
+
+    for j in range(g.height):
+        for i in range(g.width):
+            if (i, j) == start:
+                print('A' + ' ' * (width - 1), end='')
+            elif (i, j) == goal:
+                print('Z' + ' ' * (width - 1), end='')
+            elif not g.passable((i, j)):
+                print('#' * width, end='')
+            else:
+                space = ' ' * (width - 1)
+                if (i, j) in point_to:
+                    came_from = point_to[(i, j)]
+                    if came_from == (i - 1, j):
+                        print('<' + space, end='')
+                    elif came_from == (i + 1, j):
+                        print('>' + space, end='')
+                    elif came_from == (i, j - 1):
+                        print('^' + space, end='')
+                    else:
+                        print('V' + space, end='')
+                else:
+                    print('.' + space, end='')
+        print()
+
 # breadth_first_search_1(example_graph, 'A')
 
 
 g = SquareGrid(30, 15)
 g.walls = DIAGRAM1_WALLS
-parents = breadth_first_search_2(g, (8, 7))
-draw_grid(g, width=2, point_to=parents, start=(8, 7))
+
+# parents = breadth_first_search_2(g, (8, 7))
+# draw_grid(g, width=2, point_to=parents, start=(8, 7))
+
+parents = breadth_first_search_3(g, (8, 7), (17, 2))
+draw_grid2(g, width=2, point_to=parents, start=(8, 7), goal=(17, 2))

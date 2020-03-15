@@ -219,3 +219,57 @@ V V V ####^ ^ ^ ^ ^ ^ ^ < ####^ ^ ^ ^ ^ ^ ^ < < < < < < < <
 
 一些实现使用内部存储（面向对象），创建一个 Node 类，将`came_from`和其他一些信息存储到类中。相反，我选择使用外部存储，创建一个哈希表（`dict`）来存储图中所有节点的来源（`came_from`）。如果你能确定你的地图位置采用整数索引，则可以选择使用数组（`list`）来存储`came_from`。
 
+### 1.2 提前退出（Early Exit）
+
+根据介绍文章的内容，我们要做的仅仅是在主循环中添加一条`if`语句。这条语句对于广度优先搜索和 Dijkstra 算法是可选的，而对于贪心最佳优先搜索和 A* 算法，这条语句是保证它们效率的必备条件。
+
+```python
+from implementation import *
+
+def breadth_first_search_3(graph, start, goal):
+    frontier = Queue()
+    frontier.put(start)
+    came_from = {}
+    came_from[start] = None
+
+    while not frontier.empty():
+        current = frontier.get()
+
+        if current == goal:
+            break
+
+        for next in graph.neighbors(current):
+            if next not in came_from:
+                frontier.put(next)
+                came_from[next] = current
+
+    return came_from
+
+g = SquareGrid(30, 15)
+g.walls = DIAGRAM1_WALLS
+
+parents = breadth_first_search_3(g, (8, 7), (17, 2))
+draw_grid(g, width=2, point_to=parents, start=(8, 7), goal=(17, 2))
+```
+
+```
+运算结果：
+. > > > v v v v v v v v v v v v < . . . . ####. . . . . . .
+> > > > > v v v v v v v v v v < < < . . . ####. . . . . . .
+> > > > > v v v v v v v v v < < < Z . . . ####. . . . . . .
+> > ^ ####v v v v v v v v < < < < < < . . ####. . . . . . .
+. ^ ^ ####> v v v v v v < ####^ < < . . . ####. . . . . . .
+. . ^ ####> > v v v v < < ####^ ^ . . . . ##########. . . .
+. . . ####> > > v v < < < ####^ . . . . . ##########. . . .
+. . . ####> > > A < < < < ####. . . . . . . . . . . . . . .
+. . . ####> > ^ ^ ^ < < < ####. . . . . . . . . . . . . . .
+. . v ####> ^ ^ ^ ^ ^ < < ####. . . . . . . . . . . . . . .
+. v v ####^ ^ ^ ^ ^ ^ ^ < ####. . . . . . . . . . . . . . .
+> v v ####^ ^ ^ ^ ^ ^ ^ ^ ####. . . . . . . . . . . . . . .
+> > > > > ^ ^ ^ ^ ^ ^ ^ ^ ####. . . . . . . . . . . . . . .
+> > > > ^ ^ ^ ^ ^ ^ ^ ^ ^ ####. . . . . . . . . . . . . . .
+. > > ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ####. . . . . . . . . . . . . . .
+```
+
+你可以看到算法在找到目标Z的时候就停止了。
+
