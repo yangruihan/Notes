@@ -4,6 +4,8 @@
 
 前文：[A*算法介绍](https://github.com/yangruihan/Notes/blob/master/GameDevelopment/GameDevelop/AStar%E7%AE%97%E6%B3%95%E4%BB%8B%E7%BB%8D.md)
 
+本文相关代码地址：[打开](https://github.com/yangruihan/Notes/tree/master/GameDevelopment/GameDevelop/Codes/AStar%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0)
+
 ----------分割线----------
 
 >这篇文章是我对[A*介绍](https://www.redblobgames.com/pathfinding/a-star/introduction.html)的配套指南，其中我解释了算法的工作原理。本文我将展示如何实现广度优先搜索、Dijkstra 算法、贪心最佳优先搜索和 A* 算法。我尝试保持代码简洁。
@@ -108,8 +110,9 @@ def breadth_first_search_1(graph, start):
 breadth_first_search_1(example_graph, 'A')
 ```
 
-```
 运行结果：
+
+```
 Visiting 'A'
 Visiting 'B'
 Visiting 'C'
@@ -151,8 +154,9 @@ g.walls = DIAGRAM1_WALLS # 长列表, [(21, 0), (21, 2), ...]
 draw_grid(g)
 ```
 
-```
 运行结果：
+
+```
 . . . . . . . . . . . . . . . . . . . . . ####. . . . . . .
 . . . . . . . . . . . . . . . . . . . . . ####. . . . . . .
 . . . . . . . . . . . . . . . . . . . . . ####. . . . . . .
@@ -198,8 +202,9 @@ parents = breadth_first_search_2(g, (8, 7))
 draw_grid(g, width=2, point_to=parents, start=(8, 7))
 ```
 
-```
 运行结果：
+
+```
 > > > > V V V V V V V V V V V V < < < < < ####V V V V V V V
 > > > > > V V V V V V V V V V < < < < < < ####V V V V V V V
 > > > > > V V V V V V V V V < < < < < < < ####> V V V V V V
@@ -252,8 +257,9 @@ parents = breadth_first_search_3(g, (8, 7), (17, 2))
 draw_grid(g, width=2, point_to=parents, start=(8, 7), goal=(17, 2))
 ```
 
-```
 运算结果：
+
+```
 . > > > v v v v v v v v v v v v < . . . . ####. . . . . . .
 > > > > > v v v v v v v v v v < < < . . . ####. . . . . . .
 > > > > > v v v v v v v v v < < < Z . . . ####. . . . . . .
@@ -273,3 +279,168 @@ draw_grid(g, width=2, point_to=parents, start=(8, 7), goal=(17, 2))
 
 你可以看到算法在找到目标Z的时候就停止了。
 
+### 1.3 Dijkstra 算法
+
+下面要开始增加图搜索算法的复杂度了，因为我们将使用比“先进先出（FIFO）”更合适的顺序来处理图中的位置。那么我们需要改变什么呢？
+
+1. *图（Graph）*需要知道移动成本
+2. *队列（Queue）*需要以不同之前的顺序返回节点
+3. *搜索算法*需要从图中读取成本，并跟踪计算成本，将其给到*队列*
+
+#### 1.3.1 加权图（Graph with weights）
+
+一个普通的图告诉我们每个节点的*邻居*。一个加权图还告诉我们沿着每条边进行移动的成本。我将添加一个`cost(from_node, to_node)`函数，该函数告诉我们从位置`from_node`到`to_node`之间的成本。在此文使用的图中，为了简化，我选择使运动成本仅依赖于`to_node`，但是还有[其他类型](http://theory.stanford.edu/~amitp/GameProgramming/MovementCosts.html)，它们的移动成本依赖于`from_node`和`to_node`。另一种实现是将移动成本合并到`neighbors`函数中。
+
+```python
+class GridWithWeights(SquareGrid):
+    def __init__(self, width, height):
+        super().__init__(width, height)
+        self.weights = {}
+
+    def cost(self, from_node, to_node):
+        return self.weights.get(to_node, 1)
+```
+
+#### 1.3.2 优先队列（Queue with priorities）
+
+一个优先队列使用“优先级”来组织它的元素。当需要返回一个元素时，它会选择其中优先级最低（也可以是最高的）的那一个元素。
+
+- `insert`
+
+    添加一个元素到队列中
+
+- `remove`
+
+    删除队列中优先级最低的元素
+
+- `reprioritize`
+
+    （可选）将现有元素的优先级改得更低
+
+使用*二叉堆（binary heaps）*可以得到一个快速可靠的优先级队列，但它不支持`reprioritize`。
+
+>译者补充：
+>
+>二叉堆
+>
+>二叉堆（英语：binary heap）是一种特殊的[堆](https://zh.wikipedia.org/wiki/%E5%A0%86%E7%A9%8D)，二叉堆是[完全二叉树](https://zh.wikipedia.org/wiki/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91)或者是近似完全二叉树。二叉堆满足堆特性：父节点的键值总是保持固定的序关系于任何一个子节点的键值，且每个节点的左子树和右子树都是一个二叉堆。
+>
+>当父节点的键值总是大于或等于任何一个子节点的键值时为“最大堆”。当父节点的键值总是小于或等于任何一个子节点的键值时为“最小堆”。
+
+为了得到正确的顺序，我们将使用元组 *（优先级，项目）*。当插入一个已经在队列中的元素时，我们将得到一个冗余的元素；我将在后文“优化”章节解释为什么这样做是没问题的。
+
+```python
+import heapq
+
+class PriorityQueue:
+    def __init__(self):
+        self.elements = []
+
+    def empty(self):
+        return len(self.elements) == 0
+
+    def put(self, item, priority):
+        heapq.heappush(self.elements, (priority, item))
+
+    def get(self):
+        return heapq.heappop(self.elements)[1]
+```
+
+#### 1.3.3 搜索
+
+这里有一个关于实现的棘手问题：一旦我们考虑移动成本，就会出现一种情况，通过不同的路径访问同一个节点，成本不同，那么就有可能第二次访问一个已经访问过的节点，但是成本更低。这意味着`if next not in came_from`这行代码不再有用。取而代之，我们必须检查自上次访问这个节点以来成本是否有所下降。（在本文的原始版本中，我没有进行检查，但代码仍然有效；我在[这里](https://www.redblobgames.com/pathfinding/posts/reprioritize.html)写了一些关于该错误的注释）
+
+这次使用的地图来自之前的[介绍文章](https://github.com/yangruihan/Notes/blob/master/GameDevelopment/GameDevelop/AStar%E7%AE%97%E6%B3%95%E4%BB%8B%E7%BB%8D.md)：
+
+```python
+def dijkstra_search(graph, start, goal):
+    frontier = PriorityQueue()
+    frontier.put(start, 0)
+    came_from = {}
+    cost_so_far = {}
+    came_from[start] = None
+    cost_so_far[start] = 0
+
+    while not frontier.empty():
+        current = frontier.get()
+
+        if current == goal:
+            break
+
+        for next in graph.neighbors(current):
+            new_cost = cost_so_far[current] + graph.cost(current, next)
+            if next not in cost_so_far or new_cost < cost_so_far[next]:
+                cost_so_far[next] = new_cost
+                priority = new_cost
+                frontier.put(next, priority)
+                came_from[next] = current
+
+    return came_from, cost_so_far
+```
+
+最终，在搜素完成后，我们需要构建路径：
+
+```python
+def reconstruct_path(came_from, start, goal):
+    current = goal
+    path = []
+    while current != start:
+        path.append(current)
+        current = came_from[current]
+    path.append(start) # optional
+    path.reverse() # optional
+    return path
+```
+
+尽管最好将路径视为由一系列边组成，不过这里将它们存储为一系列节点更为方便。为了构建路径，我们需要从目标节点开始，依据存储在`came_from`里的数据——指向该节点的前一个节点，不断回溯。当我们到达开始节点时，我们就完成了。不过可以发现，这样构建的路径是反向的（从目标节点到开始节点），因此，如果你想把数据改成正向的，需要在`reconstruct_path`函数最后调用`reverse()`方法，将路径反转。有时反向存储更有利，有时将开始节点也加入队列中更有利。
+
+让我们试试看：
+
+```python
+from implementation import *
+came_from, cost_so_far = dijkstra_search(diagram4, (1, 4), (7, 8))
+draw_grid(diagram4, width=3, point_to=came_from, start=(1, 4), goal=(7, 8))
+print()
+draw_grid(diagram4, width=3, number=cost_so_far, start=(1, 4), goal=(7, 8))
+print()
+draw_grid(diagram4, width=3, path=reconstruct_path(came_from, start=(1, 4), goal=(7, 8)))
+```
+
+运行结果：
+
+```
+v  v  <  <  <  <  <  <  <  <
+v  v  <  <  <  ^  ^  <  <  <
+v  v  <  <  <  <  ^  ^  <  <
+v  v  <  <  <  <  <  ^  ^  .
+>  A  <  <  <  <  .  .  .  .
+^  ^  <  <  <  <  .  .  .  .
+^  ^  <  <  <  <  <  .  .  .
+^  #########^  <  v  .  .  .
+^  #########v  v  v  Z  .  .
+^  <  <  <  <  <  <  <  <  .
+
+5  4  5  6  7  8  9  10 11 12
+4  3  4  5  10 13 10 11 12 13
+3  2  3  4  9  14 15 12 13 14
+2  1  2  3  8  13 18 17 14 .
+1  A  1  6  11 16 .  .  .  .
+2  1  2  7  12 17 .  .  .  .
+3  2  3  4  9  14 19 .  .  .
+4  #########14 19 18 .  .  .
+5  #########15 16 13 Z  .  .
+6  7  8  9  10 11 12 13 14 .
+
+.  .  .  .  .  .  .  .  .  .
+.  .  .  .  .  .  .  .  .  .
+.  .  .  .  .  .  .  .  .  .
+.  .  .  .  .  .  .  .  .  .
+@  @  .  .  .  .  .  .  .  .
+@  .  .  .  .  .  .  .  .  .
+@  .  .  .  .  .  .  .  .  .
+@  #########.  .  .  .  .  .
+@  #########.  .  @  @  .  .
+@  @  @  @  @  @  @  .  .  .
+```
+
+其中`if next not in cost_so_far or new_cost < cost_so_far[next]`可以简化为`if new_cost < cost_so_far.get(next, Infinity)`，但是我不想过多解释 Python 中的`get()`用法，所以我就不简化了。另一种方法是使用`collections.defaultdict`默认为无穷大。
