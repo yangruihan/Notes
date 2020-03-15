@@ -444,3 +444,80 @@ v  v  <  <  <  <  <  ^  ^  .
 ```
 
 其中`if next not in cost_so_far or new_cost < cost_so_far[next]`可以简化为`if new_cost < cost_so_far.get(next, Infinity)`，但是我不想过多解释 Python 中的`get()`用法，所以我就不简化了。另一种方法是使用`collections.defaultdict`默认为无穷大。
+
+### 1.4 A* 搜索
+
+贪心最佳优先搜素和 A* 都是用到了一个启发函数。唯一不同是，A* 不仅使用了启发函数还使用 Dijkstra 算法中计算的排序。接下来我将展示 A* 算法：
+
+```python
+def heuristic(a, b):
+    (x1, y1) = a
+    (x2, y2) = b
+    return abs(x1 - x2) + abs(y1 - y2)
+
+def a_star_search(graph, start, goal):
+    frontier = PriorityQueue()
+    frontier.put(start, 0)
+    came_from = {}
+    cost_so_far = {}
+    came_from[start] = None
+    cost_so_far[start] = 0
+    
+    while not frontier.empty():
+        current = frontier.get()
+        
+        if current == goal:
+            break
+        
+        for next in graph.neighbors(current):
+            new_cost = cost_so_far[current] + graph.cost(current, next)
+            if next not in cost_so_far or new_cost < cost_so_far[next]:
+                cost_so_far[next] = new_cost
+                priority = new_cost + heuristic(goal, next)
+                frontier.put(next, priority)
+                came_from[next] = current
+    
+    return came_from, cost_so_far
+```
+
+让我们是这运行它：
+
+```python
+from implementation import *
+start, goal = (1, 4), (7, 8)
+came_from, cost_so_far = a_star_search(diagram4, start, goal)
+draw_grid(diagram4, width=3, point_to=came_from, start=start, goal=goal)
+print()
+draw_grid(diagram4, width=3, number=cost_so_far, start=start, goal=goal)
+print()
+```
+
+运行结果：
+
+```
+.  .  .  .  .  .  .  .  .  .  
+.  v  v  v  .  .  .  .  .  .  
+v  v  v  v  <  .  .  .  .  .  
+v  v  v  <  <  .  .  .  .  .  
+>  A  <  <  <  .  .  .  .  .  
+>  ^  <  <  <  .  .  .  .  .  
+>  ^  <  <  <  <  .  .  .  .  
+^  #########^  .  v  .  .  .  
+^  #########v  v  v  Z  .  .  
+^  <  <  <  <  <  <  <  .  .  
+
+.  .  .  .  .  .  .  .  .  .  
+.  3  4  5  .  .  .  .  .  .  
+3  2  3  4  9  .  .  .  .  .  
+2  1  2  3  8  .  .  .  .  .  
+1  A  1  6  11 .  .  .  .  .  
+2  1  2  7  12 .  .  .  .  .  
+3  2  3  4  9  14 .  .  .  .  
+4  #########14 .  18 .  .  .  
+5  #########15 16 13 Z  .  .  
+6  7  8  9  10 11 12 13 .  .  
+```
+
+#### 1.4.1 更直接的路径
+
+如果你在自己的项目中实现这些代码，可能会发现某些路径并不如你所愿。**这是正常的。**当使用*网格（grid）*时，特别是在移动成本都相同的网格中，最终会遇到一些**局限**：很多条路径的成本是完全相同的。A* 最终选择了这些路径中的一条，但这**通常对你来说并不是最合适的路径**。有个[快速技巧](http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html#breaking-ties)可以打破这个局限，但并不能达到完美。更好的方式是[改变地图的表现形式](https://www.redblobgames.com/pathfinding/grids/algorithms.html)，这不仅可以使 A* 运行的更快，还可以产生更直接、美观的路径。然而，这些仅适用于移动成本相同的大部分静态地图。对于上文的演示，我使用了快速技巧，但也仅适用于优先级较低的队列。如果你使用的是优先级较高的队列，那么你需要使用其他的技巧。
