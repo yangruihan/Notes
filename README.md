@@ -46,6 +46,8 @@
 
 - [ROS (Robot Operating System)](https://github.com/yangruihan/Notes/tree/master/ROS)
 
+- [SDL相关](https://github.com/yangruihan/Notes/blob/master/SDL/%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF.md)
+
 - [Sublime Text 相关](https://github.com/yangruihan/Notes/tree/master/Sublime%20Text)
 
 - [SVN](https://github.com/yangruihan/Notes/tree/master/SVN)
