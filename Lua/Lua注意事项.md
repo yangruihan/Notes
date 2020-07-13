@@ -30,3 +30,16 @@
   ```
   
 - 函数`io.write`可以读取任意数量的字符串（或者数字）并将其写入当前输出流。由于调用该函数时可以使用多个参数，因此应该避免使用`io.write(a..b..c)`，应该调用`io.write(a,b,c)`，后者可以用更少的资源达到同样的效果，并且可以避免更多的连接动作
+
+- 调用函数`file:seek()`会返回当前的位置且不改变当前位置；调用函数`file:seek("set")`会将位置重置到文件开头并返回0；调用函数`file:seek("end")`会将当前位置重置到文件结尾并返回文件的大小
+
+  ```lua
+  function fsize(file)
+    local current = file:seek()
+    local size = file:seek("end")
+    file:seek("set", current)
+    return size
+  end
+  ```
+  
+- 函数`os.renam`e用于文件重命名，函数`os.remove`用于移除（删除）文件。需要注意的是，由于这两个函数处理的是真实文件而非流，所以它们位于os库而非io库中
