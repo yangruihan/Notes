@@ -1,6 +1,6 @@
 # C 语言中的 `setjmp` 和 `longjmp`（转）
 
-源地址：https://www.cnblogs.com/hazir/p/c_setjmp_longjmp.html
+原文：https://www.cnblogs.com/hazir/p/c_setjmp_longjmp.html
 
 在 C 语言中，我们不能使用 `goto` 语句来跳转到另一个函数中的某个 `label` 处；但提供了两个函数——`setjmp` 和 `longjmp`来完成这种类型的分支跳转。后面我们会看到这两个函数在处理异常上面的非常有用
 
