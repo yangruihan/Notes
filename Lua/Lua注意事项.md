@@ -1,5 +1,31 @@
 # Lua注意事项
 
+## 实战注意事项
+
+### table.insert 和 select 配合使用注意
+
+```lua
+for i = 1, select("#", ...) do
+    table.insert(ret, select(i, ...))
+end
+```
+
+抛出`bad argument #2 to 'insert' (number expected, got table)`异常
+
+原因在于`select(i, ...)`会返回索引在i之后的全部参数，因此这里会将`table.insert`三个参数填满，导致报错
+
+需要改成：
+
+```lua
+for i = 1, select("#", ...) do
+    table.insert(ret, (select(i, ...)))
+end
+```
+
+使用`(select(i, ...))`强制限定`select`返回一个参数即可
+
+## 理论注意事项
+
 - 在条件检测中Lua语言把**零**和**空字符串**也都视为真。
 
 - 在少数情况下，当需要区分**整型值**和**浮点型值**时，可以使用函数`math.type`：
