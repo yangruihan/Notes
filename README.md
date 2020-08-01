@@ -6,6 +6,8 @@
 
 - 创建人：C.y
 
+- 相关个人博客：https://github.com/yangruihan/blog
+
 ## 目录
 
 - [游戏开发](https://github.com/yangruihan/Notes/tree/master/GameDevelopment)
