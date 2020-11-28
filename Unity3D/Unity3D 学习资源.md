@@ -49,4 +49,23 @@ Unity3D 学习资料汇总
 
 - [Meet the Devs专题之新输入系统](https://www.bilibili.com/video/BV1Gt4y1X7s9)
 
+### 2.4 ShaderGraph
+
+#### 视频
+
+- [Unity Shader Graph 节点解析（一）Vector 1, Vector 2, Vector 3, Vector 4](https://www.bilibili.com/video/BV1Q4411R74E)
+- [Unity Shader Graph 节点解析（二）Constant, Integer, Slider, Boolean, Color, Time](https://www.bilibili.com/video/BV1u4411R7Dz)
+- [Unity Shader Graph 节点解析（三）UV](https://www.bilibili.com/video/BV1v4411z7if)
+- [Unity Shader Graph 节点解析（四）Position](https://www.bilibili.com/video/BV1Y4411m76K)
+- [Unity Shader Graph 节点解析（五）Normal Vector, Tangent Vector, Bitangent Vector](https://www.bilibili.com/video/BV1uJ411K7Ak)
+- [Unity Shader Graph 节点解析（六）Screen Position, View Direction](https://www.bilibili.com/video/BV1oE411Z7ae)
+- [Unity Shader Graph 节点解析（七）Vertex Color](https://www.bilibili.com/video/BV1nE411C7Lw)
+- [Unity Shader Graph 节点解析（八）Gradient, Sample Gradient](https://www.bilibili.com/video/BV1LE411h7iP)
+- [Unity Shader Graph 节点解析（九）Matrix (Input类) 和 Matrix (Math类) 相关节点](https://www.bilibili.com/video/BV1FJ411d7HD)
+- [Unity Shader Graph 节点解析（十）Texel Size, Sampler State](https://www.bilibili.com/video/BV1rJ411J7NU)
+- [Unity Shader Graph 节点解析（十一）Texture 2D 相关节点](https://www.bilibili.com/video/BV137411f7kF)
+
+### 2.5 Visual Effect Graph
+
+- [Unity全新特效工具Visual Effect Graph分享](https://www.bilibili.com/video/BV1st411X7y7)
 
