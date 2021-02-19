@@ -12,6 +12,6 @@ cp init.el ~/.emacs.d/init.el # 拷贝核心配置文件
 
 *使用 `M-x package-install plugin-name` 安装插件*
 
-- neotree
+- [neotree](https://github.com/jaypei/emacs-neotree)
 - [multiple-cursors](https://github.com/magnars/multiple-cursors.el)
 - [projectile](https://github.com/bbatsov/projectile)
