@@ -17,21 +17,29 @@
 ;; ----------------------------
 (defvar myPackages
   '(
+    ;; common
     better-defaults
-    elpy
     flycheck
-    monokai-theme
-    material-theme
-    py-autopep8
+    multiple-cursors
     neotree
     rtags
-    irony
-    multiple-cursors
     auto-complete
-    auto-complete-clang
-    ;;cmake-ide
     all-the-icons
     transpose-frame
+
+    ;; theme
+    monokai-theme
+    material-theme
+
+    ;; python
+    elpy
+    py-autopep8
+
+    ;; c/c++
+    irony
+    company-irony
+    auto-complete-clang
+    ;;cmake-ide
     ))
 
 (mapc #'(lambda (package)
@@ -79,6 +87,9 @@
 ;; rtags config
 ;; ----------------------------
 (require 'rtags)
+(setq rtags-path "/usr/local/bin")
+(setq rtags-rc-binary-name (or rtags-rc-binary-name "rc")
+      rtags-rdm-binary-name (or rtags-rdm-binary-name "rdm"))
 ;; ----------------------------
 
 
@@ -97,6 +108,10 @@
 (add-hook 'objc-mode-hook 'irony-mode)
 
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
+(eval-after-load 'company
+  '(add-to-list 'company-backends 'company-irony))
+(setq company-irony-ignore-case t)
 ;; ----------------------------
 
 
