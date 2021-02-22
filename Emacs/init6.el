@@ -30,6 +30,7 @@
     ;; theme
     monokai-theme
     material-theme
+    spacemacs-dark
 
     ;; python
     elpy
