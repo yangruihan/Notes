@@ -51,6 +51,14 @@ sed -i 's/plugins=(/plugins=( zsh-syntax-highlighting /' ~/.zshrc
 LOG "install zsh plugin done"
 
 #----------------------
+# git config
+#----------------------
+git config --global alias.st status
+git config --global alias.co checkout
+git config --global alias.ci commit
+git config --global alias.br branch
+
+#----------------------
 # custom script folder
 #----------------------
 LOG "create script folder ..."
