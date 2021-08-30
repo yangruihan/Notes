@@ -20,7 +20,11 @@ function getGithubLatestReleaseVersion() {
 #----------------------
 # sudo apt update
 LOG "apt install ..."
-sudo apt install git vim zsh curl wget emacs tmux tldr python python3 python3-pip -y
+sudo apt install \
+     git vim zsh curl wget \
+     emacs tmux tldr python \
+     python3 python3-pip \
+     man gdb build-essential net-tools -y
 LOG "apt install done"
 
 #----------------------
@@ -204,6 +208,13 @@ rm mcfly.tar.gz
 echo 'eval "$(mcfly init zsh)"' >> "$HOME/.zshrc"
 LOG "install mcfly done"
 
+#----------------------
+# install autojump
+#----------------------
+LOG "install autojump ..."
+sudo apt install autojump -y
+echo ". /usr/share/autojump/autojump.sh" >> "$HOME/.zshrc"
+LOG "install autojump
 
 LOG "-------------------------------"
 LOG "------- Install Finish --------"
