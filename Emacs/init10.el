@@ -35,6 +35,7 @@
     crux
     w3m
     markdown-mode
+    google-translate
 
     ;; theme
     monokai-theme
@@ -219,6 +220,19 @@
 ;; ;; ----------------------------
 
 
+;; ----------------------------
+;; Google translate config
+;; ----------------------------
+(require 'google-translate)
+(require 'google-translate-default-ui)
+(global-set-key "\C-ct" 'google-translate-at-point)
+(global-set-key "\C-cT" 'google-translate-query-translate)
+(setq google-translate-default-source-language "en")
+(setq google-translate-default-target-language "zh-CN")
+(defun google-translate--search-tkk () "Search TKK." (list 430675 2721866130))
+(setq google-translate-backend-method 'curl)
+;; ----------------------------
+
 
 ;; ----------------------------
 ;; rust config
@@ -332,38 +346,38 @@
 (global-set-key (kbd "C-x C-[") #'goto-last-change)
 (global-set-key (kbd "C-x C-]") #'goto-last-change-reverse)
 
-;; unicode characters in term-mode
-(defadvice ansi-term (after advise-ansi-term-coding-system)
-  (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
-(ad-activate 'ansi-term)
-(setq ansi-color-for-comint-mode t)
-
-
-;; utf-8 support
-(setq locale-coding-system 'utf-8)
-(prefer-coding-system 'utf-8)
-(set-default-coding-systems 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(modify-coding-system-alist 'process "*" 'utf-8)
-(setq default-process-coding-system '(utf-8 . utf-8))
-(set-keyboard-coding-system 'utf-8)
-(set-selection-coding-system 'utf-8)
-(set-buffer-file-coding-system 'utf-8)
-(set-default buffer-file-coding-system 'utf-8)
-(set-clipboard-coding-system 'utf-8)
-(setq-default pathname-coding-system 'utf-8)
-(setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
-(defun change-shell-mode-coding ()
-  (progn
-    (set-terminal-coding-system 'utf-8)
-    (set-keyboard-coding-system 'utf-8)
-    (set-selection-coding-system 'utf-8)
-    (set-buffer-file-coding-system 'utf-8)
-    (set-file-name-coding-system 'utf-8)
-    (modify-coding-system-alist 'process "*" 'utf-8)
-    (set-buffer-process-coding-system 'utf-8 'utf-8)
-    ))
-
+;; ;; unicode characters in term-mode
+;; (defadvice ansi-term (after advise-ansi-term-coding-system)
+;;   (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
+;; (ad-activate 'ansi-term)
+;; (setq ansi-color-for-comint-mode t)
+;; 
+;; 
+;; ;; utf-8 support
+;; (setq locale-coding-system 'utf-8)
+;; (prefer-coding-system 'utf-8)
+;; (set-default-coding-systems 'utf-8)
+;; (set-terminal-coding-system 'utf-8)
+;; (modify-coding-system-alist 'process "*" 'utf-8)
+;; (setq default-process-coding-system '(utf-8 . utf-8))
+;; (set-keyboard-coding-system 'utf-8)
+;; (set-selection-coding-system 'utf-8)
+;; (set-buffer-file-coding-system 'utf-8)
+;; (set-default buffer-file-coding-system 'utf-8)
+;; (set-clipboard-coding-system 'utf-8)
+;; (setq-default pathname-coding-system 'utf-8)
+;; (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
+;; (defun change-shell-mode-coding ()
+;;   (progn
+;;     (set-terminal-coding-system 'utf-8)
+;;     (set-keyboard-coding-system 'utf-8)
+;;     (set-selection-coding-system 'utf-8)
+;;     (set-buffer-file-coding-system 'utf-8)
+;;     (set-file-name-coding-system 'utf-8)
+;;     (modify-coding-system-alist 'process "*" 'utf-8)
+;;     (set-buffer-process-coding-system 'utf-8 'utf-8)
+;;     ))
+;; 
 ;; ----------------------------
 
 
