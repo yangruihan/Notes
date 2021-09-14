@@ -325,6 +325,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq auto-save-default nil)
 (setq x-select-enable-clipboard t)
+(setq x-select-enable-primary t)
 (global-font-lock-mode t)
 
 (setq default-tab-width 4)
@@ -503,3 +504,19 @@
 (add-hook 'shell-mode-hook
           (lambda ()
             (face-remap-set-base 'comint-highlight-prompt :inherit nil)))
+
+;; ----------------------------
+;; Read/Write to temp clip file
+;; ----------------------------
+(setq clip-temp-file "~/.emacs.d/.clip_temp_file")
+
+(defun write-mark-region-to-clip-temp-file ()
+  "Write mark region to clip temp file"
+  (interactive)
+  (write-region (region-beginning) (region-end) clip-temp-file))
+
+(defun read-clip-temp-file-to-current-file ()
+  "Read clip temp file content to current file"
+  (interactive)
+  (insert-file-contents clip-temp-file))
+;; ----------------------------
