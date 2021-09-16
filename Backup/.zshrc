@@ -100,8 +100,6 @@ alias gitpla="p35 && python ~/Workspace/Scripts/all_git_pull.py"
 
 alias update="sh ~/WorkSpace/Scripts/update.sh"
 
-alias sshu="ssh ubuntu@119.29.167.139"
-
 alias emacs="open -a /Applications/Emacs.app"
 
 alias szsh="source ~/.zshrc"
