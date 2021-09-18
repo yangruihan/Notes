@@ -114,7 +114,7 @@ wget https://raw.githubusercontent.com/yangruihan/Notes/master/Emacs/__emacs2 -O
 if [ ! -d "$HOME/.emacs.d" ]; then
     mkdir "$HOME/.emacs.d"
 fi
-wget https://raw.githubusercontent.com/yangruihan/Notes/master/Emacs/init9.el -O ~/.emacs.d/init.el
+wget https://raw.githubusercontent.com/yangruihan/Notes/master/Emacs/init11.el -O ~/.emacs.d/init.el
 echo alias emsd=\'emacs --daemon\' >> "$HOME/.zshrc"
 echo alias emsdq=\'emacsclient --eval \"\(kill-emacs\)\"\' >> "$HOME/.zshrc"
 echo alias emc=\'emacsclient -t -a \"\"\' >> "$HOME/.zshrc"
@@ -135,10 +135,7 @@ if [ -f "$HOME/.tmux.conf" ]; then
     mv "$HOME/.tmux.conf" "$HOME/.tmux.conf.bac"
 fi
 
-touch "$HOME/.tmux.conf"
-echo 'set -g default-terminal "screen-256color"' >> "$HOME/.tmux.conf"
-echo 'unbind C-b' >> "$HOME/.tmux.conf"
-echo set -g prefix \'C-\\\' >> "$HOME/.tmux.conf"
+wget https://raw.githubusercontent.com/yangruihan/Notes/master/Scripts/.tmux.conf -O ~/.tmux.conf
 
 echo alias tmux=\"tmux -u\" >> "$HOME/.zshrc"
 
