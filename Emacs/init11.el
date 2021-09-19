@@ -75,6 +75,7 @@
 (require 'all-the-icons)
 (require 'transpose-frame)
 
+(yas-global-mode)
 
 ;; ----------------------------
 ;; emacs application framework
