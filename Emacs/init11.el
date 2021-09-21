@@ -21,6 +21,7 @@
     ;; common
     better-defaults
     flycheck
+    yasnippet
     multiple-cursors
     neotree
     rtags
@@ -75,7 +76,7 @@
 (require 'all-the-icons)
 (require 'transpose-frame)
 
-(yas-global-mode)
+(yas-global-mode 1)
 
 ;; ----------------------------
 ;; emacs application framework
