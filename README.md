@@ -46,7 +46,7 @@
 
 - [Git](https://github.com/yangruihan/Notes/tree/master/Git)
 
-- [Google Study jam](https://github.com/yangruihan/Notes/tree/master/Google Study jam)
+- [Google Study jam](https://github.com/yangruihan/Notes/tree/master/Google%20Study%20jam)
 
 - [Gradle](https://github.com/yangruihan/Notes/tree/master/Gradle)
 
@@ -92,7 +92,7 @@
 
 - [Scripts](https://github.com/yangruihan/Notes/tree/master/Scripts)
 
-- [Sublime Text](https://github.com/yangruihan/Notes/tree/master/Sublime Text)
+- [Sublime Text](https://github.com/yangruihan/Notes/tree/master/Sublime%20Text)
 
 - [Tmux](https://github.com/yangruihan/Notes/tree/master/Tmux)
 
