@@ -10,74 +10,96 @@
 
 ## 目录
 
-- [游戏开发](https://github.com/yangruihan/Notes/tree/master/GameDevelopment)
+- [Algorithm](https://github.com/yangruihan/Notes/tree/master/Algorithm)
 
-- [Android相关](https://github.com/yangruihan/Notes/tree/master/Android)
+- [Android](https://github.com/yangruihan/Notes/tree/master/Android)
 
-- [C相关](https://github.com/yangruihan/Notes/tree/master/C)
+- [Backup](https://github.com/yangruihan/Notes/tree/master/Backup)
 
-- [C++相关](https://github.com/yangruihan/Notes/tree/master/C%2B%2B)
+- [Blender](https://github.com/yangruihan/Notes/tree/master/Blender)
 
-- [C#相关](https://github.com/yangruihan/Notes/blob/master/C%23)
+- [C](https://github.com/yangruihan/Notes/tree/master/C)
 
-- [Emacs相关](https://github.com/yangruihan/Notes/tree/master/Emacs)
+- [C#](https://github.com/yangruihan/Notes/tree/master/C#)
 
-- [Git相关](https://github.com/yangruihan/Notes/tree/master/Git)
+- [C++](https://github.com/yangruihan/Notes/tree/master/C++)
 
-- [Google Study jam 相关](https://github.com/yangruihan/Notes/tree/master/Google%20Study%20jam)
+- [CEP](https://github.com/yangruihan/Notes/tree/master/CEP)
 
-- [Gradle相关](https://github.com/yangruihan/Notes/tree/master/Gradle)
+- [CMake](https://github.com/yangruihan/Notes/tree/master/CMake)
 
-- [Java相关](https://github.com/yangruihan/Notes/tree/master/Java)
+- [Compiler](https://github.com/yangruihan/Notes/tree/master/Compiler)
 
-- [Lua相关](https://github.com/yangruihan/Notes/tree/master/Lua)
+- [ComputerOrganization](https://github.com/yangruihan/Notes/tree/master/ComputerOrganization)
 
-- [Linux相关](https://github.com/yangruihan/Notes/tree/master/Linux)
+- [DataStruct](https://github.com/yangruihan/Notes/tree/master/DataStruct)
 
-- [Lisp相关](https://github.com/yangruihan/Notes/tree/master/Lisp)
+- [Database](https://github.com/yangruihan/Notes/tree/master/Database)
 
-- [Mac相关](https://github.com/yangruihan/Notes/tree/master/Mac)
+- [DesignPattern](https://github.com/yangruihan/Notes/tree/master/DesignPattern)
 
-- [Markdown相关](https://github.com/yangruihan/Notes/tree/master/Markdown)
+- [Emacs](https://github.com/yangruihan/Notes/tree/master/Emacs)
 
-- [OpenGL相关](https://github.com/yangruihan/Notes/tree/master/OpenGL)
+- [GameDevelopment](https://github.com/yangruihan/Notes/tree/master/GameDevelopment)
 
-- [Python相关](https://github.com/yangruihan/Notes/tree/master/Python)
+- [GameEngineArchitecture](https://github.com/yangruihan/Notes/tree/master/GameEngineArchitecture)
 
-- [Python开发的小工具](https://github.com/yangruihan/Notes/tree/master/PythonUtils)
+- [Git](https://github.com/yangruihan/Notes/tree/master/Git)
 
-- [ROS (Robot Operating System)](https://github.com/yangruihan/Notes/tree/master/ROS)
+- [Google Study jam](https://github.com/yangruihan/Notes/tree/master/Google Study jam)
 
-- [SDL相关](https://github.com/yangruihan/Notes/blob/master/SDL/%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF.md)
+- [Gradle](https://github.com/yangruihan/Notes/tree/master/Gradle)
 
-- [Sublime Text 相关](https://github.com/yangruihan/Notes/tree/master/Sublime%20Text)
+- [Image](https://github.com/yangruihan/Notes/tree/master/Image)
+
+- [Interview](https://github.com/yangruihan/Notes/tree/master/Interview)
+
+- [Java](https://github.com/yangruihan/Notes/tree/master/Java)
+
+- [Linux](https://github.com/yangruihan/Notes/tree/master/Linux)
+
+- [Lisp](https://github.com/yangruihan/Notes/tree/master/Lisp)
+
+- [Lua](https://github.com/yangruihan/Notes/tree/master/Lua)
+
+- [Mac](https://github.com/yangruihan/Notes/tree/master/Mac)
+
+- [Markdown](https://github.com/yangruihan/Notes/tree/master/Markdown)
+
+- [Network](https://github.com/yangruihan/Notes/tree/master/Network)
+
+- [OpenGL](https://github.com/yangruihan/Notes/tree/master/OpenGL)
+
+- [OperatingSystem](https://github.com/yangruihan/Notes/tree/master/OperatingSystem)
+
+- [Others](https://github.com/yangruihan/Notes/tree/master/Others)
+
+- [ProgrammingLanguage](https://github.com/yangruihan/Notes/tree/master/ProgrammingLanguage)
+
+- [Python](https://github.com/yangruihan/Notes/tree/master/Python)
+
+- [PythonUtils](https://github.com/yangruihan/Notes/tree/master/PythonUtils)
+
+- [ROS](https://github.com/yangruihan/Notes/tree/master/ROS)
+
+- [RegularExpression](https://github.com/yangruihan/Notes/tree/master/RegularExpression)
+
+- [Rust](https://github.com/yangruihan/Notes/tree/master/Rust)
+
+- [SDL](https://github.com/yangruihan/Notes/tree/master/SDL)
 
 - [SVN](https://github.com/yangruihan/Notes/tree/master/SVN)
 
+- [Scripts](https://github.com/yangruihan/Notes/tree/master/Scripts)
+
+- [Sublime Text](https://github.com/yangruihan/Notes/tree/master/Sublime Text)
+
+- [Tmux](https://github.com/yangruihan/Notes/tree/master/Tmux)
+
 - [Unity3D](https://github.com/yangruihan/Notes/tree/master/Unity3D)
 
-- [算法](https://github.com/yangruihan/Notes/tree/master/Algorithm)
+- [Unreal](https://github.com/yangruihan/Notes/tree/master/Unreal)
 
-- [设计模式](https://github.com/yangruihan/Notes/tree/master/DesignPattern)
+- [VSCode](https://github.com/yangruihan/Notes/tree/master/VSCode)
 
-- [数据库相关](https://github.com/yangruihan/Notes/tree/master/Database)
-
-- [网络相关](https://github.com/yangruihan/Notes/tree/master/Network)
-
-- [《游戏引擎架构》笔记](https://github.com/yangruihan/Notes/tree/master/GameEngineArchitecture)
-
-- [操作系统](https://github.com/yangruihan/Notes/tree/master/OperatingSystem)
-
-- [正则表达式](https://github.com/yangruihan/Notes/tree/master/RegularExpression)
-
-- [计算机组成原理](https://github.com/yangruihan/Notes/tree/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86)
-
-- [数据结构](https://github.com/yangruihan/Notes/tree/master/DataStruct)
-
-- [自制编程语言](https://github.com/yangruihan/Notes/tree/master/ProgrammingLanguage/book)
-
-- [个人脚本](https://github.com/yangruihan/Notes/tree/master/Scripts)
-
-- [面试题](https://github.com/yangruihan/Notes/tree/master/%E9%9D%A2%E8%AF%95%E9%A2%98)
-
-- [其他](https://github.com/yangruihan/Notes/tree/master/Others)
+- [Vim](https://github.com/yangruihan/Notes/tree/master/Vim)
