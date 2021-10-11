@@ -27,7 +27,7 @@ def main():
     dirs = sorted(list(filter(lambda x: os.path.isdir(os.path.join(
         target_path, x)) and x not in global_config['ignore'], dirs)))
 
-    content = "\n\n".join([ITEM_TEMPLATE % (d, d) for d in dirs])
+    content = "\n\n".join([ITEM_TEMPLATE % (d, d.replace(' ', '%20')) for d in dirs])
 
     ret = ""
     with open('template.txt', 'r') as f:
