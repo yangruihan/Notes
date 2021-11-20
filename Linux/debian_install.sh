@@ -119,7 +119,7 @@ echo alias emsd=\'emacs --daemon\' >> "$HOME/.zshrc"
 echo alias emsdq=\'emacsclient --eval \"\(kill-emacs\)\"\' >> "$HOME/.zshrc"
 echo alias emc=\'emacsclient -t -a \"\"\' >> "$HOME/.zshrc"
 
-wget https://raw.githubusercontent.com/yangruihan/Notes/master/Emacs/em.py -O ~/.rscripts/em.py
+wget https://raw.githubusercontent.com/yangruihan/Notes/master/Emacs/scripts/em.py -O ~/.rscripts/em.py
 chmod +x ~/.rscripts/em.py 
 echo alias em=\'~/.rscripts/em.py\' >> "$HOME/.zshrc"
 
