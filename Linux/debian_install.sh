@@ -135,7 +135,7 @@ if [ -f "$HOME/.tmux.conf" ]; then
     mv "$HOME/.tmux.conf" "$HOME/.tmux.conf.bac"
 fi
 
-wget https://raw.githubusercontent.com/yangruihan/Notes/master/Scripts/.tmux.conf -O ~/.tmux.conf
+wget https://raw.githubusercontent.com/yangruihan/Notes/master/Backup/config/.tmux.conf -O ~/.tmux.conf
 
 echo alias tmux=\"tmux -u\" >> "$HOME/.zshrc"
 
