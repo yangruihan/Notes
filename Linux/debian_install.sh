@@ -110,11 +110,11 @@ tldr --update
 #-------------------------------------------------------------------------------
 LOG "config emacs ..."
 
-wget https://raw.githubusercontent.com/yangruihan/Notes/master/Emacs/__emacs2 -O ~/.emacs
+wget https://raw.githubusercontent.com/yangruihan/Notes/master/Emacs/config/__emacs2 -O ~/.emacs
 if [ ! -d "$HOME/.emacs.d" ]; then
     mkdir "$HOME/.emacs.d"
 fi
-wget https://raw.githubusercontent.com/yangruihan/Notes/master/Emacs/init11.el -O ~/.emacs.d/init.el
+wget https://raw.githubusercontent.com/yangruihan/Notes/master/Emacs/config/init11.el -O ~/.emacs.d/init.el
 echo alias emsd=\'emacs --daemon\' >> "$HOME/.zshrc"
 echo alias emsdq=\'emacsclient --eval \"\(kill-emacs\)\"\' >> "$HOME/.zshrc"
 echo alias emc=\'emacsclient -t -a \"\"\' >> "$HOME/.zshrc"
